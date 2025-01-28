@@ -2,6 +2,7 @@ import { Component, ReactNode } from 'react';
 import './App.css';
 import SearchBar from './components/search/search-bar';
 import { IFCharacter, IFResponse } from './types/interface';
+import ErrorButton from './components/errButton/errorButton';
 
 class App extends Component {
   state = {
@@ -22,6 +23,7 @@ class App extends Component {
       <>
         <header>
           <SearchBar onDataChange={this.handleDataChange} />
+          <ErrorButton />
         </header>
         <main>
           <h2>Results</h2>
