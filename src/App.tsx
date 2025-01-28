@@ -1,6 +1,7 @@
 import { Component, ReactNode } from 'react';
 import './App.css';
 import SearchBar from './components/search/search-bar';
+import Results from './components/results/results';
 import { IFCharacter, IFResponse } from './types/interface';
 import ErrorButton from './components/errButton/errorButton';
 
@@ -27,6 +28,14 @@ class App extends Component {
         </header>
         <main>
           <h2>Results</h2>
+          {this.state.results.length > 0 && (
+            <Results data={this.state.results} />
+          )}
+          {this.state.notFound && (
+            <h3>
+              no data fetched, server replied with status {this.state.status}
+            </h3>
+          )}
         </main>
       </>
     );
