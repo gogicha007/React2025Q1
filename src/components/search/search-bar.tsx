@@ -32,7 +32,7 @@ class SearchBar extends Component<
   render() {
     return (
       <div className={styles.search__bar}>
-        <label htmlFor="search">Search the status</label>
+        <label htmlFor="search">Search by status</label>
         <input
           value={this.state.input}
           onInput={(e) =>
