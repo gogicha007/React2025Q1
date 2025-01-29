@@ -1,25 +1,16 @@
+import styles from './results.module.css';
 import { IFCharacter } from '../../types/interface';
+import { Card } from '../card/card';
 
 const Results = ({ data }: { data: IFCharacter[] }) => {
   return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((obj, idx) => {
-          return (
-            <tr key={idx}>
-              <td>{obj.name}</td>
-              <td>{obj.status}</td>
-            </tr>
-          );
+    <div className={styles.results}>
+      <div className={styles.results__list}>
+        {data.map((obj: IFCharacter, id) => {
+          return <Card {...obj} key={id} />;
         })}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 };
 
