@@ -1,5 +1,5 @@
-import { Component, ReactNode } from 'react';
 import './App.css';
+import { Component, ReactNode } from 'react';
 import SearchBar from './components/search/search-bar';
 import Results from './components/results/results';
 import { IFCharacter, IFResponse } from './types/interface';
