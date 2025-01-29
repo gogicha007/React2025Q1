@@ -24,3 +24,8 @@ export interface IFCharacter {
     name: string;
   };
 }
+
+export type CharacterFilters = {
+  page?: number;
+  status?: string;
+};
