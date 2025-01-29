@@ -36,6 +36,7 @@ const SearchBar = ({
     setFilters({ page: 1 });
     if (!status && searchWord) setFilters({ status: searchWord });
   }, []);
+
   return (
     <>
       <form className={styles.search__bar}>
