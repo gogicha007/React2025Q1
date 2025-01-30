@@ -51,7 +51,7 @@ export const detailsLoader = async ({ params }: { params: Params<'id'> }) => {
   const { id } = params;
   const res = await getDetails(id as string);
   if (!res) {
-    throw Error('Could not found job details');
+    throw Error('Could not found charachter details');
   }
   return res;
 };

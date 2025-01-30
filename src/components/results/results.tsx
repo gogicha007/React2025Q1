@@ -21,6 +21,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   }, [loading]);
 
   async function fetchList() {
+    console.log('results effect');
     try {
       const res = await getList(+page, status as string);
       setTimeout(() => setLoader(false), 500);
