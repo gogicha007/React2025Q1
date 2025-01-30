@@ -2,7 +2,10 @@ import { IFResponse } from '../types/interface';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
-const getList = async (str: string, page = 1): Promise<IFResponse | number> => {
+const getList = async (
+  page: number,
+  str: string
+): Promise<IFResponse | number> => {
   if (!str) return 404;
   const response = await fetch(`${BASE_URL}/?page=${page}&status=${str}`);
   if (response.status === 200) {
@@ -12,4 +15,16 @@ const getList = async (str: string, page = 1): Promise<IFResponse | number> => {
   return response.status;
 };
 
-export { getList };
+const getDetails = async (id: string) => {
+  const response = await fetch(
+    `https://rickandmortyapi.com/api/character/${id}`
+  );
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw Error('Could not found charachter details');
+  }
+};
+
+export { getList, getDetails };

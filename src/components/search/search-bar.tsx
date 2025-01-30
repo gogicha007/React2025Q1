@@ -1,35 +1,19 @@
 import styles from './search-bar.module.css';
 
-import { useEffect, useState } from 'react';
-import { IFResponse } from '../../types/interface';
-import { getList } from '../../utils/fetcher';
+import { useEffect } from 'react';
 import { lsHandler } from '../../utils/ls-handler';
-import Loader from '../loader/loader';
 import ErrorButton from '../errButton/errorButton';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 
-const SearchBar = ({
-  handleSearch,
-}: {
-  handleSearch: (res: IFResponse | number) => void;
-}) => {
+const SearchBar = ({ handleSearch }: { handleSearch: () => void }) => {
   const { status, setFilters } = useCharacterFilters();
-  const [input, setInput] = useState(lsHandler.getValue() || '');
-  const [loading, setLoading] = useState(false);
 
   const clickSearch = async () => {
-    setLoading(true);
-    const res = await getList(input, 1);
-    setTimeout(() => {
-      lsHandler.setValue(input);
-      setLoading(false);
-      handleSearch(res);
-    }, 1000);
+    lsHandler.setValue(status);
+    handleSearch();
   };
 
-  const changeInput = (word: string) => {
-    setFilters({ page: 1, status: word });
-  };
+  const changeInput = (word: string) => setFilters({ page: 1, status: word });
 
   useEffect(() => {
     const searchWord = lsHandler.getValue();
@@ -43,8 +27,7 @@ const SearchBar = ({
         <label htmlFor="search">Search by status</label>
         <input
           value={status}
-          onChange={(e) => changeInput(e.target.value)}
-          onInput={(e) => setInput((e.target as HTMLInputElement).value.trim())}
+          onChange={(e) => changeInput(e.target.value.trim())}
           type="search"
           id="search"
           name="status"
@@ -58,7 +41,6 @@ const SearchBar = ({
         >
           Search
         </button>
-        {loading && <Loader />}
       </form>
       <ErrorButton />
     </>
