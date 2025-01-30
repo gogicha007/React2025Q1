@@ -2,7 +2,7 @@ import styles from './details.module.css';
 import type { Params } from 'react-router';
 import { getDetails } from '../../utils/fetcher';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface IFContext {
   closeClicked: () => void;
@@ -10,16 +10,28 @@ interface IFContext {
 }
 
 export const Details = () => {
+  const [count, setCount] = useState(0);
+  const effectRan = useRef(false);
   const context = useOutletContext() as IFContext;
   const obj = useLoaderData();
   const navigate = useNavigate();
 
   useEffect(() => {
-    context.isOpen();
+    if (effectRan.current === true) {
+      setCount((prevValue) => prevValue + 1);
+    }
+  }, [obj]);
+
+  useEffect(() => {
+    if (effectRan.current === true) context.isOpen();
+    return () => {
+      effectRan.current = true;
+    };
   }, []);
 
   const handleClickClose = () => {
-    navigate(-1);
+    navigate(-count);
+    setCount(0);
     context.closeClicked();
   };
 

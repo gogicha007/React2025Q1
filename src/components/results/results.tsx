@@ -31,6 +31,7 @@ const Results = ({ loader }: { loader: boolean }) => {
       console.error(error);
     }
   }
+
   const handleDetailsOpen = () => {
     setDisabled(true);
     console.log('details opened', disabled);
