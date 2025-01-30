@@ -7,20 +7,20 @@ function HomePage() {
   const [loading, setLoader] = useState(false);
   const [trigger, setTrigger] = useState(0);
 
-  console.log(loading);
-  console.log(trigger);
   const handleSearch = () => {
     setLoader(true);
     setTrigger((prev) => prev + 1);
   };
 
   return (
-    <>
+    <div className={styles.home}>
       <header className={styles.home__top}>
         <SearchBar handleSearch={handleSearch} />
       </header>
-      <main>{<Results loader={loading} key={trigger} />}</main>
-    </>
+      <main>
+        <Results loader={loading} key={trigger} />
+      </main>
+    </div>
   );
 }
 

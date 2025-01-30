@@ -3,9 +3,10 @@ import { Link, Outlet } from 'react-router';
 import { useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
-import { Card } from '../card/card';
-import Loader from '../loader/loader';
 import { getList } from '../../utils/fetcher';
+import { Card } from '../card/card';
+import { Pagination } from '../pagination/pagination';
+import Loader from '../loader/loader';
 
 const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
@@ -15,7 +16,6 @@ const Results = ({ loader }: { loader: boolean }) => {
   const [noResults, setNoResults] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-  console.log(responseInfo);
   useEffect(() => {
     fetchList();
   }, [loading]);
@@ -23,9 +23,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   async function fetchList() {
     try {
       const res = await getList(+page, status as string);
-      setTimeout(() => {
-        setLoader(false);
-      }, 500);
+      setTimeout(() => setLoader(false), 500);
       setResults(typeof res === 'number' ? [] : res.results);
       setRespInfo(typeof res === 'number' ? res : res.info);
       setNoResults(typeof res === 'number');
@@ -43,21 +41,33 @@ const Results = ({ loader }: { loader: boolean }) => {
   };
   return (
     <div className={styles.results}>
-      <div className={styles.results__list}>
-        {results.length !== 0 &&
-          results.map((obj: IFCharacter) => {
-            return (
-              <Link to={{ pathname: `${obj.id.toString()}` }} key={obj.id}>
-                <Card {...obj} />
-              </Link>
-            );
-          })}
-        {noResults && (
-          <h3>
-            no data fetched, server replied with status{' '}
-            {(responseInfo as number).toString()}
-          </h3>
-        )}
+      <div className={styles.results__main}>
+        <div className={styles.results__list}>
+          {results.length !== 0 &&
+            results.map((obj: IFCharacter) => {
+              return (
+                <Link to={{ pathname: `${obj.id.toString()}` }} key={obj.id}>
+                  <Card {...obj} />
+                </Link>
+              );
+            })}
+
+          {noResults && (
+            <h3>
+              no data fetched, server replied with status{' '}
+              {(responseInfo as number).toString()}
+            </h3>
+          )}
+        </div>
+        <div className={styles.results__pagination}>
+          {results.length !== 0 && (
+            <Pagination
+              disabled={disabled}
+              resInfo={responseInfo as IFRespInfo}
+              handlePagination={setLoader}
+            />
+          )}
+        </div>
       </div>
       {loading && <Loader />}
       <Outlet

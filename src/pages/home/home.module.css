@@ -1,6 +1,7 @@
 .home {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 .home__top {
   width: 100%;
