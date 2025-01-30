@@ -1,7 +1,7 @@
 import styles from './results.module.css';
 import { Link, Outlet } from 'react-router';
 import { useEffect, useState } from 'react';
-import { IFCharacter, IFRespInfo, IFResponse } from '../../types/interface';
+import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { Card } from '../card/card';
 import Loader from '../loader/loader';
@@ -11,7 +11,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
   const [results, setResults] = useState<IFCharacter[]>([]);
-  const [responseInfo, setRespInfo] = useState<IFRespInfo>();
+  const [responseInfo, setRespInfo] = useState<IFRespInfo | number>();
   const [noResults, setNoResults] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
@@ -23,18 +23,12 @@ const Results = ({ loader }: { loader: boolean }) => {
   async function fetchList() {
     try {
       const res = await getList(+page, status as string);
-      console.log('res', res);
-      if (typeof res !== 'number') {
-        setResults((res as IFResponse).results);
-        setRespInfo((res as IFResponse).info);
-        setTimeout(() => {
-          setLoader(false);
-        }, 1000);
-      } else {
+      setTimeout(() => {
         setLoader(false);
-        setResults([]);
-      }
-      setNoResults(!res);
+      }, 500);
+      setResults(typeof res === 'number' ? [] : res.results);
+      setRespInfo(typeof res === 'number' ? res : res.info);
+      setNoResults(typeof res === 'number');
     } catch (error) {
       console.error(error);
     }
@@ -58,7 +52,12 @@ const Results = ({ loader }: { loader: boolean }) => {
               </Link>
             );
           })}
-        {noResults && <h1>No data</h1>}
+        {noResults && (
+          <h3>
+            no data fetched, server replied with status{' '}
+            {(responseInfo as number).toString()}
+          </h3>
+        )}
       </div>
       {loading && <Loader />}
       <Outlet
