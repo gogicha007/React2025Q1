@@ -38,15 +38,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-// function App() {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<HomePage />}>
-//         <Route path=":id" element={<Details />} loader={detailsLoader} />
-//       </Route>
-//       <Route path="*" element={<NotFound />} />
-//     </Routes>
-//   );
-// }
-
 export default App;
