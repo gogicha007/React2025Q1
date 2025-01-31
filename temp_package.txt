@@ -1,0 +1,21 @@
+"jest": {
+    "roots": [
+        "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+        "src/**/*.tsx"
+    ],
+    "coveragePathIgnorePatterns": [
+        "**/node_modules/**",
+        "**/*.test.tsx",
+        "**/*.spec.tsx",
+        "src/__tests__/setup.ts"
+    ],
+    "moduleNameMapper": {
+        "^.+\\.module\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "transform": {
+        "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",
+        "^.+\\.css$": "<rootDir>/cssTransform.cjs"
+    }
+}

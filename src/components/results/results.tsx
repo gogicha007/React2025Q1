@@ -1,4 +1,3 @@
-import styles from './Results.module.css';
 import { Link, Outlet } from 'react-router';
 import { useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
@@ -7,6 +6,7 @@ import { getList } from '../../utils/fetcher';
 import { Card } from '../card/Card';
 import { Pagination } from '../pagination/Pagination';
 import Loader from '../loader/Loader';
+import styles from './Results.module.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
