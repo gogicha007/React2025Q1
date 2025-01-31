@@ -1,12 +1,12 @@
-import styles from './results.module.css';
+import styles from './Results.module.css';
 import { Link, Outlet } from 'react-router';
 import { useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
-import { Card } from '../card/card';
-import { Pagination } from '../pagination/pagination';
-import Loader from '../loader/loader';
+import { Card } from '../card/Card';
+import { Pagination } from '../pagination/Pagination';
+import Loader from '../loader/Loader';
 
 const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
