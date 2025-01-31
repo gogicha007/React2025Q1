@@ -39,6 +39,7 @@
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jest-transform-css": "^6.0.2",
     "prettier": "3.4.2",
     "ts-jest": "^29.2.5",
@@ -47,22 +48,13 @@
     "vite": "^6.0.5"
   },
   "jest": {
-    "preset": "ts-jest",
-    "roots": [
-      "<rootDir>/src"
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
     ],
-    "collectCoverageFrom": [
-      "src/**/*.tsx"
-    ],
-    "coveragePathIgnorePatterns": [
-      "**/node_modules/**",
-      "**/*.test.tsx",
-      "**/*.spec.tsx",
-      "src/__tests__/setup.ts"
-    ],
-    "moduleNameMapper": {
-      ".(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/jest-config/file-mock.cjs",
-      "^.+\\.module\\.(css|scss)$": "<rootDir>/jest-config/style-mock.cjs"
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",
+      "^.+\\.(css)$": "<rootDir>/jest-config/style-mock.cjs"
     }
   }
 }

@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router';
 import Results from './Results';
 
 test('results', () => {
@@ -6,5 +7,9 @@ test('results', () => {
     ...jest.requireActual('react-router'),
     useSearchParams: () => [new URLSearchParams({ ids: '001,002' })],
   }));
-  render(<Results loader={true} />);
+  render(
+    <BrowserRouter>
+      <Results loader={true} />
+    </BrowserRouter>
+  );
 });

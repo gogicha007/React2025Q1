@@ -1,4 +1,4 @@
-import styles from './pagination.module.css';
+import './pagination.css';
 import { IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { isValidHTTPURL } from '../../utils/validator';
@@ -23,12 +23,12 @@ export const Pagination = (props: Props) => {
 
   return (
     <>
-      <nav className={styles.pgn}>
+      <nav className="pgn">
         <button
           style={{ pointerEvents: props.disabled ? 'none' : 'initial' }}
           type="submit"
           onClick={() => clickPagination('prev')}
-          className={styles.pgn__button}
+          className="pgn__button"
           disabled={!props.resInfo.prev}
         >
           &laquo;
@@ -37,7 +37,7 @@ export const Pagination = (props: Props) => {
           style={{ pointerEvents: props.disabled ? 'none' : 'initial' }}
           type="submit"
           onClick={() => clickPagination('next')}
-          className={styles.pgn__button}
+          className="pgn__button"
           disabled={!props.resInfo.next}
         >
           &raquo;

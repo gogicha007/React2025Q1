@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
+import { Pagination } from '../pagination/pagination';
+import Loader from '../loader/loader';
 import { Card } from '../card/Card';
-import { Pagination } from '../pagination/Pagination';
-import Loader from '../loader/Loader';
-import styles from './Results.module.css';
+// import styles from './Results.module.css';
+import './results.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
@@ -42,9 +43,9 @@ const Results = ({ loader }: { loader: boolean }) => {
     setDisabled(false);
   };
   return (
-    <div className={styles.results}>
-      <div className={styles.results__main}>
-        <div className={styles.results__list}>
+    <div className="results">
+      <div className="results__main">
+        <div className="results__list">
           {results.length !== 0 &&
             results.map((obj: IFCharacter) => {
               return (
@@ -61,7 +62,7 @@ const Results = ({ loader }: { loader: boolean }) => {
             </h3>
           )}
         </div>
-        <div className={styles.results__pagination}>
+        <div className="results__pagination">
           {results.length !== 0 && (
             <Pagination
               disabled={disabled}
