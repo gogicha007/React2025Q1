@@ -23,6 +23,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.18",
@@ -51,6 +52,17 @@
     "setupFiles": [
       "<rootDir>/jest.setup.js"
     ],
+    "collectCoverageFrom": [
+      "src/**/*.tsx",
+      "!**/node_modules/**",
+      "!**/*.test.tsx",
+      "!src/testing/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 70
+      }
+    },
     "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",

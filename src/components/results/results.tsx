@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
-import { Pagination } from '../pagination/pagination';
-import Loader from '../loader/loader';
+import { Pagination } from '../pagination/Pagination';
+import Loader from '../loader/Loader';
 import { Card } from '../card/Card';
 // import styles from './Results.module.css';
 import './results.css';
@@ -22,7 +22,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   }, [loading]);
 
   async function fetchList() {
-    console.log('results effect');
+    // console.log('results effect');
     try {
       const res = await getList(+page, status as string);
       setTimeout(() => setLoader(false), 500);

@@ -10,6 +10,7 @@ const getList = async (
   const response = await fetch(`${BASE_URL}/?page=${page}&status=${str}`);
   if (response.status === 200) {
     const data = await response.json();
+    console.log(data);
     return data;
   }
   return response.status;
