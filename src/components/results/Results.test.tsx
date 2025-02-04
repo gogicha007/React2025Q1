@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, RouterProvider, createMemoryRouter } from 'react-router';
 import Results from './results';
 import { mockFetch } from '../../testing/mocks/mock-fetch';
 import { IFResponse } from '../../types/interface';
+import routesConfig from '../../utils/routes';
 
 const data = {
   info: {
@@ -64,23 +65,21 @@ describe('rs-app-router', () => {
     );
     await waitFor(() => {
       const links: HTMLAnchorElement[] = screen.getAllByRole('link');
-      console.log(links[1].href);
       expect(links[1].href).toContain('/2');
     });
   });
 
   test('check if click on card navigates to details', async () => {
     window.fetch = mockFetch(data as IFResponse);
-    render(
-      <MemoryRouter initialEntries={['?page=1&status=Alive']}>
-        <Results loader={true} />
-      </MemoryRouter>
-    );
 
-    userEvent.click(screen.getByRole('link')); // to be processed
+    const router = createMemoryRouter(routesConfig, { initialEntries: ['/'] });
+    render(<RouterProvider router={router} />);
+    const user = userEvent.setup();
+
     await waitFor(() => {
-      // to be processed
-      expect(screen.getByRole('heading')).toBeInTheDocument();
+      const links: HTMLAnchorElement[] = screen.getAllByRole('link');
+      user.click(links[0]); // to be processed
+      expect(screen.getByRole('button')).toBeInTheDocument();
     });
   });
 });

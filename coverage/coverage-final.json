@@ -1,6 +1,6 @@
 {
-  "D:\\CODES\\React2025Q1\\src\\App.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\App.tsx",
+  "C:\\Codes\\React2025Q1\\src\\App.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\App.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -93,8 +93,8 @@
     "f": { "0": 0, "1": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\main.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\main.tsx",
+  "C:\\Codes\\React2025Q1\\src\\main.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\main.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -123,8 +123,8 @@
     "f": {},
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\card\\card.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\card\\card.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\card\\Card.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\card\\Card.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -157,12 +157,12 @@
       }
     },
     "branchMap": {},
-    "s": { "0": 0, "1": 0, "2": 0, "3": 0 },
-    "f": { "0": 0 },
+    "s": { "0": 1, "1": 1, "2": 12, "3": 1 },
+    "f": { "0": 12 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\details\\Details.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\details\\Details.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\details\\details.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\details\\details.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -182,7 +182,7 @@
       },
       "4": {
         "start": { "line": 12, "column": 23 },
-        "end": { "line": 48, "column": 1 }
+        "end": { "line": 49, "column": 1 }
       },
       "5": {
         "start": { "line": 13, "column": 28 },
@@ -258,43 +258,43 @@
       },
       "23": {
         "start": { "line": 38, "column": 2 },
-        "end": { "line": 47, "column": 4 }
+        "end": { "line": 48, "column": 4 }
       },
       "24": {
         "start": { "line": 12, "column": 13 },
         "end": { "line": 12, "column": 23 }
       },
       "25": {
-        "start": { "line": 50, "column": 29 },
-        "end": { "line": 57, "column": 2 }
+        "start": { "line": 51, "column": 29 },
+        "end": { "line": 58, "column": 2 }
       },
       "26": {
-        "start": { "line": 50, "column": 76 },
-        "end": { "line": 57, "column": 2 }
+        "start": { "line": 51, "column": 76 },
+        "end": { "line": 58, "column": 2 }
       },
       "27": {
-        "start": { "line": 51, "column": 17 },
-        "end": { "line": 51, "column": 23 }
+        "start": { "line": 52, "column": 17 },
+        "end": { "line": 52, "column": 23 }
       },
       "28": {
-        "start": { "line": 52, "column": 14 },
-        "end": { "line": 52, "column": 44 }
+        "start": { "line": 53, "column": 14 },
+        "end": { "line": 53, "column": 44 }
       },
       "29": {
-        "start": { "line": 53, "column": 2 },
-        "end": { "line": 55, "column": 3 }
+        "start": { "line": 54, "column": 2 },
+        "end": { "line": 56, "column": 3 }
       },
       "30": {
-        "start": { "line": 54, "column": 4 },
-        "end": { "line": 54, "column": 54 }
+        "start": { "line": 55, "column": 4 },
+        "end": { "line": 55, "column": 54 }
       },
       "31": {
-        "start": { "line": 56, "column": 2 },
-        "end": { "line": 56, "column": 13 }
+        "start": { "line": 57, "column": 2 },
+        "end": { "line": 57, "column": 13 }
       },
       "32": {
-        "start": { "line": 50, "column": 13 },
-        "end": { "line": 50, "column": 29 }
+        "start": { "line": 51, "column": 13 },
+        "end": { "line": 51, "column": 29 }
       }
     },
     "fnMap": {
@@ -306,7 +306,7 @@
         },
         "loc": {
           "start": { "line": 12, "column": 28 },
-          "end": { "line": 48, "column": 1 }
+          "end": { "line": 49, "column": 1 }
         }
       },
       "1": {
@@ -367,23 +367,23 @@
       "6": {
         "name": "(anonymous_13)",
         "decl": {
-          "start": { "line": 50, "column": 29 },
-          "end": { "line": 50, "column": 36 }
+          "start": { "line": 51, "column": 29 },
+          "end": { "line": 51, "column": 36 }
         },
         "loc": {
-          "start": { "line": 50, "column": 76 },
-          "end": { "line": 57, "column": 2 }
+          "start": { "line": 51, "column": 76 },
+          "end": { "line": 58, "column": 2 }
         }
       },
       "7": {
         "name": "(anonymous_14)",
         "decl": {
-          "start": { "line": 50, "column": 76 },
-          "end": { "line": 50, "column": null }
+          "start": { "line": 51, "column": 76 },
+          "end": { "line": 51, "column": null }
         },
         "loc": {
-          "start": { "line": 50, "column": 72 },
-          "end": { "line": 57, "column": 1 }
+          "start": { "line": 51, "column": 72 },
+          "end": { "line": 58, "column": 1 }
         }
       }
     },
@@ -416,24 +416,24 @@
       },
       "2": {
         "loc": {
-          "start": { "line": 53, "column": 2 },
-          "end": { "line": 55, "column": 3 }
+          "start": { "line": 54, "column": 2 },
+          "end": { "line": 56, "column": 3 }
         },
         "type": "if",
         "locations": [
           {
-            "start": { "line": 53, "column": 2 },
-            "end": { "line": 55, "column": 3 }
+            "start": { "line": 54, "column": 2 },
+            "end": { "line": 56, "column": 3 }
           }
         ]
       }
     },
     "s": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
       "5": 0,
       "6": 0,
       "7": 0,
@@ -453,21 +453,21 @@
       "21": 0,
       "22": 0,
       "23": 0,
-      "24": 0,
-      "25": 0,
+      "24": 1,
+      "25": 1,
       "26": 0,
       "27": 0,
       "28": 0,
       "29": 0,
       "30": 0,
       "31": 0,
-      "32": 0
+      "32": 1
     },
     "f": { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0 },
     "b": { "0": [0], "1": [0], "2": [0] }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\errButton\\ErrorButton.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\errButton\\ErrorButton.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\errButton\\errorButton.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\errButton\\errorButton.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -546,21 +546,21 @@
       }
     },
     "s": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
       "4": 0,
-      "5": 0,
+      "5": 1,
       "6": 0,
-      "7": 0,
-      "8": 0
+      "7": 1,
+      "8": 1
     },
-    "f": { "0": 0, "1": 0 },
+    "f": { "0": 1, "1": 0 },
     "b": { "0": [0] }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 29 },
@@ -593,8 +593,8 @@
     "f": { "0": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\loader\\loader.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\loader\\loader.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\loader\\Loader.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\loader\\Loader.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -627,12 +627,12 @@
       }
     },
     "branchMap": {},
-    "s": { "0": 0, "1": 0, "2": 0, "3": 0 },
-    "f": { "0": 0 },
+    "s": { "0": 1, "1": 1, "2": 8, "3": 1 },
+    "f": { "0": 8 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\pagination\\pagination.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\pagination\\pagination.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\pagination\\Pagination.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\pagination\\Pagination.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -820,12 +820,12 @@
       }
     },
     "s": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
-      "5": 0,
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 2,
+      "5": 2,
       "6": 0,
       "7": 0,
       "8": 0,
@@ -833,16 +833,16 @@
       "10": 0,
       "11": 0,
       "12": 0,
-      "13": 0,
+      "13": 2,
       "14": 0,
       "15": 0,
-      "16": 0
+      "16": 1
     },
-    "f": { "0": 0, "1": 0, "2": 0, "3": 0 },
-    "b": { "0": [0, 0], "1": [0, 0], "2": [0, 0], "3": [0, 0] }
+    "f": { "0": 2, "1": 0, "2": 0, "3": 0 },
+    "b": { "0": [0, 0], "1": [0, 0], "2": [0, 2], "3": [0, 2] }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\results\\results.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\results\\results.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\results\\results.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\results\\results.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1182,54 +1182,54 @@
       }
     },
     "s": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
-      "5": 0,
-      "6": 0,
-      "7": 0,
-      "8": 0,
-      "9": 0,
-      "10": 0,
-      "11": 0,
-      "12": 0,
-      "13": 0,
-      "14": 0,
-      "15": 0,
-      "16": 0,
-      "17": 0,
-      "18": 0,
-      "19": 0,
-      "20": 0,
-      "21": 0,
-      "22": 0,
-      "23": 0,
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 10,
+      "10": 10,
+      "11": 10,
+      "12": 10,
+      "13": 10,
+      "14": 10,
+      "15": 10,
+      "16": 5,
+      "17": 5,
+      "18": 5,
+      "19": 5,
+      "20": 4,
+      "21": 5,
+      "22": 5,
+      "23": 5,
       "24": 0,
-      "25": 0,
+      "25": 10,
       "26": 0,
       "27": 0,
-      "28": 0,
+      "28": 10,
       "29": 0,
       "30": 0,
-      "31": 0,
-      "32": 0,
-      "33": 0
+      "31": 10,
+      "32": 12,
+      "33": 1
     },
-    "f": { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0 },
+    "f": { "0": 10, "1": 5, "2": 5, "3": 4, "4": 0, "5": 0, "6": 12 },
     "b": {
-      "0": [0, 0],
-      "1": [0, 0],
-      "2": [0, 0],
-      "3": [0, 0],
-      "4": [0, 0],
-      "5": [0, 0],
-      "6": [0, 0]
+      "0": [6, 4],
+      "1": [3, 2],
+      "2": [3, 2],
+      "3": [10, 2],
+      "4": [10, 4],
+      "5": [10, 2],
+      "6": [10, 8]
     }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\search\\search-bar.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\search\\search-bar.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\search\\search-bar.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\search\\search-bar.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1436,35 +1436,35 @@
       }
     },
     "s": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
-      "5": 0,
-      "6": 0,
-      "7": 0,
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
       "8": 0,
       "9": 0,
       "10": 0,
-      "11": 0,
+      "11": 1,
       "12": 0,
-      "13": 0,
-      "14": 0,
-      "15": 0,
-      "16": 0,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
       "17": 0,
-      "18": 0,
+      "18": 1,
       "19": 0,
       "20": 0,
       "21": 0,
-      "22": 0
+      "22": 1
     },
-    "f": { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0 },
-    "b": { "0": [0], "1": [0, 0] }
+    "f": { "0": 1, "1": 0, "2": 0, "3": 0, "4": 1, "5": 0, "6": 0 },
+    "b": { "0": [0], "1": [1, 1] }
   },
-  "D:\\CODES\\React2025Q1\\src\\pages\\home\\home.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\pages\\home\\home.tsx",
+  "C:\\Codes\\React2025Q1\\src\\pages\\home\\home.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\pages\\home\\home.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1552,24 +1552,24 @@
     },
     "branchMap": {},
     "s": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
-      "5": 0,
-      "6": 0,
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 2,
+      "5": 1,
+      "6": 1,
       "7": 0,
       "8": 0,
       "9": 0,
-      "10": 0,
-      "11": 0
+      "10": 1,
+      "11": 1
     },
-    "f": { "0": 0, "1": 0, "2": 0 },
+    "f": { "0": 2, "1": 0, "2": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\pages\\notfound\\notfound.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\pages\\notfound\\notfound.tsx",
+  "C:\\Codes\\React2025Q1\\src\\pages\\notfound\\notfound.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\pages\\notfound\\notfound.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1621,8 +1621,38 @@
       }
     },
     "branchMap": {},
-    "s": { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 },
+    "s": { "0": 1, "1": 1, "2": 0, "3": 0, "4": 0, "5": 1 },
     "f": { "0": 0, "1": 0 },
+    "b": {}
+  },
+  "C:\\Codes\\React2025Q1\\src\\utils\\routes.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\utils\\routes.tsx",
+    "statementMap": {
+      "0": {
+        "start": { "line": 1, "column": 0 },
+        "end": { "line": 1, "column": 71 }
+      },
+      "1": {
+        "start": { "line": 2, "column": 0 },
+        "end": { "line": 2, "column": 42 }
+      },
+      "2": {
+        "start": { "line": 3, "column": 0 },
+        "end": { "line": 3, "column": 50 }
+      },
+      "3": {
+        "start": { "line": 5, "column": 21 },
+        "end": { "line": 18, "column": 2 }
+      },
+      "4": {
+        "start": { "line": 20, "column": 0 },
+        "end": { "line": 20, "column": 28 }
+      }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1 },
+    "f": {},
     "b": {}
   }
 }
