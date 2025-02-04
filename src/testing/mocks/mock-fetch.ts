@@ -1,9 +1,9 @@
 import { IFResponse } from '../../types/interface';
 
-export function mockFetch(data: IFResponse) {
+export function mockFetch(data: IFResponse | null) {
   return jest.fn().mockImplementation(() =>
     Promise.resolve({
-      status: 200,
+      status: data !== null ? 200 : 404,
       ok: true,
       json: () => data,
     })

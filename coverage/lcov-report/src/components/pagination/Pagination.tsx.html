@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-      Code coverage report for src/components/pagination/Pagination.tsx
+      Code coverage report for src/components/pagination/pagination.tsx
     </title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
@@ -21,31 +21,31 @@
       <div class="pad1">
         <h1>
           <a href="../../../index.html">All files</a> /
-          <a href="index.html">src/components/pagination</a> Pagination.tsx
+          <a href="index.html">src/components/pagination</a> pagination.tsx
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">29.41% </span>
+            <span class="strong">47.05% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">5/17</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
-            <span class="quiet">Branches</span>
-            <span class="fraction">0/8</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
-            <span class="quiet">Functions</span>
-            <span class="fraction">0/4</span>
+            <span class="fraction">8/17</span>
           </div>
 
           <div class="fl pad1y space-right2">
             <span class="strong">25% </span>
+            <span class="quiet">Branches</span>
+            <span class="fraction">2/8</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">25% </span>
+            <span class="quiet">Functions</span>
+            <span class="fraction">1/4</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">43.75% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">4/16</span>
+            <span class="fraction">7/16</span>
           </div>
         </div>
         <p class="quiet">
@@ -121,8 +121,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -132,7 +132,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,9 +168,9 @@ interface Props {
   handlePagination: (b: boolean) =&gt; void;
 }
 &nbsp;
-export const Pagination = <span class="fstat-no" title="function not covered" >(p</span>rops: Props) =&gt; {
-  const { page, setFilters } = <span class="cstat-no" title="statement not covered" >useCharacterFilters();</span>
-  const clickPagination = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>irection: 'prev' | 'next') =&gt; {</span>
+export const Pagination = (props: Props) =&gt; {
+  const { page, setFilters } = useCharacterFilters();
+  const clickPagination = <span class="fstat-no" title="function not covered" >(d</span>irection: 'prev' | 'next') =&gt; {
     const urlString = <span class="cstat-no" title="statement not covered" >props.resInfo[direction];</span>
 <span class="cstat-no" title="statement not covered" >    if (isValidHTTPURL(urlString as string)) {</span>
       const url = <span class="cstat-no" title="statement not covered" >new URL(urlString as string);</span>
@@ -180,11 +180,11 @@ export const Pagination = <span class="fstat-no" title="function not covered" >(
     } else <span class="cstat-no" title="statement not covered" >console.error('URL string is not valid');</span>
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;&gt;
       &lt;nav className="pgn"&gt;
         &lt;button
-          style={{ pointerEvents: props.disabled ? 'none' : 'initial' }}
+          style={{ pointerEvents: props.disabled ? <span class="branch-0 cbranch-no" title="branch not covered" >'none' </span>: 'initial' }}
           type="submit"
           onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >clickPagination('prev')}</span>
           className="pgn__button"
@@ -193,7 +193,7 @@ export const Pagination = <span class="fstat-no" title="function not covered" >(
           &amp;laquo;
         &lt;/button&gt;
         &lt;button
-          style={{ pointerEvents: props.disabled ? 'none' : 'initial' }}
+          style={{ pointerEvents: props.disabled ? <span class="branch-0 cbranch-no" title="branch not covered" >'none' </span>: 'initial' }}
           type="submit"
           onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >clickPagination('next')}</span>
           className="pgn__button"
@@ -219,7 +219,7 @@ export const Pagination = <span class="fstat-no" title="function not covered" >(
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-02T16:09:50.920Z
+      at 2025-02-04T08:58:03.712Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>

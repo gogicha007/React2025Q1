@@ -1,7 +1,7 @@
-import styles from './home.module.css';
+import './home.css';
 import { useState } from 'react';
 import SearchBar from '../../components/search/search-bar';
-import Results from '../../components/results/Results';
+import Results from '../../components/results/results';
 
 function HomePage() {
   const [loading, setLoader] = useState(false);
@@ -13,8 +13,8 @@ function HomePage() {
   };
 
   return (
-    <div className={styles.home}>
-      <header className={styles.home__top}>
+    <div className="home">
+      <header className="home__top">
         <SearchBar handleSearch={handleSearch} />
       </header>
       <main>

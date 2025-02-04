@@ -1,4 +1,4 @@
-import styles from './search-bar.module.css';
+import './search-bar.css';
 
 import { useEffect } from 'react';
 import { lsHandler } from '../../utils/ls-handler';
@@ -23,7 +23,7 @@ const SearchBar = ({ handleSearch }: { handleSearch: () => void }) => {
 
   return (
     <>
-      <form className={styles.search__bar}>
+      <form className="search__bar">
         <label htmlFor="search">Search by status</label>
         <input
           value={status}

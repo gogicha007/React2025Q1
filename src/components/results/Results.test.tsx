@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router';
-import Results from './Results';
+import Results from './results';
 import { mockFetch } from '../../testing/mocks/mock-fetch';
 import { IFResponse } from '../../types/interface';
 
@@ -21,22 +21,36 @@ const data = {
     { id: 6, name: 'testing rick 6', status: 'alive' },
   ],
 };
+
 describe('rs-app-router', () => {
-  test('results', async () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('check number of cards listed', async () => {
     window.fetch = mockFetch(data as IFResponse);
     render(
-      // <BrowserRouter>
       <MemoryRouter initialEntries={['?page=1&status=Alive']}>
         <Results loader={true} />
       </MemoryRouter>
-      // </BrowserRouter>
     );
 
     await waitFor(() => {
-      // const noDataText = screen.getByRole('heading');
-      // expect(noDataText).toBeInTheDocument();
       const results_list = screen.getAllByRole('link');
-      expect(results_list).toBeInTheDocument();
+      expect(results_list.length).toBe(6);
+    });
+  });
+
+  test('check if no results provided', async () => {
+    window.fetch = mockFetch(null);
+    render(
+      <MemoryRouter initialEntries={['?page=1&status=Alive']}>
+        <Results loader={true} />
+      </MemoryRouter>
+    );
+    await waitFor(() => {
+      const no_results = screen.getByRole('heading', { level: 3 });
+      expect(no_results).toHaveTextContent('no data fetched');
     });
   });
 });

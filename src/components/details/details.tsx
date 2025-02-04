@@ -1,4 +1,4 @@
-import styles from './details.module.css';
+import './details.css';
 import type { Params } from 'react-router';
 import { getDetails } from '../../utils/fetcher';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router';
@@ -37,7 +37,7 @@ export const Details = () => {
 
   return (
     <>
-      <div className={styles.details}>
+      <div className="details">
         <img src={obj.image} alt="image" />
         <p>{obj.origin.name}</p>
         <p>{obj.location.name}</p>
