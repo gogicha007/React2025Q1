@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router';
 import Results from './results';
@@ -8,7 +9,7 @@ import { IFResponse } from '../../types/interface';
 const data = {
   info: {
     count: 200,
-    next: 'https://rickandmortyapi.com/api/character/?page=2&status=Dead',
+    next: 'https://rickandmortyapi.com/api/character/?page=2&status=Alive',
     pages: 15,
     prev: null,
   },
@@ -44,13 +45,42 @@ describe('rs-app-router', () => {
   test('check if no results provided', async () => {
     window.fetch = mockFetch(null);
     render(
-      <MemoryRouter initialEntries={['?page=1&status=Alive']}>
+      <MemoryRouter>
         <Results loader={true} />
       </MemoryRouter>
     );
     await waitFor(() => {
       const no_results = screen.getByRole('heading', { level: 3 });
       expect(no_results).toHaveTextContent('no data fetched');
+    });
+  });
+
+  test('check if card link contains proper href', async () => {
+    window.fetch = mockFetch(data as IFResponse);
+    render(
+      <MemoryRouter initialEntries={['?page=1&status=Alive']}>
+        <Results loader={true} />
+      </MemoryRouter>
+    );
+    await waitFor(() => {
+      const links: HTMLAnchorElement[] = screen.getAllByRole('link');
+      console.log(links[1].href);
+      expect(links[1].href).toContain('/2');
+    });
+  });
+
+  test('check if click on card navigates to details', async () => {
+    window.fetch = mockFetch(data as IFResponse);
+    render(
+      <MemoryRouter initialEntries={['?page=1&status=Alive']}>
+        <Results loader={true} />
+      </MemoryRouter>
+    );
+
+    userEvent.click(screen.getByRole('link')); // to be processed
+    await waitFor(() => {
+      // to be processed
+      expect(screen.getByRole('heading')).toBeInTheDocument();
     });
   });
 });
