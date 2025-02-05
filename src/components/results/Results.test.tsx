@@ -70,6 +70,28 @@ describe('rs-app-router', () => {
     await userEvent.click(card1);
     expect(screen.getByRole('button', { name: 'Close details' }));
   });
+
+  test('Triggers API call when clicked', async () => {
+    window.fetch = mockFetch(mockData as IFResponse);
+    const router = createMemoryRouter(
+      [
+        { path: '/', element: <HomePage /> },
+        { path: '/:id', element: <Details /> },
+      ],
+      {
+        initialEntries: ['?page=1&status=dead'],
+      }
+    );
+
+    render(<RouterProvider router={router} />);
+
+    await waitFor(() => screen.getAllByRole('link'));
+    const card1 = screen.getByRole('link', { name: /card 1 alive/i });
+    await userEvent.click(card1);
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledWith('/1');
+    });
+  });
 });
 
 test('check if card link contains proper href', async () => {
