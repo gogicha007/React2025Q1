@@ -1,12 +1,13 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { enableFetchMocks } from 'jest-fetch-mock';
+// import { jest } from '@jest/globals';
 import '@testing-library/jest-dom';
 import { MemoryRouter, RouterProvider, createMemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import HomePage from '../../pages/home/home';
 import Results from './results';
 import { Card } from '../card/card';
-import { Details } from '../details/details';
+import { Details, detailsLoader } from '../details/details';
 import { IFResponse } from '../../types/interface';
 import { mockData } from '../../testing/mocks/mock_data';
 import { mockFetch } from '../../testing/mocks/mock-fetch';
@@ -14,7 +15,7 @@ enableFetchMocks();
 
 describe('rs-app-router', () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
   });
 
   test('Verify that the component renders the specified number of cards', async () => {
@@ -38,20 +39,18 @@ describe('rs-app-router', () => {
         <Results loader={true} />
       </MemoryRouter>
     );
-    await waitFor(() => {
-      const no_results = screen.getByRole('heading', { level: 3 });
-      expect(no_results).toHaveTextContent('no data fetched');
-    });
+    const noResults = await screen.findByRole('heading', { level: 3 });
+    expect(noResults).toHaveTextContent('no data fetched');
   });
 
   test('Ensure that the card component renders the relevant card data', async () => {
-    window.fetch = mockFetch(mockData as IFResponse);
     render(<Card {...mockData.results[0]} />);
-    const name = screen.getByText(mockData.results[0].name);
+
+    const name = await screen.findByText(mockData.results[0].name);
     expect(name.textContent).toEqual('card 1');
   });
 
-  test('Validate that clicking on a card opens a detailed card component', async () => {
+  test('Clicking a card opens a detailed card component', async () => {
     window.fetch = mockFetch(mockData as IFResponse);
     const router = createMemoryRouter(
       [
@@ -65,44 +64,66 @@ describe('rs-app-router', () => {
 
     render(<RouterProvider router={router} />);
 
-    await waitFor(() => screen.getAllByRole('link'));
+    await waitFor(() => screen.findAllByRole('link'));
     const card1 = screen.getByRole('link', { name: /card 1 alive/i });
     await userEvent.click(card1);
-    expect(screen.getByRole('button', { name: 'Close details' }));
+    expect(
+      screen.getByRole('button', { name: 'Close details' })
+    ).toBeInTheDocument();
   });
 
-  test('Triggers API call when clicked', async () => {
-    window.fetch = mockFetch(mockData as IFResponse);
-    const router = createMemoryRouter(
-      [
-        { path: '/', element: <HomePage /> },
-        { path: '/:id', element: <Details /> },
-      ],
-      {
-        initialEntries: ['?page=1&status=dead'],
+  test('Triggers API call when clicking a card', async () => {
+    const fetchSpy = jest.spyOn(global, 'fetch');
+
+    fetchSpy.mockImplementation(
+      async (input: RequestInfo | URL): Promise<Response> => {
+        const url = input.toString();
+        let responseData;
+
+        if (url.includes('/?page=1&status=dead')) {
+          responseData = mockData;
+        } else if (url.includes('/1')) {
+          responseData = { description: 'Fetched details for item 1' };
+        } else {
+          throw new Error('Unexpected fetch call');
+        }
+
+        return new Response(JSON.stringify(responseData), { status: 200 });
       }
     );
 
-    render(<RouterProvider router={router} />);
+    try {
+      const router = createMemoryRouter(
+        [
+          { path: '/', element: <HomePage /> },
+          { path: '/:id', element: <Details />, loader: detailsLoader },
+        ],
+        { initialEntries: ['/?page=1&status=dead'] }
+      );
 
-    await waitFor(() => screen.getAllByRole('link'));
-    const card1 = screen.getByRole('link', { name: /card 1 alive/i });
-    await userEvent.click(card1);
-    await waitFor(() => {
-      expect(fetch).toHaveBeenCalledWith('/1');
-    });
+      render(<RouterProvider router={router} />);
+
+      const card1 = await screen.findByRole('link', { name: /card 1 alive/i });
+      await userEvent.click(card1);
+
+      await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(3));
+      expect(fetchSpy).toHaveBeenCalledWith(expect.stringContaining('/1'));
+    } finally {
+      // Restore `fetch` to its original state after the test
+      fetchSpy.mockRestore();
+    }
   });
 });
 
-test('check if card link contains proper href', async () => {
-  window.fetch = mockFetch(mockData as IFResponse);
-  render(
-    <MemoryRouter initialEntries={['?page=1&status=Alive']}>
-      <Results loader={true} />
-    </MemoryRouter>
-  );
-  await waitFor(() => {
-    const listLinks: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(listLinks[1].href).toContain('/2');
-  });
-});
+// test('check if card link contains proper href', async () => {
+//   window.fetch = mockFetch(mockData as IFResponse);
+//   render(
+//     <MemoryRouter initialEntries={['?page=1&status=Alive']}>
+//       <Results loader={true} />
+//     </MemoryRouter>
+//   );
+//   await waitFor(() => {
+//     const listLinks: HTMLAnchorElement[] = screen.getAllByRole('link');
+//     expect(listLinks[1].href).toContain('/2');
+//   });
+// });

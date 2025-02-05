@@ -8,6 +8,7 @@ const getList = async (
 ): Promise<IFResponse | number> => {
   if (!str) return 404;
   const response = await fetch(`${BASE_URL}/?page=${page}&status=${str}`);
+  console.log(response);
   if (response.status === 200) {
     const data = await response.json();
     return data;

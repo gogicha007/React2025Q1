@@ -1,6 +1,6 @@
 {
-  "D:\\CODES\\React2025Q1\\src\\App.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\App.tsx",
+  "C:\\Codes\\React2025Q1\\src\\App.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\App.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -93,8 +93,8 @@
     "f": { "0": 0, "1": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\main.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\main.tsx",
+  "C:\\Codes\\React2025Q1\\src\\main.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\main.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -123,8 +123,8 @@
     "f": {},
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\card\\card.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\card\\card.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\card\\card.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\card\\card.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -161,8 +161,8 @@
     "f": { "0": 25 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\details\\details.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\details\\details.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\details\\details.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\details\\details.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -659,35 +659,35 @@
       "23": 2,
       "24": 1,
       "25": 1,
-      "26": 0,
-      "27": 0,
-      "28": 0,
-      "29": 0,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
       "30": 0,
-      "31": 0,
+      "31": 1,
       "32": 1
     },
-    "f": { "0": 2, "1": 2, "2": 0, "3": 2, "4": 2, "5": 0, "6": 0, "7": 0 },
+    "f": { "0": 2, "1": 2, "2": 0, "3": 2, "4": 2, "5": 0, "6": 1, "7": 1 },
     "b": {
       "0": [0],
       "1": [0],
-      "2": [2, 0],
+      "2": [1, 1],
       "3": [2, 2],
-      "4": [2, 0],
+      "4": [1, 1],
       "5": [2, 2],
       "6": [2, 0],
       "7": [2, 2],
-      "8": [2, 0],
+      "8": [1, 1],
       "9": [2, 2],
       "10": [2, 0],
       "11": [2, 2],
-      "12": [2, 0],
+      "12": [1, 1],
       "13": [2, 2],
       "14": [0]
     }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\errButton\\ErrorButton.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\errButton\\ErrorButton.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\errButton\\errorButton.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\errButton\\errorButton.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -768,19 +768,19 @@
     "s": {
       "0": 1,
       "1": 1,
-      "2": 4,
-      "3": 4,
+      "2": 5,
+      "3": 5,
       "4": 0,
-      "5": 4,
+      "5": 5,
       "6": 0,
-      "7": 4,
+      "7": 5,
       "8": 1
     },
-    "f": { "0": 4, "1": 0 },
+    "f": { "0": 5, "1": 0 },
     "b": { "0": [0] }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\errHandling\\fallbackRender.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 29 },
@@ -813,8 +813,8 @@
     "f": { "0": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\loader\\loader.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\loader\\loader.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\loader\\Loader.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\loader\\Loader.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -847,12 +847,12 @@
       }
     },
     "branchMap": {},
-    "s": { "0": 1, "1": 1, "2": 12, "3": 1 },
-    "f": { "0": 12 },
+    "s": { "0": 1, "1": 1, "2": 11, "3": 1 },
+    "f": { "0": 11 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\pagination\\pagination.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\pagination\\pagination.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\pagination\\Pagination.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\pagination\\Pagination.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1061,8 +1061,8 @@
     "f": { "0": 4, "1": 0, "2": 0, "3": 0 },
     "b": { "0": [0, 0], "1": [0, 0], "2": [0, 4], "3": [0, 4] }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\results\\results.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\results\\results.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\results\\results.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\results\\results.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1411,45 +1411,45 @@
       "6": 1,
       "7": 1,
       "8": 1,
-      "9": 12,
-      "10": 12,
-      "11": 12,
-      "12": 12,
-      "13": 12,
-      "14": 12,
-      "15": 12,
-      "16": 5,
-      "17": 5,
-      "18": 5,
-      "19": 5,
-      "20": 4,
-      "21": 5,
-      "22": 5,
-      "23": 5,
+      "9": 11,
+      "10": 11,
+      "11": 11,
+      "12": 11,
+      "13": 11,
+      "14": 11,
+      "15": 11,
+      "16": 4,
+      "17": 4,
+      "18": 4,
+      "19": 4,
+      "20": 3,
+      "21": 4,
+      "22": 4,
+      "23": 4,
       "24": 0,
-      "25": 12,
+      "25": 11,
       "26": 0,
       "27": 0,
-      "28": 12,
+      "28": 11,
       "29": 0,
       "30": 0,
-      "31": 12,
+      "31": 11,
       "32": 24,
       "33": 1
     },
-    "f": { "0": 12, "1": 5, "2": 5, "3": 4, "4": 0, "5": 0, "6": 24 },
+    "f": { "0": 11, "1": 4, "2": 4, "3": 3, "4": 0, "5": 0, "6": 24 },
     "b": {
-      "0": [6, 6],
-      "1": [1, 4],
-      "2": [1, 4],
-      "3": [12, 4],
-      "4": [12, 1],
-      "5": [12, 4],
-      "6": [12, 12]
+      "0": [4, 7],
+      "1": [1, 3],
+      "2": [1, 3],
+      "3": [11, 4],
+      "4": [11, 1],
+      "5": [11, 4],
+      "6": [11, 11]
     }
   },
-  "D:\\CODES\\React2025Q1\\src\\components\\search\\search-bar.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\components\\search\\search-bar.tsx",
+  "C:\\Codes\\React2025Q1\\src\\components\\search\\search-bar.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\components\\search\\search-bar.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1662,29 +1662,29 @@
       "3": 1,
       "4": 1,
       "5": 1,
-      "6": 4,
-      "7": 4,
+      "6": 5,
+      "7": 5,
       "8": 0,
       "9": 0,
       "10": 0,
-      "11": 4,
+      "11": 5,
       "12": 0,
-      "13": 4,
+      "13": 5,
       "14": 2,
       "15": 2,
       "16": 2,
       "17": 0,
-      "18": 4,
+      "18": 5,
       "19": 0,
       "20": 0,
       "21": 0,
       "22": 1
     },
-    "f": { "0": 4, "1": 0, "2": 0, "3": 0, "4": 2, "5": 0, "6": 0 },
+    "f": { "0": 5, "1": 0, "2": 0, "3": 0, "4": 2, "5": 0, "6": 0 },
     "b": { "0": [0], "1": [2, 0] }
   },
-  "D:\\CODES\\React2025Q1\\src\\pages\\home\\home.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\pages\\home\\home.tsx",
+  "C:\\Codes\\React2025Q1\\src\\pages\\home\\home.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\pages\\home\\home.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1788,8 +1788,8 @@
     "f": { "0": 2, "1": 0, "2": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\pages\\notfound\\notfound.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\pages\\notfound\\notfound.tsx",
+  "C:\\Codes\\React2025Q1\\src\\pages\\notfound\\notfound.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\pages\\notfound\\notfound.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
@@ -1845,8 +1845,8 @@
     "f": { "0": 0, "1": 0 },
     "b": {}
   },
-  "D:\\CODES\\React2025Q1\\src\\utils\\routes.tsx": {
-    "path": "D:\\CODES\\React2025Q1\\src\\utils\\routes.tsx",
+  "C:\\Codes\\React2025Q1\\src\\utils\\routes.tsx": {
+    "path": "C:\\Codes\\React2025Q1\\src\\utils\\routes.tsx",
     "statementMap": {
       "0": {
         "start": { "line": 1, "column": 0 },
