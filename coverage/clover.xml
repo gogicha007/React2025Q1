@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1738778870677" clover="3.2.0">
-  <project timestamp="1738778870677" name="All files">
-    <metrics statements="155" coveredstatements="96" conditionals="53" coveredconditionals="39" methods="38" coveredmethods="18" elements="246" coveredelements="153" complexity="0" loc="155" ncloc="155" packages="12" files="13" classes="13"/>
+<coverage generated="1738779976275" clover="3.2.0">
+  <project timestamp="1738779976276" name="All files">
+    <metrics statements="155" coveredstatements="96" conditionals="53" coveredconditionals="40" methods="38" coveredmethods="18" elements="246" coveredelements="154" complexity="0" loc="155" ncloc="155" packages="12" files="13" classes="13"/>
     <package name="src">
       <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="C:\Codes\React2025Q1\src\App.tsx">
@@ -38,9 +38,9 @@
       </file>
     </package>
     <package name="src.components.details">
-      <metrics statements="28" coveredstatements="23" conditionals="27" coveredconditionals="22" methods="8" coveredmethods="6"/>
+      <metrics statements="28" coveredstatements="23" conditionals="27" coveredconditionals="23" methods="8" coveredmethods="6"/>
       <file name="details.tsx" path="C:\Codes\React2025Q1\src\components\details\details.tsx">
-        <metrics statements="28" coveredstatements="23" conditionals="27" coveredconditionals="22" methods="8" coveredmethods="6"/>
+        <metrics statements="28" coveredstatements="23" conditionals="27" coveredconditionals="23" methods="8" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>

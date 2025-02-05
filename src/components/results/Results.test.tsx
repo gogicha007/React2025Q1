@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { enableFetchMocks } from 'jest-fetch-mock';
-// import { jest } from '@jest/globals';
 import '@testing-library/jest-dom';
 import { MemoryRouter, RouterProvider, createMemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
@@ -9,7 +8,7 @@ import Results from './results';
 import { Card } from '../card/card';
 import { Details, detailsLoader } from '../details/details';
 import { IFResponse } from '../../types/interface';
-import { mockData } from '../../testing/mocks/mock_data';
+import { mockData, mockDetails } from '../../testing/mocks/mock_data';
 import { mockFetch } from '../../testing/mocks/mock-fetch';
 enableFetchMocks();
 
@@ -83,7 +82,7 @@ describe('rs-app-router', () => {
         if (url.includes('/?page=1&status=dead')) {
           responseData = mockData;
         } else if (url.includes('/1')) {
-          responseData = { description: 'Fetched details for item 1' };
+          responseData = mockDetails;
         } else {
           throw new Error('Unexpected fetch call');
         }
@@ -113,16 +112,3 @@ describe('rs-app-router', () => {
     }
   });
 });
-
-// test('check if card link contains proper href', async () => {
-//   window.fetch = mockFetch(mockData as IFResponse);
-//   render(
-//     <MemoryRouter initialEntries={['?page=1&status=Alive']}>
-//       <Results loader={true} />
-//     </MemoryRouter>
-//   );
-//   await waitFor(() => {
-//     const listLinks: HTMLAnchorElement[] = screen.getAllByRole('link');
-//     expect(listLinks[1].href).toContain('/2');
-//   });
-// });

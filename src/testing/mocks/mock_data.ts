@@ -15,4 +15,15 @@ export const mockData = {
   ],
 };
 
-export const mockDetails = {};
+export const mockDetails = {
+  id: 1,
+  name: 'card 1',
+  status: 'alive',
+  image: 'image for card 1',
+  origin: {
+    name: 'details 1',
+  },
+  locatoin: {
+    name: 'location 1',
+  },
+};

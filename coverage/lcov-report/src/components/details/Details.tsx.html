@@ -29,9 +29,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">81.48% </span>
+            <span class="strong">85.18% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">22/27</span>
+            <span class="fraction">23/27</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -217,7 +217,7 @@ export const Details = () =&gt; {
       &lt;div className="details__data"&gt;
         &lt;img src={obj?.image} alt="image" /&gt;
         &lt;p&gt;{obj?.name}&lt;/p&gt;
-        &lt;p&gt;{obj?.origin<span class="branch-1 cbranch-no" title="branch not covered" >?.name}</span>&lt;/p&gt;
+        &lt;p&gt;{obj?.origin?.name}&lt;/p&gt;
         &lt;p&gt;{obj?.location<span class="branch-1 cbranch-no" title="branch not covered" >?.name}</span>&lt;/p&gt;
       &lt;/div&gt;
       &lt;button onClick={handleClickClose}&gt;Close details&lt;/button&gt;
@@ -247,7 +247,7 @@ export const detailsLoader = async ({ params }: { params: Params&lt;'id'&gt; }) 
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-05T18:07:50.622Z
+      at 2025-02-05T18:26:16.202Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>
