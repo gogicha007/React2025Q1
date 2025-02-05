@@ -109,7 +109,6 @@ describe('rs-app-router', () => {
       await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(3));
       expect(fetchSpy).toHaveBeenCalledWith(expect.stringContaining('/1'));
     } finally {
-      // Restore `fetch` to its original state after the test
       fetchSpy.mockRestore();
     }
   });
