@@ -3,7 +3,7 @@ import { IFCharacter } from '../../types/interface';
 
 export const Card = (data: IFCharacter) => {
   return (
-    <div className="card">
+    <div className="card" role="article">
       <img className="card__image" src={data.image} alt="" />
       <p className="card__data">{data.name}</p>
       <p className="card__data">{data.species}</p>

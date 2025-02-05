@@ -1,28 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { enableFetchMocks } from 'jest-fetch-mock';
 import '@testing-library/jest-dom';
 import { MemoryRouter, RouterProvider, createMemoryRouter } from 'react-router';
+import userEvent from '@testing-library/user-event';
 import Results from './results';
-import { mockFetch } from '../../testing/mocks/mock-fetch';
 import { IFResponse } from '../../types/interface';
-import routesConfig from '../../utils/routes';
-
-const data = {
-  info: {
-    count: 200,
-    next: 'https://rickandmortyapi.com/api/character/?page=2&status=Alive',
-    pages: 15,
-    prev: null,
-  },
-  results: [
-    { id: 1, name: 'testing rick 1', status: 'alive' },
-    { id: 2, name: 'testing rick 2', status: 'alive' },
-    { id: 3, name: 'testing rick 3', status: 'alive' },
-    { id: 4, name: 'testing rick 4', status: 'alive' },
-    { id: 5, name: 'testing rick 5', status: 'alive' },
-    { id: 6, name: 'testing rick 6', status: 'alive' },
-  ],
-};
+import { mockData } from '../../testing/mocks/mock_data';
+import { mockFetch } from '../../testing/mocks/mock-fetch';
+import HomePage from '../../pages/home/home';
+import { Details } from '../details/details';
+enableFetchMocks();
 
 describe('rs-app-router', () => {
   afterEach(() => {
@@ -30,7 +17,7 @@ describe('rs-app-router', () => {
   });
 
   test('check number of cards listed', async () => {
-    window.fetch = mockFetch(data as IFResponse);
+    window.fetch = mockFetch(mockData as IFResponse);
     render(
       <MemoryRouter initialEntries={['?page=1&status=Alive']}>
         <Results loader={true} />
@@ -57,29 +44,35 @@ describe('rs-app-router', () => {
   });
 
   test('check if card link contains proper href', async () => {
-    window.fetch = mockFetch(data as IFResponse);
+    window.fetch = mockFetch(mockData as IFResponse);
     render(
       <MemoryRouter initialEntries={['?page=1&status=Alive']}>
         <Results loader={true} />
       </MemoryRouter>
     );
     await waitFor(() => {
-      const links: HTMLAnchorElement[] = screen.getAllByRole('link');
-      expect(links[1].href).toContain('/2');
+      const listLinks: HTMLAnchorElement[] = screen.getAllByRole('link');
+      expect(listLinks[1].href).toContain('/2');
     });
   });
 
   test('check if click on card navigates to details', async () => {
-    window.fetch = mockFetch(data as IFResponse);
+    window.fetch = mockFetch(mockData as IFResponse);
+    const router = createMemoryRouter(
+      [
+        { path: '/', element: <HomePage /> },
+        { path: '/:id', element: <Details /> },
+      ],
+      {
+        initialEntries: ['?page=1&status=dead'],
+      }
+    );
 
-    const router = createMemoryRouter(routesConfig, { initialEntries: ['/'] });
     render(<RouterProvider router={router} />);
-    const user = userEvent.setup();
 
-    await waitFor(() => {
-      const links: HTMLAnchorElement[] = screen.getAllByRole('link');
-      user.click(links[0]); // to be processed
-      expect(screen.getByRole('button')).toBeInTheDocument();
-    });
+    await waitFor(() => screen.getAllByRole('link'));
+    const card1 = screen.getByRole('link', { name: /card 1 alive/i });
+    await userEvent.click(card1);
+    expect(screen.getByRole('button', { name: 'Close details' }));
   });
 });

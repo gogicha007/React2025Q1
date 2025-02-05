@@ -29,9 +29,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">66.66% </span>
+            <span class="strong">33.33% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">2/3</span>
+            <span class="fraction">1/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -117,22 +117,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,7 +179,7 @@ const SearchBar = ({ handleSearch }: { handleSearch: () =&gt; void }) =&gt; {
   useEffect(() =&gt; {
     const searchWord = lsHandler.getValue();
     setFilters({ page: 1 });
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!status &amp;&amp; searchWord) <span class="cstat-no" title="statement not covered" >setFilters({ status: searchWord });</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!status &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >searchWord)</span> <span class="cstat-no" title="statement not covered" >setFilters({ status: searchWord });</span>
   }, []);
 &nbsp;
   return (
@@ -223,7 +223,7 @@ export default SearchBar;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-04T19:02:01.328Z
+      at 2025-02-05T10:41:11.134Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>
