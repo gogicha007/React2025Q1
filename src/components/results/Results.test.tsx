@@ -9,7 +9,11 @@ import Results from './results';
 import { Card } from '../card/card';
 import { Details, detailsLoader } from '../details/details';
 import { IFResponse } from '../../types/interface';
-import { mockData, mockDetails } from '../../testing/mocks/mock_data';
+import {
+  mockData,
+  mockDataP2,
+  mockDetails,
+} from '../../testing/mocks/mock_data';
 import { mockFetch } from '../../testing/mocks/mock-fetch';
 enableFetchMocks();
 
@@ -244,8 +248,6 @@ describe('rs-app-router', () => {
         name: 'Close details',
       });
 
-      screen.debug();
-
       await userEvent.click(closeBttn);
 
       await waitFor(
@@ -259,15 +261,51 @@ describe('rs-app-router', () => {
       fetchSpy.mockRestore();
     }
   });
-  // test('Verify if Pagination component updates URL query parameter when page changes', async () => {
-  //   const responseInfo: IFRespInfo = {
-  //     count: 200,
-  //     pages: 3,
-  //     next: '',
-  //     prev: null
-  //   }
-  //   const handlePagination = ()=>{}
-  //   render(<Pagination resInfo={responseInfo} handlePagination={handlePagination}/>)
-  //   screen.debug();
-  // });
+
+  test('Verify Pagination updates URL query when page changes', async () => {
+    const fetchSpy = jest.spyOn(global, 'fetch');
+
+    fetchSpy.mockImplementation(
+      async (input: RequestInfo | URL): Promise<Response> => {
+        const url = input.toString();
+        let responseData;
+
+        if (url.includes('/?page=1&status=Alive')) {
+          responseData = mockData;
+        } else if (url.includes('/?page=2&status=Alive')) {
+          responseData = mockDataP2;
+        } else {
+          throw new Error('Unexpected fetch call');
+        }
+
+        return new Response(JSON.stringify(responseData), { status: 200 });
+      }
+    );
+
+    try {
+      const router = createMemoryRouter(
+        [{ path: '/', element: <HomePage /> }],
+        { initialEntries: ['/?page=1&status=Alive'], initialIndex: 0 }
+      );
+
+      render(<RouterProvider router={router} />);
+
+      const nextBttn = await screen.findByRole('button', { name: /»/i });
+      await userEvent.click(nextBttn);
+
+      await screen.findByRole('link', { name: /card 7 alive/i });
+
+      await waitFor(() => {
+        expect(router.state.location.search).toContain('page=2');
+      });
+      await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(2));
+      await waitFor(() =>
+        expect(fetchSpy).toHaveBeenCalledWith(
+          expect.stringContaining('/?page=2&status=Alive')
+        )
+      );
+    } finally {
+      fetchSpy.mockRestore();
+    }
+  });
 });

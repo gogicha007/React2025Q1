@@ -25,27 +25,27 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">47.05% </span>
+            <span class="strong">88.23% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">8/17</span>
+            <span class="fraction">15/17</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">25% </span>
+            <span class="strong">50% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">2/8</span>
+            <span class="fraction">4/8</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">25% </span>
+            <span class="strong">75% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">1/4</span>
+            <span class="fraction">3/4</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">43.75% </span>
+            <span class="strong">87.5% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">7/16</span>
+            <span class="fraction">14/16</span>
           </div>
         </div>
         <p class="quiet">
@@ -59,7 +59,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,45 +109,45 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,14 +170,14 @@ interface Props {
 &nbsp;
 export const Pagination = (props: Props) =&gt; {
   const { page, setFilters } = useCharacterFilters();
-  const clickPagination = <span class="fstat-no" title="function not covered" >(d</span>irection: 'prev' | 'next') =&gt; {
-    const urlString = <span class="cstat-no" title="statement not covered" >props.resInfo[direction];</span>
-<span class="cstat-no" title="statement not covered" >    if (isValidHTTPURL(urlString as string)) {</span>
-      const url = <span class="cstat-no" title="statement not covered" >new URL(urlString as string);</span>
-      const searchParams = <span class="cstat-no" title="statement not covered" >url.searchParams.get('page');</span>
-<span class="cstat-no" title="statement not covered" >      setFilters({ page: searchParams ? +searchParams : +page });</span>
-<span class="cstat-no" title="statement not covered" >      props.handlePagination(true);</span>
-    } else <span class="cstat-no" title="statement not covered" >console.error('URL string is not valid');</span>
+  const clickPagination = (direction: 'prev' | 'next') =&gt; {
+    const urlString = props.resInfo[direction];
+    if (isValidHTTPURL(urlString as string)) {
+      const url = new URL(urlString as string);
+      const searchParams = url.searchParams.get('page');
+      setFilters({ page: searchParams ? +searchParams : <span class="branch-1 cbranch-no" title="branch not covered" >+page </span>});
+      props.handlePagination(true);
+    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>console.error('URL string is not valid');</span>
   };
 &nbsp;
   return (
@@ -195,7 +195,7 @@ export const Pagination = (props: Props) =&gt; {
         &lt;button
           style={{ pointerEvents: props.disabled ? <span class="branch-0 cbranch-no" title="branch not covered" >'none' </span>: 'initial' }}
           type="submit"
-          onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >clickPagination('next')}</span>
+          onClick={() =&gt; clickPagination('next')}
           className="pgn__button"
           disabled={!props.resInfo.next}
         &gt;
@@ -219,7 +219,7 @@ export const Pagination = (props: Props) =&gt; {
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-06T13:41:09.742Z
+      at 2025-02-06T17:40:20.923Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>

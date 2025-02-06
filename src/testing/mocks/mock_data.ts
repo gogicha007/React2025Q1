@@ -15,6 +15,23 @@ export const mockData = {
   ],
 };
 
+export const mockDataP2 = {
+  info: {
+    count: 200,
+    next: 'https://rickandmortyapi.com/api/character/?page=3&status=Alive',
+    pages: 15,
+    prev: 'https://rickandmortyapi.com/api/character/?page=1&status=Alive',
+  },
+  results: [
+    { id: 7, name: 'card 7', status: 'alive' },
+    { id: 8, name: 'card 8', status: 'alive' },
+    { id: 9, name: 'card 9', status: 'alive' },
+    { id: 10, name: 'card 10', status: 'alive' },
+    { id: 11, name: 'card 11', status: 'alive' },
+    { id: 12, name: 'card 12', status: 'alive' },
+  ],
+};
+
 export const mockDetails = {
   id: 1,
   name: 'card 1',
