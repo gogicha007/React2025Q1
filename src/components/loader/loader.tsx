@@ -3,7 +3,7 @@ import './loader.css';
 const Loader = () => {
   return (
     <div className="modal">
-      <div className="loader"></div>
+      <div className="loader" data-testid="loader"></div>
     </div>
   );
 };

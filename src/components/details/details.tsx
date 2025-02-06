@@ -23,7 +23,9 @@ export const Details = () => {
   }, [obj]);
 
   useEffect(() => {
-    if (effectRan.current === true) context.isOpen();
+    if (effectRan.current === true) {
+      context.isOpen();
+    }
     return () => {
       effectRan.current = true;
     };

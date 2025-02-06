@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { enableFetchMocks } from 'jest-fetch-mock';
 import '@testing-library/jest-dom';
-import { MemoryRouter, RouterProvider, createMemoryRouter } from 'react-router';
+import { RouterProvider, createMemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import HomePage from '../../pages/home/home';
 import Results from './results';
@@ -19,11 +19,13 @@ describe('rs-app-router', () => {
 
   test('Verify that the component renders the specified number of cards', async () => {
     window.fetch = mockFetch(mockData as IFResponse);
-    render(
-      <MemoryRouter initialEntries={['?page=1&status=Alive']}>
-        <Results loader={true} />
-      </MemoryRouter>
+    const router = createMemoryRouter(
+      [{ path: '/', element: <Results loader={true} /> }],
+      {
+        initialEntries: ['?page=1&status=dead'],
+      }
     );
+    render(<RouterProvider router={router} />);
 
     await waitFor(() => {
       const results_list = screen.getAllByRole('link');
@@ -33,11 +35,14 @@ describe('rs-app-router', () => {
 
   test('Check that an appropriate message is displayed if no cards are present', async () => {
     window.fetch = mockFetch(null);
-    render(
-      <MemoryRouter>
-        <Results loader={true} />
-      </MemoryRouter>
+    const router = createMemoryRouter(
+      [{ path: '/', element: <Results loader={true} /> }],
+      {
+        initialEntries: ['?page=1&status=dead'],
+      }
     );
+    render(<RouterProvider router={router} />);
+
     const noResults = await screen.findByRole('heading', { level: 3 });
     expect(noResults).toHaveTextContent('no data fetched');
   });
@@ -107,6 +112,46 @@ describe('rs-app-router', () => {
 
       await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(3));
       expect(fetchSpy).toHaveBeenCalledWith(expect.stringContaining('/1'));
+    } finally {
+      fetchSpy.mockRestore();
+    }
+  });
+  test('Check that a loading indicator is displayed while fetching data', async () => {
+    const fetchSpy = jest.spyOn(global, 'fetch');
+
+    fetchSpy.mockImplementation(
+      async (input: RequestInfo | URL): Promise<Response> => {
+        const url = input.toString();
+        let responseData;
+
+        if (url.includes('/?page=1&status=dead')) {
+          responseData = mockData;
+        } else if (url.includes('/1')) {
+          responseData = mockDetails;
+        } else {
+          throw new Error('Unexpected fetch call');
+        }
+
+        return new Response(JSON.stringify(responseData), { status: 200 });
+      }
+    );
+
+    try {
+      const router = createMemoryRouter(
+        [
+          { path: '/', element: <HomePage /> },
+          { path: '/:id', element: <Details />, loader: detailsLoader },
+        ],
+        { initialEntries: ['/?page=1&status=dead'] }
+      );
+
+      render(<RouterProvider router={router} />);
+
+      const card1 = await screen.findByRole('link', { name: /card 1 alive/i });
+      await userEvent.click(card1);
+      await waitFor(() =>
+        expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
+      );
     } finally {
       fetchSpy.mockRestore();
     }

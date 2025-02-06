@@ -1,12 +1,11 @@
-import { Link, Outlet } from 'react-router';
+import { Link, Outlet, useNavigation } from 'react-router';
 import { useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
-import { Pagination } from '../pagination/Pagination';
-import Loader from '../loader/Loader';
+import { Pagination } from '../pagination/pagination';
+import Loader from '../loader/loader';
 import { Card } from '../card/card';
-// import styles from './Results.module.css';
 import './results.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
@@ -16,6 +15,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   const [responseInfo, setRespInfo] = useState<IFRespInfo | number>();
   const [noResults, setNoResults] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchList();
@@ -41,6 +41,7 @@ const Results = ({ loader }: { loader: boolean }) => {
     console.log('details closed');
     setDisabled(false);
   };
+
   return (
     <div className="results">
       <div className="results__main">
@@ -72,12 +73,16 @@ const Results = ({ loader }: { loader: boolean }) => {
         </div>
       </div>
       {loading && <Loader />}
-      <Outlet
-        context={{
-          closeClicked: handleDetailsClose,
-          isOpen: handleDetailsOpen,
-        }}
-      />
+      {navigation.state === 'loading' ? (
+        <Loader />
+      ) : (
+        <Outlet
+          context={{
+            closeClicked: handleDetailsClose,
+            isOpen: handleDetailsOpen,
+          }}
+        />
+      )}
     </div>
   );
 };
