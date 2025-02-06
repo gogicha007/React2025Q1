@@ -5,7 +5,6 @@ import { RouterProvider, createMemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import HomePage from '../../pages/home/home';
 import Results from './results';
-// import { Pagination } from '../pagination/pagination';
 import { Card } from '../card/card';
 import { Details, detailsLoader } from '../details/details';
 import { IFResponse } from '../../types/interface';

@@ -2,7 +2,7 @@ import './search-bar.css';
 
 import { useEffect } from 'react';
 import { lsHandler } from '../../utils/ls-handler';
-import ErrorButton from '../errButton/ErrorButton';
+import ErrorButton from '../errButton/errorButton';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 
 const SearchBar = ({ handleSearch }: { handleSearch: () => void }) => {
