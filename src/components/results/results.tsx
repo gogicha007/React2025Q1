@@ -10,6 +10,7 @@ import './results.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
+  const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
   const [results, setResults] = useState<IFCharacter[]>([]);
   const [responseInfo, setRespInfo] = useState<IFRespInfo | number>();
@@ -35,10 +36,13 @@ const Results = ({ loader }: { loader: boolean }) => {
 
   const handleDetailsOpen = () => {
     setDisabled(true);
+    setCounter((prev) => prev + 1);
+    console.log(counter);
     console.log('details opened', disabled);
   };
   const handleDetailsClose = () => {
     console.log('details closed');
+    setCounter(0);
     setDisabled(false);
   };
 
@@ -80,6 +84,7 @@ const Results = ({ loader }: { loader: boolean }) => {
           context={{
             closeClicked: handleDetailsClose,
             isOpen: handleDetailsOpen,
+            counter: counter,
           }}
         />
       )}

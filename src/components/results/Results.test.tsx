@@ -193,11 +193,29 @@ describe('rs-app-router', () => {
 
       const card1 = await screen.findByRole('link', { name: /card 1 alive/i });
       await userEvent.click(card1);
+
       await waitFor(() =>
         expect(screen.getByText('details 1')).toBeInTheDocument()
+      );
+
+      const closeBttn = await screen.findByRole('button', {
+        name: 'Close details',
+      });
+
+      screen.debug();
+
+      await userEvent.click(closeBttn);
+
+      await waitFor(
+        () =>
+          expect(
+            screen.queryByRole('button', { name: 'Close details' })
+          ).not.toBeInTheDocument(),
+        { timeout: 2000 }
       );
     } finally {
       fetchSpy.mockRestore();
     }
   });
+  test('Verify if Pagination component updates URL query parameter when page changes', async () => {});
 });

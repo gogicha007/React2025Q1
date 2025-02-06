@@ -2,25 +2,19 @@ import './details.css';
 import type { Params } from 'react-router';
 import { getDetails } from '../../utils/fetcher';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface IFContext {
   closeClicked: () => void;
   isOpen: () => void;
+  counter: number;
 }
 
 export const Details = () => {
-  const [count, setCount] = useState(0);
   const effectRan = useRef(false);
   const context = useOutletContext() as IFContext;
   const obj = useLoaderData();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (effectRan.current === true) {
-      setCount((prevValue) => prevValue + 1);
-    }
-  }, [obj]);
 
   useEffect(() => {
     if (effectRan.current === true) {
@@ -32,9 +26,8 @@ export const Details = () => {
   }, []);
 
   const handleClickClose = () => {
-    navigate(-count);
-    setCount(0);
-    context.closeClicked();
+    navigate(context?.counter > 0 ? -context.counter : -1);
+    context?.closeClicked();
   };
 
   return (
