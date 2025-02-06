@@ -5,6 +5,7 @@ import { RouterProvider, createMemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import HomePage from '../../pages/home/home';
 import Results from './results';
+// import { Pagination } from '../pagination/pagination';
 import { Card } from '../card/card';
 import { Details, detailsLoader } from '../details/details';
 import { IFResponse } from '../../types/interface';
@@ -197,6 +198,47 @@ describe('rs-app-router', () => {
       await waitFor(() =>
         expect(screen.getByText('details 1')).toBeInTheDocument()
       );
+    } finally {
+      fetchSpy.mockRestore();
+    }
+  });
+  test('Verify if clicking the close button hides the detailes component', async () => {
+    const fetchSpy = jest.spyOn(global, 'fetch');
+
+    fetchSpy.mockImplementation(
+      async (input: RequestInfo | URL): Promise<Response> => {
+        const url = input.toString();
+        let responseData;
+
+        if (url.includes('/?page=1&status=dead')) {
+          responseData = mockData;
+        } else if (url.includes('/1')) {
+          responseData = mockDetails;
+        } else {
+          throw new Error('Unexpected fetch call');
+        }
+
+        return new Response(JSON.stringify(responseData), { status: 200 });
+      }
+    );
+
+    try {
+      const router = createMemoryRouter(
+        [
+          { path: '/', element: <HomePage /> },
+          { path: '/:id', element: <Details />, loader: detailsLoader },
+        ],
+        { initialEntries: ['/?page=1&status=dead'] }
+      );
+
+      render(<RouterProvider router={router} />);
+
+      const card1 = await screen.findByRole('link', { name: /card 1 alive/i });
+      await userEvent.click(card1);
+
+      await waitFor(() =>
+        expect(screen.getByText('details 1')).toBeInTheDocument()
+      );
 
       const closeBttn = await screen.findByRole('button', {
         name: 'Close details',
@@ -217,5 +259,15 @@ describe('rs-app-router', () => {
       fetchSpy.mockRestore();
     }
   });
-  test('Verify if Pagination component updates URL query parameter when page changes', async () => {});
+  // test('Verify if Pagination component updates URL query parameter when page changes', async () => {
+  //   const responseInfo: IFRespInfo = {
+  //     count: 200,
+  //     pages: 3,
+  //     next: '',
+  //     prev: null
+  //   }
+  //   const handlePagination = ()=>{}
+  //   render(<Pagination resInfo={responseInfo} handlePagination={handlePagination}/>)
+  //   screen.debug();
+  // });
 });

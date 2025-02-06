@@ -37,7 +37,6 @@ const Results = ({ loader }: { loader: boolean }) => {
   const handleDetailsOpen = () => {
     setDisabled(true);
     setCounter((prev) => prev + 1);
-    console.log(counter);
     console.log('details opened', disabled);
   };
   const handleDetailsClose = () => {
