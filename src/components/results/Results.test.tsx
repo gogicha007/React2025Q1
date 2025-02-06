@@ -116,7 +116,51 @@ describe('rs-app-router', () => {
       fetchSpy.mockRestore();
     }
   });
+
   test('Check that a loading indicator is displayed while fetching data', async () => {
+    const fetchSpy = jest.spyOn(global, 'fetch');
+
+    fetchSpy.mockImplementation(
+      async (input: RequestInfo | URL): Promise<Response> => {
+        const url = input.toString();
+        let responseData;
+
+        if (url.includes('/?page=1&status=dead')) {
+          responseData = mockData;
+        } else if (url.includes('/1')) {
+          setTimeout(() => (responseData = mockDetails), 1000);
+        } else {
+          throw new Error('Unexpected fetch call');
+        }
+
+        return new Response(JSON.stringify(responseData), { status: 200 });
+      }
+    );
+
+    try {
+      const router = createMemoryRouter(
+        [
+          { path: '/', element: <HomePage /> },
+          { path: '/:id', element: <Details />, loader: detailsLoader },
+        ],
+        { initialEntries: ['/?page=1&status=dead'] }
+      );
+
+      render(<RouterProvider router={router} />);
+
+      const card1 = await screen.findByRole('link', { name: /card 1 alive/i });
+      await userEvent.click(card1);
+
+      expect(screen.getAllByTestId('loader')[0]).toBeInTheDocument();
+
+      await waitFor(() =>
+        expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
+      );
+    } finally {
+      fetchSpy.mockRestore();
+    }
+  });
+  test('Verify the detailed card component correctly displays the detailed card data', async () => {
     const fetchSpy = jest.spyOn(global, 'fetch');
 
     fetchSpy.mockImplementation(
@@ -150,7 +194,7 @@ describe('rs-app-router', () => {
       const card1 = await screen.findByRole('link', { name: /card 1 alive/i });
       await userEvent.click(card1);
       await waitFor(() =>
-        expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
+        expect(screen.getByText('details 1')).toBeInTheDocument()
       );
     } finally {
       fetchSpy.mockRestore();
