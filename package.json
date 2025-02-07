@@ -59,8 +59,7 @@
       "src/**/*.tsx",
       "!**/node_modules/**",
       "!**/*.test.tsx",
-      "!src/App.tsx",
-      "!src/testing/**"
+      "!src/App.tsx"
     ],
     "coverageThreshold": {
       "global": {

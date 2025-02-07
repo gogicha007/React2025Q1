@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1738908769396" clover="3.2.0">
-  <project timestamp="1738908769396" name="All files">
-    <metrics statements="151" coveredstatements="113" conditionals="64" coveredconditionals="49" methods="37" coveredmethods="27" elements="252" coveredelements="189" complexity="0" loc="151" ncloc="151" packages="11" files="12" classes="12"/>
+<coverage generated="1738910087235" clover="3.2.0">
+  <project timestamp="1738910087235" name="All files">
+    <metrics statements="139" coveredstatements="113" conditionals="64" coveredconditionals="51" methods="35" coveredmethods="27" elements="238" coveredelements="191" complexity="0" loc="139" ncloc="139" packages="11" files="11" classes="11"/>
     <package name="src">
-      <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="App.tsx" path="D:\CODES\React2025Q1\src\App.tsx">
-        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-      </file>
+      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.tsx" path="D:\CODES\React2025Q1\src\main.tsx">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -73,12 +58,12 @@
         <metrics statements="9" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="27" type="stmt"/>
-        <line num="6" count="27" type="stmt"/>
+        <line num="4" count="28" type="stmt"/>
+        <line num="6" count="28" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="11" count="27" type="cond" truecount="0" falsecount="1"/>
+        <line num="11" count="28" type="cond" truecount="0" falsecount="1"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="14" count="27" type="stmt"/>
+        <line num="14" count="28" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
       </file>
     </package>
@@ -97,7 +82,7 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="42" type="stmt"/>
+        <line num="4" count="45" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
     </package>
@@ -136,58 +121,58 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="41" type="stmt"/>
-        <line num="13" count="41" type="stmt"/>
-        <line num="14" count="41" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="41" type="stmt"/>
-        <line num="16" count="41" type="stmt"/>
-        <line num="17" count="41" type="stmt"/>
-        <line num="18" count="41" type="stmt"/>
-        <line num="19" count="41" type="stmt"/>
-        <line num="21" count="41" type="stmt"/>
-        <line num="22" count="12" type="stmt"/>
-        <line num="26" count="12" type="stmt"/>
-        <line num="27" count="12" type="stmt"/>
-        <line num="28" count="10" type="stmt"/>
-        <line num="29" count="10" type="stmt"/>
-        <line num="30" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="31" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="10" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="38" count="41" type="stmt"/>
+        <line num="12" count="44" type="stmt"/>
+        <line num="13" count="44" type="stmt"/>
+        <line num="14" count="44" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="44" type="stmt"/>
+        <line num="16" count="44" type="stmt"/>
+        <line num="17" count="44" type="stmt"/>
+        <line num="18" count="44" type="stmt"/>
+        <line num="19" count="44" type="stmt"/>
+        <line num="21" count="44" type="stmt"/>
+        <line num="22" count="13" type="stmt"/>
+        <line num="26" count="13" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="28" count="12" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
+        <line num="30" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="12" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="38" count="44" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="43" count="41" type="stmt"/>
+        <line num="43" count="44" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
-        <line num="49" count="41" type="stmt"/>
+        <line num="49" count="44" type="stmt"/>
         <line num="55" count="96" type="stmt"/>
         <line num="95" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.search">
-      <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="1" methods="7" coveredmethods="7"/>
+      <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
       <file name="search-bar.tsx" path="D:\CODES\React2025Q1\src\components\search\search-bar.tsx">
-        <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="1" methods="7" coveredmethods="7"/>
+        <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="27" type="stmt"/>
-        <line num="11" count="27" type="stmt"/>
+        <line num="9" count="28" type="stmt"/>
+        <line num="11" count="28" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="16" count="27" type="stmt"/>
-        <line num="18" count="27" type="stmt"/>
-        <line num="19" count="8" type="stmt"/>
-        <line num="20" count="8" type="stmt"/>
-        <line num="21" count="8" type="cond" truecount="1" falsecount="2"/>
-        <line num="24" count="27" type="stmt"/>
-        <line num="30" count="5" type="stmt"/>
+        <line num="16" count="28" type="stmt"/>
+        <line num="18" count="28" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="cond" truecount="3" falsecount="0"/>
+        <line num="24" count="28" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
@@ -201,12 +186,12 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="7" count="9" type="stmt"/>
-        <line num="8" count="9" type="stmt"/>
-        <line num="10" count="9" type="stmt"/>
+        <line num="7" count="11" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="10" count="10" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="15" count="9" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
       </file>
     </package>

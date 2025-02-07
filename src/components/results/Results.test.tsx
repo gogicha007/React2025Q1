@@ -311,7 +311,7 @@ describe('rs-app-router', () => {
     const setItemMock = jest.spyOn(Storage.prototype, 'setItem');
 
     const router = createMemoryRouter([{ path: '/', element: <HomePage /> }], {
-      initialEntries: ['/?page=1&status=alive'],
+      initialEntries: ['/?page=1'],
     });
 
     render(<RouterProvider router={router} />);
@@ -319,7 +319,6 @@ describe('rs-app-router', () => {
     const input = await screen.findByRole('searchbox');
     await userEvent.clear(input);
     await userEvent.type(input, 'dead');
-    screen.debug();
 
     const searchBttn = screen.getByRole('button', { name: /search/i });
     await userEvent.click(searchBttn);
@@ -327,5 +326,24 @@ describe('rs-app-router', () => {
     expect(setItemMock).toHaveBeenCalledWith(expect.any(String), 'dead');
 
     setItemMock.mockRestore();
+  });
+
+  test('Verify Local Storage retrieval on mount', async () => {
+    const getItemMock = jest
+      .spyOn(Storage.prototype, 'getItem')
+      .mockReturnValue('dead');
+
+    const router = createMemoryRouter([{ path: '/', element: <HomePage /> }], {
+      initialEntries: ['/?page=1'],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    expect(getItemMock).toHaveBeenCalledWith('thisAppStorage');
+
+    const input = await screen.findByRole('searchbox');
+    expect(input).toHaveValue('dead');
+
+    getItemMock.mockRestore();
   });
 });
