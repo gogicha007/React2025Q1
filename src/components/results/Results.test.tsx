@@ -307,4 +307,25 @@ describe('rs-app-router', () => {
       fetchSpy.mockRestore();
     }
   });
+  test('Verify clicking the Search button saves the value to the Local Storage', async () => {
+    const setItemMock = jest.spyOn(Storage.prototype, 'setItem');
+
+    const router = createMemoryRouter([{ path: '/', element: <HomePage /> }], {
+      initialEntries: ['/?page=1&status=alive'],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const input = await screen.findByRole('searchbox');
+    await userEvent.clear(input);
+    await userEvent.type(input, 'dead');
+    screen.debug();
+
+    const searchBttn = screen.getByRole('button', { name: /search/i });
+    await userEvent.click(searchBttn);
+
+    expect(setItemMock).toHaveBeenCalledWith(expect.any(String), 'dead');
+
+    setItemMock.mockRestore();
+  });
 });

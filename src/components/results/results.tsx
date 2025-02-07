@@ -25,6 +25,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   async function fetchList() {
     try {
       const res = await getList(+page, status as string);
+      console.log('results');
       setTimeout(() => setLoader(false), 500);
       setResults(typeof res === 'number' ? [] : res.results);
       setRespInfo(typeof res === 'number' ? res : res.info);
