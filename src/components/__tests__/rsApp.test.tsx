@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { RouterProvider, createMemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import HomePage from '../../pages/home/home';
-import Results from './results';
+import Results from '../results/results';
 import { Card } from '../card/card';
 import { Details, detailsLoader } from '../details/details';
 import { IFResponse } from '../../types/interface';
