@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">82.5% </span>
+            <span class="strong">82.05% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">33/40</span>
+            <span class="fraction">32/39</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -41,9 +41,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">84.21% </span>
+            <span class="strong">83.78% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">32/38</span>
+            <span class="fraction">31/37</span>
           </div>
         </div>
         <p class="quiet">
@@ -153,8 +153,7 @@
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -181,7 +180,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -276,7 +274,6 @@ const Results = ({ loader }: { loader: boolean }) =&gt; {
   async function fetchList() {
     try {
       const res = await getList(+page, status as string);
-      console.log('results');
       setTimeout(() =&gt; setLoader(false), 500);
       setResults(typeof res === 'number' ? [] : res.results);
       setRespInfo(typeof res === 'number' ? res : res.info);
@@ -327,18 +324,18 @@ const Results = ({ loader }: { loader: boolean }) =&gt; {
           )}
         &lt;/div&gt;
       &lt;/div&gt;
-      {loading &amp;&amp; &lt;Loader /&gt;}
       {navigation.state === 'loading' ? (
         &lt;Loader /&gt;
       ) : (
-        &lt;Outlet
-          context={{
-            closeClicked: handleDetailsClose,
-            isOpen: handleDetailsOpen,
-            counter: counter,
-          }}
-        /&gt;
+          &lt;Outlet
+            context={{
+              closeClicked: handleDetailsClose,
+              isOpen: handleDetailsOpen,
+              counter: counter,
+            }}
+          /&gt;
       )}
+      {loading &amp;&amp; &lt;Loader /&gt;}
     &lt;/div&gt;
   );
 };
@@ -358,7 +355,7 @@ export default Results;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-07T06:34:47.211Z
+      at 2025-02-07T07:23:00.393Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>
