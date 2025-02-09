@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
-import { CharacterFilters } from '../types/interface';
+import { ICharacterFilters } from '../types/interface';
 
 export function useCharacterFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -9,7 +9,7 @@ export function useCharacterFilters() {
   const status = searchParams.get('status') as string;
   const id = searchParams.get('id') as string;
 
-  const setFilters = useCallback((filters: CharacterFilters) => {
+  const setFilters = useCallback((filters: ICharacterFilters) => {
     setSearchParams((params) => {
       if (filters.page !== undefined) {
         params.set('page', filters.page.toString());

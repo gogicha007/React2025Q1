@@ -180,17 +180,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -208,22 +208,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,7 +279,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Link, Outlet, useNavigation, useLocation } from 'react-router';
 import { useCallback, useEffect, useState } from 'react';
-import { IFCharacter, IFRespInfo } from '../../types/interface';
+import { ICharacterDetails, IRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
 import { Pagination } from '../pagination/pagination';
@@ -291,8 +291,8 @@ const Results = ({ loader }: { loader: boolean }) =&gt; {
   const { page, status } = useCharacterFilters();
   const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState&lt;boolean&gt;(loader ? loader : true);
-  const [results, setResults] = useState&lt;IFCharacter[]&gt;([]);
-  const [responseInfo, setResponseInfo] = useState&lt;IFRespInfo | number&gt;();
+  const [results, setResults] = useState&lt;ICharacterDetails[]&gt;([]);
+  const [responseInfo, setResponseInfo] = useState&lt;IRespInfo | number&gt;();
   const [noResults, setNoResults] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const navigation = useNavigation();
@@ -336,7 +336,7 @@ const Results = ({ loader }: { loader: boolean }) =&gt; {
       &lt;div className="results__main"&gt;
         &lt;div className="results__list"&gt;
           {results.length !== 0 &amp;&amp;
-            results.map((obj: IFCharacter) =&gt; {
+            results.map((obj: ICharacterDetails) =&gt; {
               return (
                 &lt;Link
                   to={{
@@ -362,7 +362,7 @@ const Results = ({ loader }: { loader: boolean }) =&gt; {
           {results.length !== 0 &amp;&amp; (
             &lt;Pagination
               disabled={detailsOpen}
-              resInfo={responseInfo as IFRespInfo}
+              resInfo={responseInfo as IRespInfo}
               handlePagination={setLoader}
             /&gt;
           )}
@@ -399,7 +399,7 @@ export default Results;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-09T15:35:42.897Z
+      at 2025-02-09T15:58:22.740Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>

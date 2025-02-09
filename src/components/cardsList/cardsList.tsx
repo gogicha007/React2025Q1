@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigation, useLocation } from 'react-router';
 import { useCallback, useEffect, useState } from 'react';
-import { IFCharacter, IFRespInfo } from '../../types/interface';
+import { ICharacterDetails, IRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
 import { Pagination } from '../pagination/pagination';
@@ -12,8 +12,8 @@ const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
   const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
-  const [results, setResults] = useState<IFCharacter[]>([]);
-  const [responseInfo, setResponseInfo] = useState<IFRespInfo | number>();
+  const [results, setResults] = useState<ICharacterDetails[]>([]);
+  const [responseInfo, setResponseInfo] = useState<IRespInfo | number>();
   const [noResults, setNoResults] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const navigation = useNavigation();
@@ -57,7 +57,7 @@ const Results = ({ loader }: { loader: boolean }) => {
       <div className="results__main">
         <div className="results__list">
           {results.length !== 0 &&
-            results.map((obj: IFCharacter) => {
+            results.map((obj: ICharacterDetails) => {
               return (
                 <Link
                   to={{
@@ -83,7 +83,7 @@ const Results = ({ loader }: { loader: boolean }) => {
           {results.length !== 0 && (
             <Pagination
               disabled={detailsOpen}
-              resInfo={responseInfo as IFRespInfo}
+              resInfo={responseInfo as IRespInfo}
               handlePagination={setLoader}
             />
           )}

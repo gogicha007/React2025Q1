@@ -1,11 +1,11 @@
-import { IFResponse } from '../types/interface';
+import { IResponse } from '../types/interface';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 const getList = async (
   page: number,
   str: string
-): Promise<IFResponse | number> => {
+): Promise<IResponse | number> => {
   if (!str) return 404;
   const response = await fetch(`${BASE_URL}/?page=${page}&status=${str}`);
   if (response.status === 200) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739115342950" clover="3.2.0">
-  <project timestamp="1739115342950" name="All files">
-    <metrics statements="140" coveredstatements="116" conditionals="61" coveredconditionals="51" methods="35" coveredmethods="29" elements="236" coveredelements="196" complexity="0" loc="140" ncloc="140" packages="11" files="11" classes="11"/>
+<coverage generated="1739116702859" clover="3.2.0">
+  <project timestamp="1739116702860" name="All files">
+    <metrics statements="140" coveredstatements="116" conditionals="62" coveredconditionals="51" methods="35" coveredmethods="29" elements="237" coveredelements="196" complexity="0" loc="140" ncloc="140" packages="11" files="11" classes="11"/>
     <package name="src">
       <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.tsx" path="C:\Codes\React2025Q1\src\main.tsx">
@@ -37,16 +37,16 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="48" type="stmt"/>
-        <line num="13" count="48" type="stmt"/>
-        <line num="14" count="48" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="48" type="stmt"/>
-        <line num="16" count="48" type="stmt"/>
-        <line num="17" count="48" type="stmt"/>
-        <line num="18" count="48" type="stmt"/>
-        <line num="19" count="48" type="stmt"/>
-        <line num="20" count="48" type="stmt"/>
-        <line num="22" count="48" type="stmt"/>
+        <line num="12" count="40" type="stmt"/>
+        <line num="13" count="40" type="stmt"/>
+        <line num="14" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="40" type="stmt"/>
+        <line num="16" count="40" type="stmt"/>
+        <line num="17" count="40" type="stmt"/>
+        <line num="18" count="40" type="stmt"/>
+        <line num="19" count="40" type="stmt"/>
+        <line num="20" count="40" type="stmt"/>
+        <line num="22" count="40" type="stmt"/>
         <line num="23" count="18" type="stmt"/>
         <line num="24" count="18" type="stmt"/>
         <line num="25" count="12" type="stmt"/>
@@ -58,25 +58,25 @@
         <line num="32" count="9" type="stmt"/>
         <line num="33" count="9" type="stmt"/>
         <line num="36" count="6" type="stmt"/>
-        <line num="40" count="48" type="stmt"/>
+        <line num="40" count="40" type="stmt"/>
         <line num="41" count="18" type="stmt"/>
-        <line num="44" count="48" type="stmt"/>
+        <line num="44" count="40" type="stmt"/>
         <line num="45" count="5" type="stmt"/>
         <line num="46" count="5" type="stmt"/>
-        <line num="49" count="48" type="stmt"/>
+        <line num="49" count="40" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
-        <line num="55" count="48" type="stmt"/>
+        <line num="55" count="40" type="stmt"/>
         <line num="61" count="120" type="stmt"/>
         <line num="68" count="5" type="stmt"/>
         <line num="108" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.details">
-      <metrics statements="17" coveredstatements="16" conditionals="35" coveredconditionals="28" methods="4" coveredmethods="4"/>
+      <metrics statements="18" coveredstatements="17" conditionals="36" coveredconditionals="28" methods="4" coveredmethods="4"/>
       <file name="details.tsx" path="C:\Codes\React2025Q1\src\components\details\details.tsx">
-        <metrics statements="17" coveredstatements="16" conditionals="35" coveredconditionals="28" methods="4" coveredmethods="4"/>
+        <metrics statements="18" coveredstatements="17" conditionals="36" coveredconditionals="28" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -90,10 +90,11 @@
         <line num="22" count="4" type="stmt"/>
         <line num="35" count="4" type="stmt"/>
         <line num="36" count="4" type="stmt"/>
-        <line num="37" count="4" type="stmt"/>
-        <line num="38" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="41" count="3" type="stmt"/>
+        <line num="37" count="4" type="cond" truecount="0" falsecount="1"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
       </file>
     </package>
     <package name="src.components.errButton">
@@ -102,12 +103,12 @@
         <metrics statements="9" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="28" type="stmt"/>
-        <line num="6" count="28" type="stmt"/>
+        <line num="4" count="20" type="stmt"/>
+        <line num="6" count="20" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="11" count="28" type="cond" truecount="0" falsecount="1"/>
+        <line num="11" count="20" type="cond" truecount="0" falsecount="1"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="14" count="28" type="stmt"/>
+        <line num="14" count="20" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
       </file>
     </package>
@@ -126,7 +127,7 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="51" type="stmt"/>
+        <line num="4" count="43" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
     </package>
@@ -154,29 +155,28 @@
       </file>
     </package>
     <package name="src.components.search">
-      <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
+      <metrics statements="19" coveredstatements="19" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
       <file name="search-bar.tsx" path="C:\Codes\React2025Q1\src\components\search\search-bar.tsx">
-        <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
+        <metrics statements="19" coveredstatements="19" conditionals="3" coveredconditionals="3" methods="7" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="28" type="stmt"/>
-        <line num="11" count="28" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="20" type="stmt"/>
+        <line num="10" count="20" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="16" count="28" type="stmt"/>
-        <line num="18" count="28" type="stmt"/>
-        <line num="19" count="9" type="stmt"/>
-        <line num="20" count="9" type="stmt"/>
-        <line num="21" count="9" type="cond" truecount="3" falsecount="0"/>
-        <line num="24" count="28" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
+        <line num="15" count="20" type="stmt"/>
+        <line num="17" count="20" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="19" count="9" type="cond" truecount="3" falsecount="0"/>
+        <line num="22" count="20" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.pages.home">

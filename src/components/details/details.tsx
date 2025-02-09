@@ -2,16 +2,16 @@ import './details.css';
 import type { Params } from 'react-router';
 import { getDetails } from '../../utils/fetcher';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router';
+import { ICharacterDetails } from '../../types/interface';
 
 interface IFContext {
   closeClicked: () => void;
-  isOpen: () => void;
   counter: number;
 }
 
 export const Details = () => {
-  const context = useOutletContext() as IFContext;
-  const obj = useLoaderData();
+  const context = useOutletContext<IFContext>();
+  const obj = useLoaderData() as ICharacterDetails;
   const navigate = useNavigate();
 
   const handleClickClose = () => {
@@ -34,7 +34,9 @@ export const Details = () => {
 
 export const detailsLoader = async ({ params }: { params: Params<'id'> }) => {
   const { id } = params;
-  const res = await getDetails(id as string);
+  if (!id) throw new Error('Invalid character ID.');
+
+  const res = await getDetails(id);
   if (!res) {
     throw Error('Could not found charachter details');
   }

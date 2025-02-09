@@ -1,11 +1,11 @@
 import './pagination.css';
-import { IFRespInfo } from '../../types/interface';
+import { IRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { isValidHTTPURL } from '../../utils/validator';
 
 interface Props {
   disabled?: boolean;
-  resInfo: IFRespInfo;
+  resInfo: IRespInfo;
   handlePagination: (b: boolean) => void;
 }
 

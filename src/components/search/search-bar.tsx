@@ -1,5 +1,4 @@
 import './search-bar.css';
-
 import { useEffect } from 'react';
 import { lsHandler } from '../../utils/ls-handler';
 import ErrorButton from '../errButton/errorButton';
@@ -17,9 +16,8 @@ const SearchBar = ({ handleSearch }: { handleSearch: () => void }) => {
 
   useEffect(() => {
     const searchWord = lsHandler.getValue();
-    setFilters({ page: 1 });
-    if (!status && searchWord) setFilters({ status: searchWord });
-  }, []);
+    if (!status && searchWord) setFilters({ status: searchWord, page: 1 });
+  }, [setFilters]);
 
   return (
     <>

@@ -1,16 +1,16 @@
-export interface IFResponse {
-  info: IFRespInfo;
-  results: IFCharacter[];
+export interface IResponse {
+  info: IRespInfo;
+  results: ICharacterDetails[];
 }
 
-export interface IFRespInfo {
+export interface IRespInfo {
   count: number;
   pages: number;
   next: string;
   prev: string | null;
 }
 
-export interface IFCharacter {
+export interface ICharacterDetails {
   id: number;
   name: string;
   status: string;
@@ -25,7 +25,7 @@ export interface IFCharacter {
   };
 }
 
-export type CharacterFilters = {
+export type ICharacterFilters = {
   page?: number;
   status?: string;
   id?: string;

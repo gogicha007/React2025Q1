@@ -7,7 +7,7 @@ import HomePage from '../../pages/home/home';
 import Results from '../cardsList/cardsList';
 import { Card } from '../card/card';
 import { Details, detailsLoader } from '../details/details';
-import { IFResponse } from '../../types/interface';
+import { IResponse } from '../../types/interface';
 import {
   mockData,
   mockDataP2,
@@ -22,7 +22,7 @@ describe('rs-app-router', () => {
   });
 
   test('Verify that the component renders the specified number of cards', async () => {
-    window.fetch = mockFetch(mockData as IFResponse);
+    window.fetch = mockFetch(mockData as IResponse);
     const router = createMemoryRouter(
       [{ path: '/', element: <Results loader={true} /> }],
       {
@@ -59,7 +59,7 @@ describe('rs-app-router', () => {
   });
 
   test('Clicking a card opens a detailed card component', async () => {
-    window.fetch = mockFetch(mockData as IFResponse);
+    window.fetch = mockFetch(mockData as IResponse);
     const router = createMemoryRouter(
       [
         { path: '/', element: <HomePage /> },

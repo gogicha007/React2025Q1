@@ -1,7 +1,7 @@
 import './card.css';
-import { IFCharacter } from '../../types/interface';
+import { ICharacterDetails } from '../../types/interface';
 
-export const Card = (data: IFCharacter) => {
+export const Card = (data: ICharacterDetails) => {
   return (
     <div className="card" role="article">
       <img className="card__image" src={data.image} alt="" />
