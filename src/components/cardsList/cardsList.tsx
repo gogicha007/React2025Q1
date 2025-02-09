@@ -6,7 +6,7 @@ import { getList } from '../../utils/fetcher';
 import { Pagination } from '../pagination/pagination';
 import Loader from '../loader/loader';
 import { Card } from '../card/card';
-import './results.css';
+import './cardsList.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();

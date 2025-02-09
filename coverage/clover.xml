@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739102824113" clover="3.2.0">
-  <project timestamp="1739102824113" name="All files">
+<coverage generated="1739115342950" clover="3.2.0">
+  <project timestamp="1739115342950" name="All files">
     <metrics statements="140" coveredstatements="116" conditionals="61" coveredconditionals="51" methods="35" coveredmethods="29" elements="236" coveredelements="196" complexity="0" loc="140" ncloc="140" packages="11" files="11" classes="11"/>
     <package name="src">
       <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -22,6 +22,55 @@
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="115" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.cardsList">
+      <metrics statements="43" coveredstatements="40" conditionals="14" coveredconditionals="14" methods="10" coveredmethods="9"/>
+      <file name="cardsList.tsx" path="C:\Codes\React2025Q1\src\components\cardsList\cardsList.tsx">
+        <metrics statements="43" coveredstatements="40" conditionals="14" coveredconditionals="14" methods="10" coveredmethods="9"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="48" type="stmt"/>
+        <line num="13" count="48" type="stmt"/>
+        <line num="14" count="48" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="48" type="stmt"/>
+        <line num="16" count="48" type="stmt"/>
+        <line num="17" count="48" type="stmt"/>
+        <line num="18" count="48" type="stmt"/>
+        <line num="19" count="48" type="stmt"/>
+        <line num="20" count="48" type="stmt"/>
+        <line num="22" count="48" type="stmt"/>
+        <line num="23" count="18" type="stmt"/>
+        <line num="24" count="18" type="stmt"/>
+        <line num="25" count="12" type="stmt"/>
+        <line num="26" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="40" count="48" type="stmt"/>
+        <line num="41" count="18" type="stmt"/>
+        <line num="44" count="48" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="49" count="48" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="48" type="stmt"/>
+        <line num="61" count="120" type="stmt"/>
+        <line num="68" count="5" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.details">
@@ -102,55 +151,6 @@
         <line num="25" count="19" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.components.results">
-      <metrics statements="43" coveredstatements="40" conditionals="14" coveredconditionals="14" methods="10" coveredmethods="9"/>
-      <file name="results.tsx" path="C:\Codes\React2025Q1\src\components\results\results.tsx">
-        <metrics statements="43" coveredstatements="40" conditionals="14" coveredconditionals="14" methods="10" coveredmethods="9"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="48" type="stmt"/>
-        <line num="13" count="48" type="stmt"/>
-        <line num="14" count="48" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="48" type="stmt"/>
-        <line num="16" count="48" type="stmt"/>
-        <line num="17" count="48" type="stmt"/>
-        <line num="18" count="48" type="stmt"/>
-        <line num="19" count="48" type="stmt"/>
-        <line num="20" count="48" type="stmt"/>
-        <line num="22" count="48" type="stmt"/>
-        <line num="23" count="18" type="stmt"/>
-        <line num="24" count="18" type="stmt"/>
-        <line num="25" count="12" type="stmt"/>
-        <line num="26" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="27" count="3" type="stmt"/>
-        <line num="28" count="3" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
-        <line num="32" count="9" type="stmt"/>
-        <line num="33" count="9" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
-        <line num="40" count="48" type="stmt"/>
-        <line num="41" count="18" type="stmt"/>
-        <line num="44" count="48" type="stmt"/>
-        <line num="45" count="5" type="stmt"/>
-        <line num="46" count="5" type="stmt"/>
-        <line num="49" count="48" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="55" count="48" type="stmt"/>
-        <line num="61" count="120" type="stmt"/>
-        <line num="68" count="5" type="stmt"/>
-        <line num="108" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.search">

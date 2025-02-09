@@ -1,7 +1,7 @@
 import './home.css';
 import { useState } from 'react';
 import SearchBar from '../../components/search/search-bar';
-import Results from '../../components/results/results';
+import Results from '../../components/cardsList/cardsList';
 
 function HomePage() {
   const [loading, setLoader] = useState(false);
