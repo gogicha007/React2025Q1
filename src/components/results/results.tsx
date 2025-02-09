@@ -9,7 +9,7 @@ import { Card } from '../card/card';
 import './results.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
-  const { page, status, setFilters } = useCharacterFilters();
+  const { page, status } = useCharacterFilters();
   const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
   const [results, setResults] = useState<IFCharacter[]>([]);
@@ -41,12 +41,9 @@ const Results = ({ loader }: { loader: boolean }) => {
     fetchList();
   }, [fetchList]);
 
-  const handleDetailsOpen = (charId: number) => {
-    console.log(charId);
+  const handleDetailsOpen = () => {
     setDetailsOpen(true);
     setCounter((prev) => prev + 1);
-    setFilters({ id: charId?.toString() });
-    console.log('location.search', window.location.search);
   };
 
   const handleDetailsClose = () => {
@@ -65,15 +62,10 @@ const Results = ({ loader }: { loader: boolean }) => {
                 <Link
                   to={{
                     pathname: `${obj.id}`,
-                    search: `${location.search.replace(
-                      /([?&])id=[^&]*(&|$)/g,
-                      (_, p1, p2) => {
-                        return p1 === '?' ? (p2 ? '?' : '') : p2;
-                      }
-                    )}&id=${obj.id}`,
+                    search: `${location.search}`,
                   }}
                   key={obj.id}
-                  onClick={() => handleDetailsOpen(obj.id)}
+                  onClick={() => handleDetailsOpen()}
                 >
                   <Card {...obj} />
                 </Link>
@@ -106,7 +98,6 @@ const Results = ({ loader }: { loader: boolean }) => {
             isOpen: handleDetailsOpen,
             counter: counter,
           }}
-          key={location.pathname}
         />
       )}
       {loading && <Loader />}

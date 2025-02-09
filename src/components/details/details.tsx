@@ -2,8 +2,6 @@ import './details.css';
 import type { Params } from 'react-router';
 import { getDetails } from '../../utils/fetcher';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router';
-import { useEffect, useRef } from 'react';
-import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 
 interface IFContext {
   closeClicked: () => void;
@@ -12,24 +10,11 @@ interface IFContext {
 }
 
 export const Details = () => {
-  const { setFilters } = useCharacterFilters();
-  const effectRan = useRef(false);
   const context = useOutletContext() as IFContext;
   const obj = useLoaderData();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (effectRan.current === true) {
-      console.log('obj id', obj.id);
-      // context.isOpen();
-    }
-    return () => {
-      effectRan.current = true;
-    };
-  }, []);
-
   const handleClickClose = () => {
-    setFilters({ id: '' });
     navigate(context?.counter > 0 ? -context.counter : -1);
     context?.closeClicked();
   };
