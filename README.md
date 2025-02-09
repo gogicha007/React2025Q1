@@ -11,4 +11,4 @@ Instructions to run the application:
 - npm run coverage // to test coverage
 - npm run dev
 
-P.S. The details data is loading too fast for the loading indicator to be displayed. You can check its presence in the code (results.tsx), and there is also a special test for this loader indicator to confirm its presence.
+P.S. The details data is loading too fast for the loading indicator to be displayed. You can check its presence in the code (results.tsx, lines:78-88), and there is also a special test for this loader indicator to confirm its presence.
