@@ -22,6 +22,7 @@ const selectedCardsSlice = createSlice({
         state.selectedCards.push(id);
       }
     },
+
     clearSelection: (state) => {
       state.selectedCards = [];
     },

@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
+            <span class="strong">0% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">12/12</span>
+            <span class="fraction">0/12</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -35,15 +35,15 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
+            <span class="strong">0% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">3/3</span>
+            <span class="fraction">0/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
+            <span class="strong">0% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">11/11</span>
+            <span class="fraction">0/11</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line high"></div>
+      <div class="status-line low"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,24 +86,21 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -112,22 +109,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import './home.css';
-import { useState } from 'react';
-import SearchBar from '../../components/search/search-bar';
-import Results from '../../components/cardsList/cardsList';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import './home.css';</span>
+<span class="cstat-no" title="statement not covered" >import { useState } from 'react';</span>
+<span class="cstat-no" title="statement not covered" >import SearchBar from '../../components/search/search-bar';</span>
+<span class="cstat-no" title="statement not covered" >import Results from '../../components/cardsList/cardsList';</span>
 &nbsp;
-function HomePage() {
-  const [loading, setLoader] = useState(false);
-  const [trigger, setTrigger] = useState(0);
+function <span class="fstat-no" title="function not covered" >HomePage(</span>) {
+  const [loading, setLoader] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const [trigger, setTrigger] = <span class="cstat-no" title="statement not covered" >useState(0);</span>
 &nbsp;
-  const handleSearch = () =&gt; {
-    setLoader(true);
-    setTrigger((prev) =&gt; prev + 1);
+  const handleSearch = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setLoader(true);</span>
+<span class="cstat-no" title="statement not covered" >    setTrigger(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; <span class="cstat-no" title="statement not covered" >prev + 1)</span>;</span>
   };
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="home"&gt;
       &lt;header className="home__top"&gt;
         &lt;SearchBar handleSearch={handleSearch} /&gt;
@@ -139,7 +139,7 @@ function HomePage() {
   );
 }
 &nbsp;
-export default HomePage;
+<span class="cstat-no" title="statement not covered" >export default HomePage;</span>
 &nbsp;</pre></td></tr></table></pre>
 
       <div class="push"></div>
@@ -154,7 +154,7 @@ export default HomePage;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-09T15:58:22.740Z
+      at 2025-02-09T18:56:33.509Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>
