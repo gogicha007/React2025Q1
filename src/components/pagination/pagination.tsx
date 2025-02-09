@@ -18,6 +18,7 @@ export const Pagination = (props: Props) => {
       const searchParams = url.searchParams.get('page');
       setFilters({ page: searchParams ? +searchParams : +page });
       props.handlePagination(true);
+      console.log('page', page);
     } else console.error('URL string is not valid');
   };
 

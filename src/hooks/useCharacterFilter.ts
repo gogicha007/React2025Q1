@@ -7,6 +7,7 @@ export function useCharacterFilters() {
 
   const page = searchParams.get('page') as string;
   const status = searchParams.get('status') as string;
+  const id = searchParams.get('id') as string;
 
   const setFilters = useCallback((filters: CharacterFilters) => {
     setSearchParams((params) => {
@@ -16,6 +17,9 @@ export function useCharacterFilters() {
       if (filters.status !== undefined) {
         params.set('status', filters.status);
       }
+      if (filters.id !== undefined) {
+        params.set('id', filters.id);
+      }
       return params;
     });
   }, []);
@@ -23,6 +27,7 @@ export function useCharacterFilters() {
   return {
     page,
     status,
+    id,
     setFilters,
   };
 }

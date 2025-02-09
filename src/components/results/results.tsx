@@ -1,5 +1,5 @@
-import { Link, Outlet, useNavigation } from 'react-router';
-import { useEffect, useState } from 'react';
+import { Link, Outlet, useNavigation, useLocation } from 'react-router';
+import { useCallback, useEffect, useState } from 'react';
 import { IFCharacter, IFRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { getList } from '../../utils/fetcher';
@@ -9,40 +9,50 @@ import { Card } from '../card/card';
 import './results.css';
 
 const Results = ({ loader }: { loader: boolean }) => {
-  const { page, status } = useCharacterFilters();
+  const { page, status, setFilters } = useCharacterFilters();
   const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
   const [results, setResults] = useState<IFCharacter[]>([]);
-  const [responseInfo, setRespInfo] = useState<IFRespInfo | number>();
+  const [responseInfo, setResponseInfo] = useState<IFRespInfo | number>();
   const [noResults, setNoResults] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const navigation = useNavigation();
+  const location = useLocation();
 
-  useEffect(() => {
-    fetchList();
-  }, [loading]);
-
-  async function fetchList() {
+  const fetchList = useCallback(async () => {
     try {
       const res = await getList(+page, status as string);
       setTimeout(() => setLoader(false), 500);
-      setResults(typeof res === 'number' ? [] : res.results);
-      setRespInfo(typeof res === 'number' ? res : res.info);
-      setNoResults(typeof res === 'number');
+      if (typeof res === 'number') {
+        setResults([]);
+        setResponseInfo(res);
+        setNoResults(true);
+      } else {
+        setResults(res.results);
+        setResponseInfo(res.info);
+        setNoResults(false);
+      }
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [page, status]);
 
-  const handleDetailsOpen = () => {
-    setDisabled(true);
+  useEffect(() => {
+    fetchList();
+  }, [fetchList]);
+
+  const handleDetailsOpen = (charId: number) => {
+    console.log(charId);
+    setDetailsOpen(true);
     setCounter((prev) => prev + 1);
-    console.log('details opened', disabled);
+    setFilters({ id: charId?.toString() });
+    console.log('location.search', window.location.search);
   };
+
   const handleDetailsClose = () => {
-    console.log('details closed');
     setCounter(0);
-    setDisabled(false);
+    setDetailsOpen(false);
+    console.log('details closed', detailsOpen);
   };
 
   return (
@@ -52,7 +62,19 @@ const Results = ({ loader }: { loader: boolean }) => {
           {results.length !== 0 &&
             results.map((obj: IFCharacter) => {
               return (
-                <Link to={{ pathname: `${obj.id.toString()}` }} key={obj.id}>
+                <Link
+                  to={{
+                    pathname: `${obj.id}`,
+                    search: `${location.search.replace(
+                      /([?&])id=[^&]*(&|$)/g,
+                      (_, p1, p2) => {
+                        return p1 === '?' ? (p2 ? '?' : '') : p2;
+                      }
+                    )}&id=${obj.id}`,
+                  }}
+                  key={obj.id}
+                  onClick={() => handleDetailsOpen(obj.id)}
+                >
                   <Card {...obj} />
                 </Link>
               );
@@ -68,7 +90,7 @@ const Results = ({ loader }: { loader: boolean }) => {
         <div className="results__pagination">
           {results.length !== 0 && (
             <Pagination
-              disabled={disabled}
+              disabled={detailsOpen}
               resInfo={responseInfo as IFRespInfo}
               handlePagination={setLoader}
             />
@@ -84,6 +106,7 @@ const Results = ({ loader }: { loader: boolean }) => {
             isOpen: handleDetailsOpen,
             counter: counter,
           }}
+          key={location.pathname}
         />
       )}
       {loading && <Loader />}
