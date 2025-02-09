@@ -18,5 +18,10 @@
 }
 .card__data {
   margin: 0;
-  padding: 5px;
+  padding: 0 5px;
+}
+.card__checkbox {
+  align-self: flex-enc;
+  margin: 0px 15px;
+  margin-left: auto;
 }
