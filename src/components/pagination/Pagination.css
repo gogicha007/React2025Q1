@@ -1,0 +1,8 @@
+.pgn {
+  display: flex;
+  gap: 3px;
+}
+.pgn__button {
+  font-size: 16px;
+  cursor: pointer;
+}
