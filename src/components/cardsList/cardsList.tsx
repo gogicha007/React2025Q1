@@ -39,11 +39,19 @@ const Results = ({ loader }: { loader: boolean }) => {
       return;
     }
 
-    const csv = Papa.unparse(selectedData, {
-      quotes: true,
-      header: true,
-      columns: ['id', 'title', 'image'],
-    });
+    const csv = Papa.unparse(
+      selectedData.map(({ id, name, image, species, status }) => ({
+        ID: id,
+        Name: name,
+        Image: image,
+        Species: species,
+        Status: status,
+      })),
+      {
+        quotes: true,
+        header: true,
+      }
+    );
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
@@ -75,6 +83,15 @@ const Results = ({ loader }: { loader: boolean }) => {
   useEffect(() => {
     fetchList();
   }, [fetchList]);
+
+  useEffect(() => {
+    setResults((prevResults) =>
+      prevResults.map((card) => ({
+        ...card,
+        selected: selectedCards.includes(card.id),
+      }))
+    );
+  }, [selectedCards]);
 
   const handleDetailsOpen = () => {
     setDetailsOpen(true);
