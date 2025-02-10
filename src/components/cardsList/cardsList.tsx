@@ -31,6 +31,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   const dispatch = useDispatch();
 
   const handleDownloadCSV = () => {
+    console.log('Download clicked');
     const selectedData = results.filter((card) =>
       selectedCards.includes(card.id)
     );

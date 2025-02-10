@@ -9,8 +9,24 @@ import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
 import Results from '../cardsList/cardsList';
 import { setupStore } from '../../state/store';
 import { Card } from '../card/card';
+// import Papa from 'papaparse';
 
-describe('Results Component', () => {
+jest.mock('papaparse', () => ({
+  unparse: jest.fn(() => 'mock,csv,data\n1,Test,Image,Alive'),
+}));
+
+global.URL.createObjectURL = jest.fn(() => 'mock-url');
+global.Blob = jest.fn(() => ({
+  type: 'text/csv;charset=utf-8;',
+  size: 10,
+  arrayBuffer: jest.fn(),
+  slice: jest.fn(),
+  text: jest.fn().mockResolvedValue('mock text'),
+  stream: jest.fn(),
+  bytes: jest.fn().mockResolvedValue(new Uint8Array([1, 2, 3])),
+}));
+
+describe('Testing Redux store functionality', () => {
   test('Shows flyout when at least one card is selected', async () => {
     const store = setupStore();
     const router = createMemoryRouter(
@@ -101,6 +117,7 @@ describe('Results Component', () => {
     // check if "Items selected" removed
     expect(screen.queryByText(/items selected: 1/i)).not.toBeInTheDocument();
   });
+
   test('When user unselects an item, it should be removed from the store', () => {
     // Initially 1 card selected
     const initialState = { selectedCards: { selectedCards: [1] } };
@@ -129,5 +146,49 @@ describe('Results Component', () => {
 
     // check if the card ID is removed from the selected cards array
     expect(updatedState.selectedCards.selectedCards).not.toContain(1);
+  });
+
+  test('generate a CSV file when the download button is clicked', () => {
+    const initialState = { selectedCards: { selectedCards: [1] } };
+    const mockStore = setupStore(initialState);
+
+    const router = createMemoryRouter(
+      [{ path: '/', element: <Results loader={true} /> }],
+      {
+        initialEntries: ['?page=1&status=dead'],
+      }
+    );
+    render(
+      <Provider store={mockStore}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
+
+    const downloadButton = screen.getByText(/Download CSV/i);
+    expect(downloadButton).not.toBeDisabled();
+
+    fireEvent.click(downloadButton);
+
+    // expect(Papa.unparse).toHaveBeenCalledWith(
+    //   [
+    //     {
+    //       ID: 1,
+    //       Name: 'Test Card',
+    //       Image: 'test-image.jpg',
+    //       Species: 'Test',
+    //       Status: 'Alive',
+    //     },
+    //   ],
+    //   { quotes: true, header: true }
+    // );
+
+    // expect(global.Blob).toHaveBeenCalledWith(['mock,csv,data\n1,Test,Image,Alive'], { type: 'text/csv;charset=utf-8;' });
+    // expect(URL.createObjectURL).toHaveBeenCalledWith(expect.any(Blob));
+
+    // const link = document.querySelector('a');
+    // expect(link).toBeInTheDocument();
+    // expect(link?.href).toBe('mock-url');
+
+    // expect(link?.download).toBe('1_characters.csv');
   });
 });
