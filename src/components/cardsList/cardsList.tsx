@@ -11,7 +11,7 @@ import { Card } from '../card/card';
 import './cardsList.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
-import { clearSelection } from '../../state/selectedCardsSlice';
+import { clearSelection } from '../../state/checkCards/selectedCardsSlice';
 import Papa from 'papaparse';
 
 const Results = ({ loader }: { loader: boolean }) => {
@@ -24,6 +24,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const navigation = useNavigation();
   const location = useLocation();
+
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
   );

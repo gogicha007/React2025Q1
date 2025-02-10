@@ -1,7 +1,7 @@
 import './card.css';
 import { ICharacterDetails } from '../../types/interface';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCardSelection } from '../../state/selectedCardsSlice';
+import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
 import { RootState } from '../../state/store';
 
 export const Card = (data: ICharacterDetails) => {

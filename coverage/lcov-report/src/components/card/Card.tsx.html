@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">50% </span>
+            <span class="strong">90% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">5/10</span>
+            <span class="fraction">9/10</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -35,15 +35,15 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">66.66% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">0/3</span>
+            <span class="fraction">2/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">44.44% </span>
+            <span class="strong">88.88% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">4/9</span>
+            <span class="fraction">8/9</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line medium"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,11 +92,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">115x</span>
+<span class="cline-any cline-yes">115x</span>
+<span class="cline-any cline-yes">170x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">115x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,15 +114,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import './card.css';
 import { ICharacterDetails } from '../../types/interface';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCardSelection } from '../../state/selectedCardsSlice';
+import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
 import { RootState } from '../../state/store';
 &nbsp;
-export const Card = <span class="fstat-no" title="function not covered" >(d</span>ata: ICharacterDetails) =&gt; {
-  const dispatch = <span class="cstat-no" title="statement not covered" >useDispatch();</span>
-  const selectedCards = <span class="cstat-no" title="statement not covered" >useSelector(</span>
-<span class="fstat-no" title="function not covered" >    (s</span>tate: RootState) =&gt; <span class="cstat-no" title="statement not covered" >state.selectedCards.selectedCards</span>
+export const Card = (data: ICharacterDetails) =&gt; {
+  const dispatch = useDispatch();
+  const selectedCards = useSelector(
+    (state: RootState) =&gt; state.selectedCards.selectedCards
   );
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="card" role="article"&gt;
       &lt;img className="card__image" src={data.image} alt="" /&gt;
       &lt;p className="card__data"&gt;{data.name}&lt;/p&gt;
@@ -151,7 +151,7 @@ export const Card = <span class="fstat-no" title="function not covered" >(d</spa
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-09T18:56:33.509Z
+      at 2025-02-10T12:32:15.767Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>
