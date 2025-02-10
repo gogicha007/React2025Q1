@@ -9,6 +9,12 @@ export const Card = (data: ICharacterDetails) => {
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
   );
+
+  const handleCheckboxClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+    dispatch(toggleCardSelection(data.id));
+  };
+
   return (
     <div className="card" role="article">
       <img className="card__image" src={data.image} alt="" />
@@ -16,10 +22,10 @@ export const Card = (data: ICharacterDetails) => {
       <p className="card__data">{data.species}</p>
       <p className="card__data">{data.status}</p>
       <input
+        className="card__checkbox card__checkbox-enlarged"
         type="checkbox"
         checked={selectedCards.includes(data.id)}
-        onChange={() => dispatch(toggleCardSelection(data.id))}
-        className="card__checkbox"
+        onClick={handleCheckboxClick}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739190735790" clover="3.2.0">
-  <project timestamp="1739190735790" name="All files">
-    <metrics statements="178" coveredstatements="138" conditionals="66" coveredconditionals="54" methods="43" coveredmethods="33" elements="287" coveredelements="225" complexity="0" loc="178" ncloc="178" packages="12" files="12" classes="12"/>
+<coverage generated="1739194249412" clover="3.2.0">
+  <project timestamp="1739194249412" name="All files">
+    <metrics statements="180" coveredstatements="139" conditionals="66" coveredconditionals="54" methods="43" coveredmethods="33" elements="289" coveredelements="226" complexity="0" loc="180" ncloc="180" packages="12" files="12" classes="12"/>
     <package name="src">
       <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.tsx" path="D:\CODES\React2025Q1\src\main.tsx">
@@ -17,18 +17,20 @@
       </file>
     </package>
     <package name="src.components.card">
-      <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <metrics statements="11" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
       <file name="card.tsx" path="D:\CODES\React2025Q1\src\components\card\card.tsx">
-        <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <metrics statements="11" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="8" count="115" type="stmt"/>
+        <line num="8" count="116" type="stmt"/>
         <line num="9" count="115" type="stmt"/>
         <line num="10" count="170" type="stmt"/>
-        <line num="12" count="115" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
+        <line num="13" count="115" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="115" type="stmt"/>
       </file>
     </package>
     <package name="src.components.cardsList">
