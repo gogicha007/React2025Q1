@@ -85,6 +85,7 @@ const Results = ({ loader }: { loader: boolean }) => {
   }, [fetchList]);
 
   useEffect(() => {
+    console.log(selectedCards.length);
     setResults((prevResults) =>
       prevResults.map((card) => ({
         ...card,
@@ -108,7 +109,9 @@ const Results = ({ loader }: { loader: boolean }) => {
     <div className="results">
       <div className="results__main">
         <div className="results__select_controls">
-          <h2>Selected: {selectedCards.length}</h2>
+          {selectedCards.length > 0 && (
+            <h2>Items selected: {selectedCards.length}</h2>
+          )}
           <button onClick={() => dispatch(clearSelection())}>
             Deselect all
           </button>

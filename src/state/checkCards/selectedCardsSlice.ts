@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, Reducer } from '@reduxjs/toolkit';
 
 interface SelectedCardsState {
   selectedCards: number[];
@@ -31,4 +31,4 @@ const selectedCardsSlice = createSlice({
 
 export const { toggleCardSelection, clearSelection } =
   selectedCardsSlice.actions;
-export default selectedCardsSlice.reducer;
+export default selectedCardsSlice.reducer as Reducer<SelectedCardsState>;

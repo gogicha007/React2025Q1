@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Code coverage report for components/pagination/pagination.tsx</title>
+    <title>Code coverage report for components/search/search-bar.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,31 +19,31 @@
       <div class="pad1">
         <h1>
           <a href="../../index.html">All files</a> /
-          <a href="index.html">components/pagination</a> pagination.tsx
+          <a href="index.html">components/search</a> search-bar.tsx
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">88.88% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">16/18</span>
+            <span class="fraction">22/22</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">75% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">6/8</span>
+            <span class="fraction">3/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">75% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">3/4</span>
+            <span class="fraction">7/7</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">88.23% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">15/17</span>
+            <span class="fraction">19/19</span>
           </div>
         </div>
         <p class="quiet">
@@ -107,39 +107,34 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,6 +143,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,55 +153,56 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import './pagination.css';
-import { IRespInfo } from '../../types/interface';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import './search-bar.css';
+import { useEffect } from 'react';
+import { lsHandler } from '../../utils/ls-handler';
+import ErrorButton from '../errButton/errorButton';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
-import { isValidHTTPURL } from '../../utils/validator';
 &nbsp;
-interface Props {
-  disabled?: boolean;
-  resInfo: IRespInfo;
-  handlePagination: (b: boolean) =&gt; void;
-}
+const SearchBar = ({ handleSearch }: { handleSearch: () =&gt; void }) =&gt; {
+  const { status, setFilters } = useCharacterFilters();
 &nbsp;
-export const Pagination = (props: Props) =&gt; {
-  const { page, setFilters } = useCharacterFilters();
-  const clickPagination = (direction: 'prev' | 'next') =&gt; {
-    const urlString = props.resInfo[direction];
-    if (isValidHTTPURL(urlString as string)) {
-      const url = new URL(urlString as string);
-      const searchParams = url.searchParams.get('page');
-      setFilters({ page: searchParams ? +searchParams : <span class="branch-1 cbranch-no" title="branch not covered" >+page </span>});
-      props.handlePagination(true);
-      console.log('page', page);
-    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>console.error('URL string is not valid');</span>
+  const clickSearch = async () =&gt; {
+    lsHandler.setValue(status);
+    handleSearch();
   };
+&nbsp;
+  const changeInput = (word: string) =&gt; setFilters({ page: 1, status: word });
+&nbsp;
+  useEffect(() =&gt; {
+    const searchWord = lsHandler.getValue();
+    if (!status &amp;&amp; searchWord) setFilters({ status: searchWord, page: 1 });
+  }, [setFilters]);
 &nbsp;
   return (
     &lt;&gt;
-      &lt;nav className="pgn"&gt;
+      &lt;form className="search__bar"&gt;
+        &lt;label htmlFor="search"&gt;Search by status&lt;/label&gt;
+        &lt;input
+          value={status}
+          onChange={(e) =&gt; changeInput(e.target.value.trim())}
+          type="search"
+          id="search"
+          name="status"
+          placeholder="Enter dead or alive..."
+        /&gt;
         &lt;button
-          style={{ pointerEvents: props.disabled ? 'none' : 'initial' }}
-          type="submit"
-          onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >clickPagination('prev')}</span>
-          className="pgn__button"
-          disabled={!props.resInfo.prev}
+          onClick={(e) =&gt; {
+            e.preventDefault();
+            clickSearch();
+          }}
         &gt;
-          &amp;laquo;
+          Search
         &lt;/button&gt;
-        &lt;button
-          style={{ pointerEvents: props.disabled ? 'none' : 'initial' }}
-          type="submit"
-          onClick={() =&gt; clickPagination('next')}
-          className="pgn__button"
-          disabled={!props.resInfo.next}
-        &gt;
-          &amp;raquo;
-        &lt;/button&gt;
-      &lt;/nav&gt;
+      &lt;/form&gt;
+      &lt;ErrorButton /&gt;
     &lt;/&gt;
   );
 };
+&nbsp;
+export default SearchBar;
 &nbsp;</pre></td></tr></table></pre>
 
       <div class="push"></div>
