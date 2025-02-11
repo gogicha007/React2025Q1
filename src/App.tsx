@@ -5,11 +5,14 @@ import NotFound from './pages/notfound/notfound';
 import { Details, detailsLoader } from './components/details/details';
 import ErrorBoundary from './components/errHandling/errBoundary';
 import ErrFallbackComponent from './components/errHandling/fallbackRender';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   const ErrorBoundaryLayout = () => (
     <ErrorBoundary fallback={<ErrFallbackComponent />}>
-      <Outlet />
+      <ThemeProvider>
+        <Outlet />
+      </ThemeProvider>
     </ErrorBoundary>
   );
 
