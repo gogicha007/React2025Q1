@@ -32,6 +32,24 @@ export const mockDataP2 = {
   ],
 };
 
+export const mockReduxData = {
+  info: {
+    count: 1,
+    pages: 1,
+    next: 'mock-url',
+    prev: null,
+  },
+  results: [
+    {
+      id: 1,
+      name: 'Test Card',
+      image: 'test-image.jpg',
+      species: 'Test',
+      status: 'Alive',
+    },
+  ],
+};
+
 export const mockDetails = {
   id: 1,
   name: 'card 1',

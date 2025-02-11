@@ -31,10 +31,10 @@ const Results = ({ loader }: { loader: boolean }) => {
   const dispatch = useDispatch();
 
   const handleDownloadCSV = () => {
-    console.log('Download clicked');
     const selectedData = results.filter((card) =>
       selectedCards.includes(card.id)
     );
+
     if (selectedData.length === 0) {
       alert('No cards selected for download!');
       return;
@@ -86,7 +86,6 @@ const Results = ({ loader }: { loader: boolean }) => {
   }, [fetchList]);
 
   useEffect(() => {
-    console.log(selectedCards.length);
     setResults((prevResults) =>
       prevResults.map((card) => ({
         ...card,
@@ -103,7 +102,6 @@ const Results = ({ loader }: { loader: boolean }) => {
   const handleDetailsClose = () => {
     setCounter(0);
     setDetailsOpen(false);
-    console.log('details closed', detailsOpen);
   };
 
   return (
