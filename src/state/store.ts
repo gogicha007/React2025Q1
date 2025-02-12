@@ -10,9 +10,8 @@ const rootReducer = combineReducers({
 export function setupStore(preloadedState?: Partial<RootState>) {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(characterApiSlice.middleware);
-    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(characterApiSlice.middleware),
     preloadedState,
   });
 }

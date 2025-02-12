@@ -10,8 +10,6 @@ import { setupStore } from '../../state/store';
 // As a basic setup, import your same slice reducers
 // import selectedCardsReducer from './checkCards/selectedCardsSlice';
 
-// This type interface extends the default options for render from RTL, as well
-// as allows the user to specify other things such as initialState, store.
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>;
   store?: AppStore;
@@ -19,19 +17,19 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 
 export function renderWithProviders(
   ui: React.ReactElement,
-  {
+  extendedRenderOptions: ExtendedRenderOptions = {}
+) {
+  const {
     preloadedState = {},
-    // Automatically create a store instance if no store was passed in
     store = setupStore(preloadedState),
     ...renderOptions
-  }: ExtendedRenderOptions = {}
-) {
-  function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
-    return (
-      <Provider store={store}>
-        <ThemeProvider>{children}</ThemeProvider>
-      </Provider>
-    );
-  }
+  } = extendedRenderOptions;
+
+  const Wrapper = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
+    <Provider store={store}>
+      <ThemeProvider>{children}</ThemeProvider>
+    </Provider>
+  );
+
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
