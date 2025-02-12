@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { createMemoryRouter } from 'react-router';
 import { RouterProvider } from 'react-router';
-import fetchMock from 'jest-fetch-mock';
+import { enableFetchMocks } from 'jest-fetch-mock';
 import { mockStore } from '../../utils/test-utils/mocks/mock-store';
 import { Provider } from 'react-redux';
 import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
@@ -12,7 +12,9 @@ import { Card } from '../card/card';
 import { mockReduxData } from '../../utils/test-utils/mocks/mock_data';
 import Papa from 'papaparse';
 
-fetchMock.enableMocks();
+beforeAll(() => {
+  enableFetchMocks();
+});
 
 beforeEach(() => {
   global.Blob = jest.fn((blobParts?: BlobPart[], options?: BlobPropertyBag) => {
@@ -30,8 +32,8 @@ beforeEach(() => {
   URL.createObjectURL = jest.fn(() => 'mock-url');
 });
 
-afterEach(() => jest.resetAllMocks());
 afterEach(() => {
+  jest.resetAllMocks();
   jest.restoreAllMocks();
 });
 

@@ -15,6 +15,7 @@ import {
   mockDetails,
 } from '../../utils/test-utils/mocks/mock_data';
 import { mockFetch } from '../../utils/test-utils/mocks/mock-fetch';
+
 enableFetchMocks();
 
 describe('rs-app-router', () => {
@@ -33,13 +34,16 @@ describe('rs-app-router', () => {
     renderWithProviders(<RouterProvider router={router} />);
     screen.debug();
     await waitFor(() => {
-      const results_list = screen.getAllByRole('article');
-      expect(results_list.length).toBe(6);
+      expect(screen.getAllByRole('article')).toHaveLength(6);
     });
   });
 
   test('Check that an appropriate message is displayed if no cards are present', async () => {
-    window.fetch = mockFetch(null);
+    const fetchSpy = jest.spyOn(global, 'fetch');
+    fetchSpy.mockImplementation(
+      async (): Promise<Response> =>
+        new Response(JSON.stringify(mockData), { status: 404 })
+    );
     const router = createMemoryRouter(
       [{ path: '/', element: <Results loader={true} /> }],
       {

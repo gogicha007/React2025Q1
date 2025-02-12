@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
 import type { RenderOptions } from '@testing-library/react';
-// import { configureStore } from '@reduxjs/toolkit'
+import { ThemeProvider } from '../../contexts/ThemeContext';
 import { Provider } from 'react-redux';
 
 import type { AppStore, RootState } from '../../state/store';
@@ -27,7 +27,11 @@ export function renderWithProviders(
   }: ExtendedRenderOptions = {}
 ) {
   function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <Provider store={store}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </Provider>
+    );
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
