@@ -11,6 +11,7 @@ import { Card } from '../card/card';
 import './cardsList.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
+// import { useGetListQuery } from '../../state/characters/charactersApiSlice';
 import { clearSelection } from '../../state/checkCards/selectedCardsSlice';
 import Papa from 'papaparse';
 
@@ -24,11 +25,16 @@ const Results = ({ loader }: { loader: boolean }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const navigation = useNavigation();
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  // const { data, isFetching, error } = useGetListQuery({
+  //   page: +page,
+  //   status: status,
+  // });
 
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
   );
-  const dispatch = useDispatch();
 
   const handleDownloadCSV = () => {
     const selectedData = results.filter((card) =>
