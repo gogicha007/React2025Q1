@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IResponse } from '../../types/interface';
+import { ICharacterDetails, IResponse } from '../../types/interface';
 
 export const characterApiSlice = createApi({
   reducerPath: 'charachters',
@@ -11,11 +11,11 @@ export const characterApiSlice = createApi({
       getList: builder.query<IResponse, { page: number; status?: string }>({
         query: ({ page, status }) => `?page=${page}&status=${status}`,
       }),
-      // getDetails: builder.query(
-      //     query: () => ''
-      // )
+      getDetails: builder.query<ICharacterDetails, { id: string }>({
+        query: ({ id }) => `/${id}`,
+      }),
     };
   },
 });
 
-export const { useGetListQuery } = characterApiSlice;
+export const { useGetListQuery, useGetDetailsQuery } = characterApiSlice;

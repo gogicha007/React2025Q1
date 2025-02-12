@@ -1,17 +1,16 @@
 import { Outlet, useNavigation } from 'react-router';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ICharacterDetails, IRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
-import { getList } from '../../utils/fetcher';
 import { Pagination } from '../pagination/pagination';
 import Loader from '../loader/loader';
 import { Card } from '../card/card';
 import './cardsList.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
-// import { useGetListQuery } from '../../state/characters/charactersApiSlice';
+import { useGetListQuery } from '../../state/characters/charactersApiSlice';
 import { clearSelection } from '../../state/checkCards/selectedCardsSlice';
 import Papa from 'papaparse';
 
@@ -19,25 +18,35 @@ const Results = ({ loader }: { loader: boolean }) => {
   const { page, status } = useCharacterFilters();
   const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
-  const [results, setResults] = useState<ICharacterDetails[]>([]);
-  const [responseInfo, setResponseInfo] = useState<IRespInfo | number>();
   const [noResults, setNoResults] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const navigation = useNavigation();
   const location = useLocation();
   const dispatch = useDispatch();
 
-  // const { data, isFetching, error } = useGetListQuery({
-  //   page: +page,
-  //   status: status,
-  // });
+  const { data, isFetching, error } = useGetListQuery({
+    page: +page,
+    status: status,
+  });
 
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
   );
 
+  useEffect(() => {
+    setLoader(isFetching);
+  }, [isFetching]);
+
+  useEffect(() => {
+    if (data) {
+      setNoResults(data.results.length === 0);
+    }
+  }, [data]);
+
   const handleDownloadCSV = () => {
-    const selectedData = results.filter((card) =>
+    if (!data || !data.results) return;
+
+    const selectedData = data.results.filter((card) =>
       selectedCards.includes(card.id)
     );
 
@@ -69,37 +78,6 @@ const Results = ({ loader }: { loader: boolean }) => {
     document.body.removeChild(link);
   };
 
-  const fetchList = useCallback(async () => {
-    try {
-      const res = await getList(+page, status as string);
-      setTimeout(() => setLoader(false), 500);
-      if (typeof res === 'number') {
-        setResults([]);
-        setResponseInfo(res);
-        setNoResults(true);
-      } else {
-        setResults(res.results);
-        setResponseInfo(res.info);
-        setNoResults(false);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }, [page, status]);
-
-  useEffect(() => {
-    fetchList();
-  }, [fetchList]);
-
-  useEffect(() => {
-    setResults((prevResults) =>
-      prevResults.map((card) => ({
-        ...card,
-        selected: selectedCards.includes(card.id),
-      }))
-    );
-  }, [selectedCards]);
-
   const handleDetailsOpen = () => {
     setDetailsOpen(true);
     setCounter((prev) => prev + 1);
@@ -123,37 +101,28 @@ const Results = ({ loader }: { loader: boolean }) => {
           <button onClick={handleDownloadCSV}>Download CSV</button>
         </div>
         <div className="results__list">
-          {results.length !== 0 &&
-            results.map((obj: ICharacterDetails) => {
-              return (
-                <Link
-                  to={{
-                    pathname: `${obj.id}`,
-                    search: `${location.search}`,
-                  }}
-                  key={obj.id}
-                  onClick={() => handleDetailsOpen()}
-                >
-                  <div role="card">
-                    <Card {...obj} />
-                  </div>
-                </Link>
-              );
-            })}
-
-          {noResults && (
-            <h3>
-              no data fetched, server replied with status{' '}
-              {(responseInfo as number).toString()}
-            </h3>
-          )}
+          {data?.results?.map((obj: ICharacterDetails) => (
+            <Link
+              to={{
+                pathname: `${obj.id}`,
+                search: `${location.search}`,
+              }}
+              key={obj.id}
+              onClick={() => handleDetailsOpen()}
+            >
+              <div role="card">
+                <Card {...obj} />
+              </div>
+            </Link>
+          ))}
+          {error && <h3>Error fetching data</h3>}
+          {noResults && <h3>No data available</h3>}
         </div>
         <div className="results__pagination">
-          {results.length !== 0 && (
+          {data?.info && (
             <Pagination
               disabled={detailsOpen}
-              resInfo={responseInfo as IRespInfo}
-              handlePagination={setLoader}
+              resInfo={data.info as IRespInfo}
             />
           )}
         </div>

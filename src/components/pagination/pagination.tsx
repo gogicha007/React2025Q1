@@ -6,7 +6,6 @@ import { isValidHTTPURL } from '../../utils/validator';
 interface Props {
   disabled?: boolean;
   resInfo: IRespInfo;
-  handlePagination: (b: boolean) => void;
 }
 
 export const Pagination = (props: Props) => {
@@ -17,8 +16,6 @@ export const Pagination = (props: Props) => {
       const url = new URL(urlString as string);
       const searchParams = url.searchParams.get('page');
       setFilters({ page: searchParams ? +searchParams : +page });
-      props.handlePagination(true);
-      console.log('page', page);
     } else console.error('URL string is not valid');
   };
 

@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event';
 import HomePage from '../../pages/home/home';
 import Results from '../cardsList/cardsList';
 import { Card } from '../card/card';
-import { Details, detailsLoader } from '../details/details';
+import { Details } from '../details/details';
 import { IResponse } from '../../types/interface';
 import {
   mockData,
@@ -15,6 +15,10 @@ import {
   mockDetails,
 } from '../../utils/test-utils/mocks/mock_data';
 import { mockFetch } from '../../utils/test-utils/mocks/mock-fetch';
+// import { characterApiSlice } from '../../state/characters/charactersApiSlice';
+// import { setupApiStore } from '../../utils/test-utils/mocks/mock-ApiStore';
+
+// const storeRef = setupApiStore(characterApiSlice);
 
 beforeAll(() => {
   enableFetchMocks();
@@ -31,7 +35,6 @@ describe('rs-app-router', () => {
     jest.resetAllMocks();
     jest.restoreAllMocks();
   });
-
   const setupRouter = (routes: RouteObject[], initialEntries: string[]) =>
     createMemoryRouter(routes, { initialEntries });
 
@@ -57,14 +60,30 @@ describe('rs-app-router', () => {
   };
 
   test('renders the specified number of cards', async () => {
-    window.fetch = mockFetch(mockData as IResponse);
-    const router = setupRouter(
-      [{ path: '/', element: <Results loader={true} /> }],
-      ['?page=1&status=dead']
-    );
+    // const preloadedState = {
+    //   [characterApiSlice.reducerPath]: {
+    //     queries: {
+    //       [`getList({"page":1,"status":"dead"})`]: {
+    //         status: 'fulfilled',
+    //         data: mockData, // Make sure mockData has the correct structure
+    //       },
+    //     },
+    //     mutations: {}, // Add empty object to match expected state shape
+    //     provided: {}, // Add empty object for subscriptions tracking
+    //     subscriptions: {}, // Required for RTK Query cache
+    //     config: {}, // This helps match the internal store structure
+    //   },
+    // };
 
-    renderWithProviders(<RouterProvider router={router} />);
+    // const storeRef = setupApiStore(characterApiSlice, preloadedState);
 
+    // const router = setupRouter(
+    //   [{ path: '/', element: <Results loader={true} /> }],
+    //   ['?page=1&status=dead']
+    // );
+
+    // renderWithProviders(<RouterProvider router={router} />, { store: storeRef.store });
+    await screen.findByRole('link', { name: /card 1 alive/i });
     await waitFor(() => {
       expect(screen.getAllByRole('article')).toHaveLength(6);
     });
@@ -124,7 +143,7 @@ describe('rs-app-router', () => {
 
     const routes: RouteObject[] = [
       { path: '/', element: <HomePage /> },
-      { path: '/:id', element: <Details />, loader: detailsLoader },
+      { path: '/:id', element: <Details /> },
     ];
 
     const router = setupRouter(routes, ['/?page=1&status=dead']);
@@ -162,7 +181,7 @@ describe('rs-app-router', () => {
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
-        { path: '/:id', element: <Details />, loader: detailsLoader },
+        { path: '/:id', element: <Details /> },
       ],
       ['/?page=1&status=dead']
     );
@@ -190,7 +209,7 @@ describe('rs-app-router', () => {
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
-        { path: '/:id', element: <Details />, loader: detailsLoader },
+        { path: '/:id', element: <Details /> },
       ],
       ['/?page=1&status=dead']
     );
@@ -215,7 +234,7 @@ describe('rs-app-router', () => {
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
-        { path: '/:id', element: <Details />, loader: detailsLoader },
+        { path: '/:id', element: <Details /> },
       ],
       ['/?page=1&status=dead']
     );
