@@ -49,6 +49,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-fetch-mock": "^3.0.3",
     "jest-transform-css": "^6.0.2",
+    "msw": "^2.7.0",
     "prettier": "3.4.2",
     "ts-jest": "^29.2.5",
     "typescript": "~5.6.2",
@@ -72,6 +73,11 @@
       }
     },
     "testEnvironment": "jsdom",
+    "testEnvironmentOptions": {
+      "customExportConditions": [
+        ""
+      ]
+    },
     "transform": {
       "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",
       "^.+\\.(css)$": "<rootDir>/jest-config/style-mock.cjs"

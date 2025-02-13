@@ -1,69 +1,71 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import { setupStore } from '../../state/store';
+import { RouteObject, RouterProvider, createMemoryRouter } from 'react-router';
 import { renderWithProviders } from '../../utils/test-utils/test-utils';
-import { createMemoryRouter, RouteObject, RouterProvider } from 'react-router';
-import { useGetListQuery } from '../../state/characters/charactersApiSlice';
 import Results from '../cardsList/cardsList';
+import { mockServer } from '../../utils/test-utils/mocks/mockServer';
+import { http, HttpResponse } from 'msw';
 import '@testing-library/jest-dom';
-import { enableFetchMocks } from 'jest-fetch-mock';
+import { mockData } from '../../utils/test-utils/mocks/mock_data';
+
+const server = mockServer();
 
 beforeAll(() => {
-  enableFetchMocks();
+  server.listen({
+    onUnhandledRequest: 'warn',
+  });
 });
 
-// Mock API Slice
-// jest.mock('../../state/characters/charactersApiSlice', () => ({
-//   useGetListQuery: jest.fn(),
-//   characterApiSlice: {
-//     reducerPath: 'characterApi', // Mock the reducerPath here
-//     reducer: (state = { results: [] }, action) => state, // Mock the reducer if necessary
-//   },
-//   middleware: jest.fn((getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(() => (next) => (action) => next(action))
-//   ),
-// }));
+afterEach(() => {
+  server.resetHandlers();
+});
 
-describe('Results Component', () => {
-  it('renders the correct number of cards', async () => {
-    const mockData = {
-      results: [
-        {
-          id: 1,
-          name: 'Rick Sanchez',
-          image: 'rick.png',
-          species: 'Human',
-          status: 'Alive',
-        },
-        {
-          id: 2,
-          name: 'Morty Smith',
-          image: 'morty.png',
-          species: 'Human',
-          status: 'Alive',
-        },
-      ],
-      info: { count: 2, pages: 1, next: null, prev: null },
-    };
+afterAll(() => {
+  server.close();
+});
 
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: mockData,
-      isFetching: false,
-      error: null,
-    });
+describe('rs-app-router-redux', () => {
+  const setupRouter = (routes: RouteObject[], initialEntries: string[]) =>
+    createMemoryRouter(routes, { initialEntries });
 
-    const setupRouter = (routes: RouteObject[], initialEntries: string[]) =>
-      createMemoryRouter(routes, { initialEntries });
+  test('renders the specified number of cards', async () => {
+    const BASE_URL = 'https://rickandmortyapi.com/api/character';
+
+    server.use(
+      http.get(BASE_URL, async ({ request }) => {
+        const url = new URL(request.url);
+        const page = url.searchParams.get('page');
+        const status = url.searchParams.get('status');
+
+        console.log('Mock handler called:', {
+          url: url.toString(),
+          page,
+          status,
+        });
+
+        if (page === '1' && status === 'alive') {
+          return HttpResponse.json(mockData, { status: 200 });
+        }
+
+        return new HttpResponse(null, {
+          status: 404,
+          statusText: 'No matching mock for these parameters',
+        });
+      })
+    );
 
     const router = setupRouter(
       [{ path: '/', element: <Results loader={true} /> }],
-      ['?page=1&status=dead']
+      ['?page=1&status=alive']
     );
 
     renderWithProviders(<RouterProvider router={router} />, {
-      preloadedState: {},
+      store: setupStore(),
     });
 
-    // Ensure correct number of card elements are rendered
-    const cards = await screen.findAllByRole('card');
-    expect(cards).toHaveLength(2);
+    await screen.findByRole('link', { name: /card 1 alive/i });
+    await waitFor(() => {
+      expect(screen.getAllByRole('article')).toHaveLength(6);
+    });
   });
 });

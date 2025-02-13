@@ -19,7 +19,7 @@ export const Details = () => {
     isFetching,
     error,
   } = useGetDetailsQuery({ id: id as string });
-  console.log(obj);
+  console.log('details obj', obj);
   const handleClickClose = () => {
     navigate(context?.counter > 0 ? -context.counter : -1);
     context?.closeClicked();

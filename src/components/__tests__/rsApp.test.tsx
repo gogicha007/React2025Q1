@@ -15,10 +15,6 @@ import {
   mockDetails,
 } from '../../utils/test-utils/mocks/mock_data';
 import { mockFetch } from '../../utils/test-utils/mocks/mock-fetch';
-// import { characterApiSlice } from '../../state/characters/charactersApiSlice';
-// import { setupApiStore } from '../../utils/test-utils/mocks/mock-ApiStore';
-
-// const storeRef = setupApiStore(characterApiSlice);
 
 beforeAll(() => {
   enableFetchMocks();
@@ -60,29 +56,16 @@ describe('rs-app-router', () => {
   };
 
   test('renders the specified number of cards', async () => {
-    // const preloadedState = {
-    //   [characterApiSlice.reducerPath]: {
-    //     queries: {
-    //       [`getList({"page":1,"status":"dead"})`]: {
-    //         status: 'fulfilled',
-    //         data: mockData, // Make sure mockData has the correct structure
-    //       },
-    //     },
-    //     mutations: {}, // Add empty object to match expected state shape
-    //     provided: {}, // Add empty object for subscriptions tracking
-    //     subscriptions: {}, // Required for RTK Query cache
-    //     config: {}, // This helps match the internal store structure
-    //   },
-    // };
+    jest.mock('../services/api', () => ({
+      useGetDataQuery: jest.fn(() => ({ data: mockData, isLoading: false })),
+    }));
 
-    // const storeRef = setupApiStore(characterApiSlice, preloadedState);
+    const router = setupRouter(
+      [{ path: '/', element: <Results loader={true} /> }],
+      ['?page=1&status=dead']
+    );
 
-    // const router = setupRouter(
-    //   [{ path: '/', element: <Results loader={true} /> }],
-    //   ['?page=1&status=dead']
-    // );
-
-    // renderWithProviders(<RouterProvider router={router} />, { store: storeRef.store });
+    renderWithProviders(<RouterProvider router={router} />);
     await screen.findByRole('link', { name: /card 1 alive/i });
     await waitFor(() => {
       expect(screen.getAllByRole('article')).toHaveLength(6);
