@@ -10,8 +10,12 @@ import { Details } from '../details/details';
 import { mockServer } from '../../utils/test-utils/mocks/mockServer';
 import { http, HttpResponse } from 'msw';
 import '@testing-library/jest-dom';
-import { mockData, mockNoData } from '../../utils/test-utils/mocks/mock_data';
-import { IResponse } from '../../types/interface';
+import {
+  mockData,
+  mockDataP2,
+  //   mockNoData,
+} from '../../utils/test-utils/mocks/mock_data';
+// import { IResponse } from '../../types/interface';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
 const server = mockServer();
@@ -27,23 +31,32 @@ afterEach(() => {
 afterAll(() => {
   server.close();
 });
+const urlsObj = [
+  { url: '?page=1&status=alive', response: mockData, status: 200 },
+  { url: '?page=2&status=alive', response: mockDataP2, status: 200 },
+];
 
 describe('rs-app-router-redux', () => {
   const setupRouter = (routes: RouteObject[], initialEntries: string[]) =>
     createMemoryRouter(routes, { initialEntries });
 
-  const mockApiResponse = (data: IResponse, status = 200) => {
+  const mockApiResponse = (status = 200) => {
     server.use(
       http.get(BASE_URL, async ({ request }) => {
         const url = new URL(request.url);
+        console.log('Mock handler search:', url.search);
         console.log('Mock handler called:', { url: url.toString() });
-        return HttpResponse.json(data, { status });
+        const mathedResponse = urlsObj.find(
+          (entry) => url.search === entry.url
+        );
+        console.log('matched url', mathedResponse?.response);
+        return HttpResponse.json(mathedResponse?.response, { status });
       })
     );
   };
 
   test('renders the specified number of cards', async () => {
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [{ path: '/', element: <Results loader /> }],
       ['?page=1&status=alive']
@@ -58,7 +71,7 @@ describe('rs-app-router-redux', () => {
   });
 
   test('displays appropriate message if no cards are present', async () => {
-    mockApiResponse(mockNoData, 404);
+    mockApiResponse(404);
     const router = setupRouter(
       [{ path: '/', element: <Results loader /> }],
       ['?page=1&status=NODATA']
@@ -81,7 +94,7 @@ describe('rs-app-router-redux', () => {
   });
 
   test('clicking a card opens the detailed view', async () => {
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
@@ -103,7 +116,7 @@ describe('rs-app-router-redux', () => {
 
   test('triggers API calls when clicking a card', async () => {
     const fetchSpy = jest.spyOn(global, 'fetch');
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
@@ -128,7 +141,7 @@ describe('rs-app-router-redux', () => {
   });
 
   test('displays a loading indicator while fetching data', async () => {
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
@@ -152,7 +165,7 @@ describe('rs-app-router-redux', () => {
   });
 
   test('detailed view displays correct data', async () => {
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
@@ -175,7 +188,7 @@ describe('rs-app-router-redux', () => {
   });
 
   test('clicking close button hides details component', async () => {
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
@@ -210,7 +223,7 @@ describe('rs-app-router-redux', () => {
 
   test('pagination updates URL when page changes', async () => {
     const fetchSpy = jest.spyOn(global, 'fetch');
-    mockApiResponse(mockData);
+    mockApiResponse();
     const router = setupRouter(
       [{ path: '/', element: <HomePage /> }],
       ['?page=1&status=alive']
