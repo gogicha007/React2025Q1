@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739470837366" clover="3.2.0">
-  <project timestamp="1739470837366" name="All files">
-    <metrics statements="185" coveredstatements="166" conditionals="89" coveredconditionals="69" methods="46" coveredmethods="40" elements="320" coveredelements="275" complexity="0" loc="185" ncloc="185" packages="13" files="13" classes="13"/>
+<coverage generated="1739471096461" clover="3.2.0">
+  <project timestamp="1739471096461" name="All files">
+    <metrics statements="185" coveredstatements="168" conditionals="89" coveredconditionals="70" methods="46" coveredmethods="41" elements="320" coveredelements="279" complexity="0" loc="185" ncloc="185" packages="13" files="13" classes="13"/>
     <package name="components.card">
       <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="card.tsx" path="C:\Codes\React2025Q1\src\components\card\card.tsx">
@@ -106,18 +106,18 @@
       </file>
     </package>
     <package name="components.errButton">
-      <metrics statements="9" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="errorButton.tsx" path="C:\Codes\React2025Q1\src\components\errButton\errorButton.tsx">
-        <metrics statements="9" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="16" type="stmt"/>
-        <line num="6" count="16" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="16" type="cond" truecount="0" falsecount="1"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="16" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
+        <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="22" type="stmt"/>
+        <line num="6" count="21" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="21" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.errHandling">
@@ -191,10 +191,10 @@
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
         <line num="6" count="13" type="stmt"/>
-        <line num="7" count="13" type="stmt"/>
-        <line num="33" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
       </file>
     </package>
     <package name="contexts">
