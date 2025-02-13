@@ -1,94 +1,87 @@
 import { screen, waitFor } from '@testing-library/react';
-import { enableFetchMocks } from 'jest-fetch-mock';
-import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+import { setupStore } from '../../state/store';
 import { RouteObject, RouterProvider, createMemoryRouter } from 'react-router';
 import { renderWithProviders } from '../../utils/test-utils/test-utils';
-import userEvent from '@testing-library/user-event';
-import HomePage from '../../pages/home/home';
 import Results from '../cardsList/cardsList';
 import { Card } from '../card/card';
+import HomePage from '../../pages/home/home';
 import { Details } from '../details/details';
-import { IResponse } from '../../types/interface';
+import { mockServer } from '../../utils/test-utils/mocks/mockServer';
+import { http, HttpResponse } from 'msw';
+import '@testing-library/jest-dom';
 import {
   mockData,
   mockDataP2,
-  mockDetails,
+  //   mockNoData,
 } from '../../utils/test-utils/mocks/mock_data';
-import { mockFetch } from '../../utils/test-utils/mocks/mock-fetch';
+
+const BASE_URL = 'https://rickandmortyapi.com/api/character';
+const server = mockServer();
 
 beforeAll(() => {
-  enableFetchMocks();
+  server.listen({ onUnhandledRequest: 'warn' });
 });
 
-interface MockFetchConfig {
-  url: string;
-  response: unknown;
-  status: number;
-}
+afterEach(() => {
+  server.resetHandlers();
+});
 
-describe('rs-app-router', () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-    jest.restoreAllMocks();
-  });
+afterAll(() => {
+  server.close();
+});
+const urlsObj = [
+  { url: '?page=1&status=alive', response: mockData, status: 200 },
+  { url: '?page=2&status=alive', response: mockDataP2, status: 200 },
+];
+
+describe('rs-app-router-redux', () => {
   const setupRouter = (routes: RouteObject[], initialEntries: string[]) =>
     createMemoryRouter(routes, { initialEntries });
 
-  const mockFetchImplementation = (endpoints: MockFetchConfig[]) => {
-    return jest
-      .spyOn(global, 'fetch')
-      .mockImplementation(
-        async (input: RequestInfo | URL): Promise<Response> => {
-          const url = input.toString();
-          const matchedEndpoint = endpoints.find((endpoint) =>
-            url.includes(endpoint.url)
-          );
-
-          if (!matchedEndpoint) {
-            throw new Error(`Unexpected fetch call: ${url}`);
-          }
-
-          return new Response(JSON.stringify(matchedEndpoint.response), {
-            status: matchedEndpoint.status,
-          });
-        }
-      );
+  const mockApiResponse = (status = 200) => {
+    server.use(
+      http.get(BASE_URL, async ({ request }) => {
+        const url = new URL(request.url);
+        // console.log('Mock handler called:', { url: url.toString() });
+        const mathedResponse = urlsObj.find(
+          (entry) => url.search === entry.url
+        );
+        // console.log('matched url', mathedResponse?.response);
+        return HttpResponse.json(mathedResponse?.response, { status });
+      })
+    );
   };
 
   test('renders the specified number of cards', async () => {
-    jest.mock('../services/api', () => ({
-      useGetDataQuery: jest.fn(() => ({ data: mockData, isLoading: false })),
-    }));
-
+    mockApiResponse();
     const router = setupRouter(
-      [{ path: '/', element: <Results loader={true} /> }],
-      ['?page=1&status=dead']
+      [{ path: '/', element: <Results loader /> }],
+      ['?page=1&status=alive']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
-    await screen.findByRole('link', { name: /card 1 alive/i });
-    await waitFor(() => {
-      expect(screen.getAllByRole('article')).toHaveLength(6);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
     });
+
+    await screen.findByRole('link', { name: /card 1 alive/i });
+    await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(6));
   });
 
   test('displays appropriate message if no cards are present', async () => {
-    const fetchSpy = jest.spyOn(global, 'fetch');
-    fetchSpy.mockImplementation(
-      async (): Promise<Response> =>
-        new Response(JSON.stringify(mockData), { status: 404 })
-    );
+    mockApiResponse(404);
     const router = setupRouter(
-      [{ path: '/', element: <Results loader={true} /> }],
-      ['?page=1&status=dead']
+      [{ path: '/', element: <Results loader /> }],
+      ['?page=1&status=NODATA']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
 
     expect(await screen.findByRole('heading', { level: 3 })).toHaveTextContent(
-      'no data fetched'
+      'No data fetched'
     );
-    fetchSpy.mockRestore();
   });
 
   test('renders relevant card data', async () => {
@@ -99,78 +92,66 @@ describe('rs-app-router', () => {
   });
 
   test('clicking a card opens the detailed view', async () => {
-    window.fetch = mockFetch(mockData as IResponse);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
         { path: '/:id', element: <Details /> },
       ],
-      ['?page=1&status=dead']
+      ['?page=1&status=alive']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
 
-    await userEvent.click(
-      await screen.findByRole('link', { name: /card 1 alive/i })
-    );
-    expect(
-      screen.getByRole('button', { name: 'Close details' })
-    ).toBeInTheDocument();
+    const links = await screen.findAllByRole('link', { name: /card 1 alive/i });
+    await userEvent.click(links[0]);
+
+    await screen.findByRole('button', { name: /Close details/i });
+    expect(await screen.findByText('Close details')).toBeInTheDocument();
   });
 
   test('triggers API calls when clicking a card', async () => {
-    const fetchSpy = mockFetchImplementation([
-      { url: '/?page=1&status=dead', response: mockData, status: 200 },
-      { url: '/1', response: mockDetails, status: 200 },
-    ]);
+    const fetchSpy = jest.spyOn(global, 'fetch');
+    mockApiResponse();
+    const router = setupRouter(
+      [
+        { path: '/', element: <HomePage /> },
+        { path: '/:id', element: <Details /> },
+      ],
+      ['?page=1&status=alive']
+    );
 
-    const routes: RouteObject[] = [
-      { path: '/', element: <HomePage /> },
-      { path: '/:id', element: <Details /> },
-    ];
-
-    const router = setupRouter(routes, ['/?page=1&status=dead']);
-    renderWithProviders(<RouterProvider router={router} />);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
 
     await userEvent.click(
       await screen.findByRole('link', { name: /card 1 alive/i })
     );
 
     await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(2));
-    expect(fetchSpy).toHaveBeenCalledWith(expect.stringContaining('/1'));
-
+    expect(fetchSpy).toHaveBeenCalledWith(
+      expect.objectContaining({ url: expect.stringContaining('/1') })
+    );
     fetchSpy.mockRestore();
   });
 
   test('displays a loading indicator while fetching data', async () => {
-    const fetchSpy = jest.spyOn(global, 'fetch');
-
-    fetchSpy.mockImplementation(
-      async (input: RequestInfo | URL): Promise<Response> => {
-        const url = input.toString();
-        let responseData;
-
-        if (url.includes('?page=1&status=dead')) {
-          responseData = mockData;
-        } else if (url.includes('1')) {
-          setTimeout(() => (responseData = mockDetails), 1000);
-        } else {
-          throw new Error('Unexpected fetch call');
-        }
-        return new Response(JSON.stringify(responseData), { status: 200 });
-      }
-    );
-
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
         { path: '/:id', element: <Details /> },
       ],
-      ['/?page=1&status=dead']
+      ['?page=1&status=alive']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
-    screen.debug();
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
+
     await userEvent.click(
       await screen.findByRole('link', { name: /card 1 alive/i })
     );
@@ -179,25 +160,22 @@ describe('rs-app-router', () => {
     await waitFor(() =>
       expect(screen.queryByTestId('loader')).not.toBeInTheDocument()
     );
-
-    fetchSpy.mockRestore();
   });
 
   test('detailed view displays correct data', async () => {
-    const fetchSpy = mockFetchImplementation([
-      { url: '/?page=1&status=dead', response: mockData, status: 200 },
-      { url: '/1', response: mockDetails, status: 200 },
-    ]);
-
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
         { path: '/:id', element: <Details /> },
       ],
-      ['/?page=1&status=dead']
+      ['?page=1&status=alive']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
+
     await userEvent.click(
       await screen.findByRole('link', { name: /card 1 alive/i })
     );
@@ -205,24 +183,22 @@ describe('rs-app-router', () => {
     await waitFor(() =>
       expect(screen.getByText('details 1')).toBeInTheDocument()
     );
-
-    fetchSpy.mockRestore();
   });
 
   test('clicking close button hides details component', async () => {
-    const fetchSpy = mockFetchImplementation([
-      { url: '/?page=1&status=dead', response: mockData, status: 200 },
-      { url: '/1', response: mockDetails, status: 200 },
-    ]);
+    mockApiResponse();
     const router = setupRouter(
       [
         { path: '/', element: <HomePage /> },
         { path: '/:id', element: <Details /> },
       ],
-      ['/?page=1&status=dead']
+      ['?page=1&status=alive']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
+
     await userEvent.click(
       await screen.findByRole('link', { name: /card 1 alive/i })
     );
@@ -241,22 +217,20 @@ describe('rs-app-router', () => {
         ).not.toBeInTheDocument(),
       { timeout: 2000 }
     );
-
-    fetchSpy.mockRestore();
   });
 
   test('pagination updates URL when page changes', async () => {
-    const fetchSpy = mockFetchImplementation([
-      { url: '/?page=1&status=Alive', response: mockData, status: 200 },
-      { url: '/?page=2&status=Alive', response: mockDataP2, status: 200 },
-    ]);
-
+    const fetchSpy = jest.spyOn(global, 'fetch');
+    mockApiResponse();
     const router = setupRouter(
       [{ path: '/', element: <HomePage /> }],
-      ['/?page=1&status=Alive']
+      ['?page=1&status=alive']
     );
 
-    renderWithProviders(<RouterProvider router={router} />);
+    renderWithProviders(<RouterProvider router={router} />, {
+      store: setupStore(),
+    });
+
     await userEvent.click(await screen.findByRole('button', { name: /»/i }));
 
     await screen.findByRole('link', { name: /card 7 alive/i });
@@ -264,10 +238,13 @@ describe('rs-app-router', () => {
     await waitFor(() =>
       expect(router.state.location.search).toContain('page=2')
     );
+
     await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(2));
     await waitFor(() =>
       expect(fetchSpy).toHaveBeenCalledWith(
-        expect.stringContaining('/?page=2&status=Alive')
+        expect.objectContaining({
+          url: expect.stringContaining('?page=2&status=alive'),
+        })
       )
     );
 
@@ -291,7 +268,6 @@ describe('rs-app-router', () => {
     expect(setItemMock).toHaveBeenCalledWith(expect.any(String), 'dead');
     setItemMock.mockRestore();
   });
-
   test('retrieves Local Storage value on mount', async () => {
     const getItemMock = jest
       .spyOn(Storage.prototype, 'getItem')

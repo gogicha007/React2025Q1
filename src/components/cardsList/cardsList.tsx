@@ -39,7 +39,6 @@ const Results = ({ loader }: { loader: boolean }) => {
 
   useEffect(() => {
     if (data) {
-      console.log('cards list', data.results);
       setNoResults(data.results.length === 0);
     }
   }, [data]);

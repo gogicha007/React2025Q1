@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">88.88% </span>
+            <span class="strong">87.5% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">16/18</span>
+            <span class="fraction">14/16</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -41,9 +41,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">88.23% </span>
+            <span class="strong">86.66% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">15/17</span>
+            <span class="fraction">13/15</span>
           </div>
         </div>
         <p class="quiet">
@@ -105,25 +105,19 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -132,7 +126,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +159,6 @@ import { isValidHTTPURL } from '../../utils/validator';
 interface Props {
   disabled?: boolean;
   resInfo: IRespInfo;
-  handlePagination: (b: boolean) =&gt; void;
 }
 &nbsp;
 export const Pagination = (props: Props) =&gt; {
@@ -176,8 +169,6 @@ export const Pagination = (props: Props) =&gt; {
       const url = new URL(urlString as string);
       const searchParams = url.searchParams.get('page');
       setFilters({ page: searchParams ? +searchParams : <span class="branch-1 cbranch-no" title="branch not covered" >+page </span>});
-      props.handlePagination(true);
-      console.log('page', page);
     } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>console.error('URL string is not valid');</span>
   };
 &nbsp;
@@ -220,7 +211,7 @@ export const Pagination = (props: Props) =&gt; {
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-12T10:23:04.226Z
+      at 2025-02-13T13:36:38.545Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

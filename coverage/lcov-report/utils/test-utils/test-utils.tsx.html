@@ -25,7 +25,7 @@
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">9/9</span>
+            <span class="fraction">10/10</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -43,7 +43,7 @@
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">9/9</span>
+            <span class="fraction">10/10</span>
           </div>
         </div>
         <p class="quiet">
@@ -94,9 +94,7 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -113,9 +111,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,10 +121,8 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,8 +141,6 @@ import { setupStore } from '../../state/store';
 // As a basic setup, import your same slice reducers
 // import selectedCardsReducer from './checkCards/selectedCardsSlice';
 &nbsp;
-// This type interface extends the default options for render from RTL, as well
-// as allows the user to specify other things such as initialState, store.
 interface ExtendedRenderOptions extends Omit&lt;RenderOptions, 'queries'&gt; {
   preloadedState?: Partial&lt;RootState&gt;;
   store?: AppStore;
@@ -154,20 +148,20 @@ interface ExtendedRenderOptions extends Omit&lt;RenderOptions, 'queries'&gt; {
 &nbsp;
 export function renderWithProviders(
   ui: React.ReactElement,
-  {
+  extendedRenderOptions: ExtendedRenderOptions = {}
+) {
+  const {
     preloadedState = {},
-    // Automatically create a store instance if no store was passed in
     store = setupStore(preloadedState),
     ...renderOptions
-  }: ExtendedRenderOptions = {}
-) {
-  function Wrapper({ children }: PropsWithChildren&lt;unknown&gt;): JSX.Element {
-    return (
-      &lt;Provider store={store}&gt;
-        &lt;ThemeProvider&gt;{children}&lt;/ThemeProvider&gt;
-      &lt;/Provider&gt;
-    );
-  }
+  } = extendedRenderOptions;
+&nbsp;
+  const Wrapper = ({ children }: PropsWithChildren&lt;unknown&gt;): JSX.Element =&gt; (
+    &lt;Provider store={store}&gt;
+      &lt;ThemeProvider&gt;{children}&lt;/ThemeProvider&gt;
+    &lt;/Provider&gt;
+  );
+&nbsp;
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -184,7 +178,7 @@ export function renderWithProviders(
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-02-12T10:23:04.226Z
+      at 2025-02-13T13:36:38.545Z
     </div>
     <script src="../../prettify.js"></script>
     <script>
