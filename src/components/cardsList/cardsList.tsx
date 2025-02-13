@@ -39,7 +39,7 @@ const Results = ({ loader }: { loader: boolean }) => {
 
   useEffect(() => {
     if (data) {
-      // console.log('cards list', data)
+      console.log('cards list', data.results);
       setNoResults(data.results.length === 0);
     }
   }, [data]);
@@ -116,7 +116,7 @@ const Results = ({ loader }: { loader: boolean }) => {
               </div>
             </Link>
           ))}
-          {error && <h3>Error fetching data</h3>}
+          {error && <h3>No data fetched</h3>}
           {noResults && <h3>No data available</h3>}
         </div>
         <div className="results__pagination">

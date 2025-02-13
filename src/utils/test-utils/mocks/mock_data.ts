@@ -32,6 +32,16 @@ export const mockDataP2 = {
   ],
 };
 
+export const mockNoData = {
+  info: {
+    count: 0,
+    next: '',
+    pages: 0,
+    prev: '',
+  },
+  results: [],
+};
+
 export const mockReduxData = {
   info: {
     count: 1,
