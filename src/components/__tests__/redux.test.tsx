@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { createMemoryRouter } from 'react-router';
 import { RouterProvider } from 'react-router';
 import { enableFetchMocks } from 'jest-fetch-mock';
-import { mockStore } from '../../utils/test-utils/mocks/mock-store';
+// import { mockStore } from '../../utils/test-utils/mocks/mock-store';
 import { Provider } from 'react-redux';
 import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
 import Results from '../cardsList/cardsList';
@@ -103,9 +103,7 @@ describe('Testing Redux store functionality', () => {
   });
 
   test('deselect button clears selected items', () => {
-    const store = mockStore({
-      selectedCards: { selectedCards: [1] }, // Mock selected card ID = 1
-    });
+    const store = setupStore({ selectedCards: { selectedCards: [1] } });
     const router = createMemoryRouter(
       [{ path: '/', element: <Results loader={true} /> }],
       {
