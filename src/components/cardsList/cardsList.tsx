@@ -91,15 +91,6 @@ const Results = ({ loader }: { loader: boolean }) => {
   return (
     <div className="results">
       <div className="results__main">
-        <div className="results__select_controls">
-          {selectedCards.length > 0 && (
-            <h2>Items selected: {selectedCards.length}</h2>
-          )}
-          <button onClick={() => dispatch(clearSelection())}>
-            Deselect all
-          </button>
-          <button onClick={handleDownloadCSV}>Download CSV</button>
-        </div>
         <div className="results__list">
           {data?.results?.map((obj: ICharacterDetails) => (
             <Link
@@ -117,6 +108,17 @@ const Results = ({ loader }: { loader: boolean }) => {
           ))}
           {error && <h3>No data fetched</h3>}
           {noResults && <h3>No data available</h3>}
+        </div>
+        <div className="results__select_controls">
+          {selectedCards.length > 0 && (
+            <>
+              <h2>Items selected: {selectedCards.length}</h2>
+              <button onClick={() => dispatch(clearSelection())}>
+                Deselect all
+              </button>
+              <button onClick={handleDownloadCSV}>Download CSV</button>
+            </>
+          )}
         </div>
         <div className="results__pagination">
           {data?.info && (

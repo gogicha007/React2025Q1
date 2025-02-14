@@ -69,7 +69,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 70
+        "statements": 80,
+        "funcitons": 80,
+        "branches": 80,
+        "lines": 80
       }
     },
     "testEnvironment": "jsdom",

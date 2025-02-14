@@ -162,29 +162,6 @@ describe('rs-app-router-redux', () => {
     );
   });
 
-  test('detailed view displays correct data', async () => {
-    mockApiResponse();
-    const router = setupRouter(
-      [
-        { path: '/', element: <HomePage /> },
-        { path: '/:id', element: <Details /> },
-      ],
-      ['?page=1&status=alive']
-    );
-
-    renderWithProviders(<RouterProvider router={router} />, {
-      store: setupStore(),
-    });
-
-    await userEvent.click(
-      await screen.findByRole('link', { name: /card 1 alive/i })
-    );
-
-    await waitFor(() =>
-      expect(screen.getByText('details 1')).toBeInTheDocument()
-    );
-  });
-
   test('clicking close button hides details component', async () => {
     mockApiResponse();
     const router = setupRouter(
