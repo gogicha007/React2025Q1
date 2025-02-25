@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import { createMemoryRouter } from 'react-router';
 import { RouterProvider } from 'react-router';
 import { enableFetchMocks } from 'jest-fetch-mock';
-// import { mockStore } from '../../utils/test-utils/mocks/mock-store';
 import { Provider } from 'react-redux';
 import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
 import Results from '../cardsList/cardsList';

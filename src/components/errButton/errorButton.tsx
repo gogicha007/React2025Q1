@@ -5,7 +5,6 @@ const ErrorButton = () => {
 
   const errorThrown = () => {
     setShouldThrowError(true);
-    // throw new Error('Oops...');
   };
 
   if (shouldThrowError) {
