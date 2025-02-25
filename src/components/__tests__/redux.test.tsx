@@ -169,6 +169,7 @@ describe('Testing Redux store functionality', () => {
       .mockImplementation(() => document.createElement('div'));
 
     jest.spyOn(global.URL, 'createObjectURL').mockReturnValue('mock-url');
+    global.URL.revokeObjectURL = jest.fn();
     jest
       .spyOn(global, 'Blob')
       .mockImplementation(
