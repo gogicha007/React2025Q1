@@ -1,6 +1,58 @@
 .search__bar {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.search__form {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
+}
+
+.search__form input[type='search'] {
+  height: 30px;
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 250px;
+  box-sizing: border-box;
+}
+.search__form button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.search__form input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='var(--text-color)'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>")
+    no-repeat 50% 50%;
+  cursor: pointer;
+}
+
+input[type='search']::-moz-search-cancel-button {
+  -moz-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='var(--text-color)'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>")
+    no-repeat 50% 50%;
+  cursor: pointer;
+}
+
+html[data-theme='dark'] input[type='search']::-webkit-search-cancel-button {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>")
+    no-repeat 50% 50%;
+}
+
+html[data-theme='dark'] input[type='search']::-moz-search-cancel-button {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>")
+    no-repeat 50% 50%;
 }

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ErrorButton from '../errButton/errorButton';
+import ErrorButton from '../error-button/ErrorButton';
 
 describe('ErrorButton', () => {
   test('should throw an error when clicked', () => {

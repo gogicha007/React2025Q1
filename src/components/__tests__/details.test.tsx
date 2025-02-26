@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
-import { useGetDetailsQuery } from '../../state/characters/charactersApiSlice';
+import { useGetDetailsQuery } from '../../state/features/characters/charactersApiSlice';
 import '@testing-library/jest-dom';
 import { Details } from '../details/details';
 

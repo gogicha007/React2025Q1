@@ -1,17 +1,15 @@
-import './details.css';
 import { useNavigate, useOutletContext, useParams } from 'react-router';
-import { useGetDetailsQuery } from '../../state/characters/charactersApiSlice';
-import Loader from '../loader/loader';
+import { useGetDetailsQuery } from '../../state/features/characters/charactersApiSlice';
+import Loader from '../../components/loader/loader';
 
 interface IFContext {
   closeClicked: () => void;
   counter: number;
 }
 
-export const Details = () => {
+export default function Details() {
   const context = useOutletContext<IFContext>();
   const { id } = useParams();
-  // console.log('details id', id);
   const navigate = useNavigate();
 
   const {
@@ -19,7 +17,7 @@ export const Details = () => {
     isFetching,
     error,
   } = useGetDetailsQuery({ id: id as string });
-  // console.log('details obj', obj);
+
   const handleClickClose = () => {
     navigate(context?.counter > 0 ? -context.counter : -1);
     context?.closeClicked();
@@ -44,4 +42,4 @@ export const Details = () => {
       <button onClick={handleClickClose}>Close details</button>
     </div>
   );
-};
+}

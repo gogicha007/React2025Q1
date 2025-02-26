@@ -1,21 +1,26 @@
 import './pagination.css';
-import { IRespInfo } from '../../types/interface';
+import type { IRespInfo, IParamsType } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { isValidHTTPURL } from '../../utils/validator';
+import type { Dispatch } from 'react';
 
 interface Props {
   disabled?: boolean;
   resInfo: IRespInfo;
+  setParams: Dispatch<IParamsType>;
 }
 
 export const Pagination = (props: Props) => {
   const { page, setFilters } = useCharacterFilters();
+
   const clickPagination = (direction: 'prev' | 'next') => {
     const urlString = props.resInfo[direction];
     if (isValidHTTPURL(urlString as string)) {
       const url = new URL(urlString as string);
-      const searchParams = url.searchParams.get('page');
-      setFilters({ page: searchParams ? +searchParams : +page });
+      const searchPage = url.searchParams.get('page') || 1;
+      const searchStatus = url.searchParams.get('status') || '';
+      setFilters({ page: searchPage ? +searchPage : +page });
+      props.setParams({ page: +searchPage, status: searchStatus });
     } else console.error('URL string is not valid');
   };
 

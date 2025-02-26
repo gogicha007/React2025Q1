@@ -25,8 +25,20 @@ export interface ICharacterDetails {
   };
 }
 
+export type IQueryError = {
+  status: number;
+  data: {
+    error: string;
+  };
+};
+
 export type ICharacterFilters = {
   page?: number;
   status?: string;
   id?: string;
+};
+
+export type IParamsType = {
+  page: number;
+  status: string;
 };

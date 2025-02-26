@@ -1,4 +1,5 @@
 .home {
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -9,17 +10,17 @@
   background-color: var(--background-color);
   color: var(--text-color);
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   transition:
     background 0.3s,
     color 0.3s;
 }
 
 .home__top {
-  width: 100%;
   padding: 10px;
   border-bottom: 1px solid blue;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -28,13 +29,17 @@
 .home__main {
   display: flex;
 }
-.home__results {
+.home__cardlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home__devider {
+  width: 100%;
+  height: 1px;
+  background-color: blue;
+  margin: 20px 0;
 }
 .home__details {
   display: none;
-}
-.theme-toggle {
-  margin-left: 20px;
-  display: flex;
-  gap: 10px;
 }

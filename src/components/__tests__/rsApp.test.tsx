@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { setupStore } from '../../state/store';
 import { RouteObject, RouterProvider, createMemoryRouter } from 'react-router';
 import { renderWithProviders } from '../../utils/test-utils/test-utils';
-import Results from '../cardsList/cardsList';
+import Results from '../cards-list/CardList';
 import { Card } from '../card/card';
 import HomePage from '../../pages/home/home';
 import { Details } from '../details/details';

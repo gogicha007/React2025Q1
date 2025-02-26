@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from '../../contexts/ThemeContext';
-import ThemeControls from '../theme-controls/themeControls';
+import ThemeControls from '../theme-controls/ThemeControls';
 
 describe('ThemeContext', () => {
   test('should provide default theme and toggle it', () => {

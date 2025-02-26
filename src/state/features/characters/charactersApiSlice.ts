@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ICharacterDetails, IResponse } from '../../types/interface';
+import { ICharacterDetails, IResponse } from '../../../types/interface';
 
 export const characterApiSlice = createApi({
   reducerPath: 'charachters',
