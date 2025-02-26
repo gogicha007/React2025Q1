@@ -1,7 +1,7 @@
 import { Outlet, useNavigation } from 'react-router';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ICharacterDetails, IRespInfo } from '../../types/interface';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { Pagination } from '../pagination/pagination';
@@ -15,6 +15,10 @@ import { clearSelection } from '../../state/checkCards/selectedCardsSlice';
 import Papa from 'papaparse';
 
 const Results = ({ loader }: { loader: boolean }) => {
+  const [downloadUrl, setDownloadUrl] = useState('');
+  const downloadRef = useRef<HTMLAnchorElement | null>(null);
+  const [fileName, setFileName] = useState('');
+
   const { page, status } = useCharacterFilters();
   const [counter, setCounter] = useState(0);
   const [loading, setLoader] = useState<boolean>(loader ? loader : true);
@@ -70,12 +74,17 @@ const Results = ({ loader }: { loader: boolean }) => {
     );
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.setAttribute('download', `${selectedCards.length}_characters.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const url = URL.createObjectURL(blob);
+    setDownloadUrl(url);
+    setFileName(`${selectedCards.length}_characters.csv`);
+    setTimeout(() => {
+      if (downloadRef.current) {
+        downloadRef.current.click();
+        URL.revokeObjectURL(url);
+        setDownloadUrl('');
+        setFileName('');
+      }
+    });
   };
 
   const handleDetailsOpen = () => {
@@ -117,6 +126,16 @@ const Results = ({ loader }: { loader: boolean }) => {
                 Deselect all
               </button>
               <button onClick={handleDownloadCSV}>Download CSV</button>
+              <a
+                ref={downloadRef}
+                href={downloadUrl}
+                download={fileName}
+                style={{ display: 'none' }}
+                data-testid="csvDownloadLink"
+                id="csvDownloadLink"
+              >
+                Download File
+              </a>
             </>
           )}
         </div>
