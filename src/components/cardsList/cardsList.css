@@ -1,0 +1,30 @@
+.results {
+  display: flex;
+}
+.results__main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.results__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.results__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid blue;
+  padding: 20px 0;
+}
+.results__details {
+  display: none;
+}
+.results__select_controls {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}

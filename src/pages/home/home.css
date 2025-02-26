@@ -1,0 +1,40 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 100%;
+  min-height: 100vh;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+.home__top {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.home__main {
+  display: flex;
+}
+.home__results {
+}
+.home__details {
+  display: none;
+}
+.theme-toggle {
+  margin-left: 20px;
+  display: flex;
+  gap: 10px;
+}
