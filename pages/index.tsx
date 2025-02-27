@@ -11,23 +11,28 @@ import type { IQueryError } from '@/types/interface';
 
 export default function Home() {
   const { page, status } = useCharacterFilters();
-  const { data, isFetching, error } = useGetListQuery({
-    page: +page,
-    status: status,
-  }, {
-    skip: page === undefined || page === null,
-    refetchOnMountOrArgChange: false,
-    refetchOnFocus: false,
-  });
+  const { data, isFetching, error } = useGetListQuery(
+    {
+      page: +page,
+      status: status,
+    },
+    {
+      skip: !page,
+      refetchOnMountOrArgChange: true,
+      refetchOnFocus: true,
+      refetchOnReconnect:true,
+    }
+  );
+  // useEffect(() => {
+  //   refetch();
+  // }, [refetch]);
 
   useEffect(() => {
-    console.log(page, ':', status);
-  }, [page, status]);
-
-  useEffect(() => {
-    console.log(page, ':', status);
-    console.log(data, ':', isFetching, ':', error);
-  }, [data, isFetching, error]);
+    console.log('Page:', page, 'Status:', status);
+    console.log('Data:', data);
+    console.log('Fetching:', isFetching);
+    console.log('Error:', error);
+  }, [data, isFetching, error, page, status]);
 
   const handleListClick = () => {
     const hasIdParam = /\/\d+$/.test(location.pathname);
