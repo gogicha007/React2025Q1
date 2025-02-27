@@ -1,6 +1,6 @@
 import './card-list.css';
-import { useLocation, Link } from 'react-router';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { Card } from '../card/card';
 import type { ICharacterDetails, IResponse } from '../../types/interface';
@@ -9,7 +9,6 @@ import PickCards from '../../state/features/pickCards/PickCards';
 
 const Results = (data: IResponse) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
-  const location = useLocation();
 
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
@@ -23,7 +22,7 @@ const Results = (data: IResponse) => {
     <div className="results" data-testid="results">
       {data?.results?.map((obj: ICharacterDetails) => (
         <Link
-          to={{ pathname: `${obj.id}`, search: `${location.search}` }}
+          href={{ pathname: `${obj.id}`, search: `${location.search}` }}
           key={obj.id}
           onClick={() => console.log(`${detailsOpen}`)}
         >

@@ -1,14 +1,12 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
 import react from 'eslint-plugin-react';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
-import reactCompiler from 'eslint-plugin-react-compiler';
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['.next', 'dist', 'node_modules'] },
   {
     extends: [
       js.configs.recommended,
@@ -18,24 +16,29 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx}'],
     ignores: ['**/mock*.ts'],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 2022,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      parserOptions: {
+        project: './tsconfig.json',
+      },
     },
     plugins: {
       react,
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'react-compiler': reactCompiler,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      'react-compiler/react-compiler': 'error',
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
+      
+      // Remove Next.js specific rules
+      
+      // Remove Vite-specific rules
+      'react-refresh/only-export-components': 'off',
+      'react-compiler/react-compiler': 'off',
     },
     settings: {
       react: {
