@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import selectedCardsReducer from './features/pickCards/selectedCardsSlice';
 import { characterApiSlice } from './features/characters/charactersApiSlice';
 
@@ -8,12 +9,14 @@ const rootReducer = combineReducers({
 });
 
 export function setupStore(preloadedState?: Partial<RootState>) {
-  return configureStore({
+  const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(characterApiSlice.middleware),
     preloadedState,
   });
+  setupListeners(store.dispatch)
+  return store
 }
 
 export type RootState = ReturnType<typeof rootReducer>;

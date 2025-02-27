@@ -7,9 +7,6 @@ import { Provider } from 'react-redux';
 import type { AppStore, RootState } from '../../state/store';
 import { setupStore } from '../../state/store';
 
-// As a basic setup, import your same slice reducers
-// import selectedCardsReducer from './checkCards/selectedCardsSlice';
-
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>;
   store?: AppStore;

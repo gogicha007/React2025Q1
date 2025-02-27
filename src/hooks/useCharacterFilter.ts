@@ -1,30 +1,38 @@
-import { useCallback } from 'react';
-// import { useSearchParams } from 'react-router';
-import { useSearchParams } from 'next/navigation';
+import { useCallback, useMemo } from 'react';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ICharacterFilters } from '../types/interface';
 
 export function useCharacterFilters() {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-  const page = searchParams.get('page') as string;
-  const status = searchParams.get('status') as string;
-  const id = searchParams.get('id') as string;
+  const filters = useMemo(() => ({
+    page: searchParams.get('page') as string || '',
+    status: searchParams.get('status') as string || '',
+    id: searchParams.get('id') as string
+  }), [searchParams]);
 
-  const setFilters = useCallback((filters: ICharacterFilters) => {
-    setSearchParams((params) => {
-      if (filters.page !== undefined) {
-        params.set('page', filters.page.toString());
+  
+  const setFilters = useCallback((newFilters: ICharacterFilters) => {
+    const currentParams = new URLSearchParams(searchParams.toString())
+    Object.entries(newFilters).forEach(([key, value])=> {
+      if(value) {
+        currentParams.set(key, value.toString())
+      } else {
+        currentParams.delete(key)
       }
-      if (filters.status !== undefined) {
-        params.set('status', filters.status);
-      }
-      if (filters.id !== undefined) {
-        params.set('id', filters.id);
-      }
-      return params;
-    });
+    })
+    const search = currentParams.toString()
+    const query = search ? `?${search}`:''
+    const url = `${pathname}${query}`;
+
+    router.replace(url, {scroll: false})
   }, []);
+
+  const page = filters.page
+  const status = filters.status
+  const id = filters.id
 
   return {
     page,

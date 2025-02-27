@@ -4,32 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "format:fix": "prettier --write .",
-    "prepare": "husky",
-    "test": "jest",
-    "coverage": "jest --coverage --watchAll"
-=======
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest"
->>>>>>> 2bbab6b029734212aebe671d47cfea167612f629
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^15.1.7",
     "@reduxjs/toolkit": "^2.5.1",
     "history": "^5.3.0",
-<<<<<<< HEAD
-    "jsdom": "^26.0.0",
-    "next": "^15.1.7",
-=======
->>>>>>> 2bbab6b029734212aebe671d47cfea167612f629
     "papaparse": "^5.5.2",
     "next": "15.1.7",
     "react": "^19.0.0",
@@ -45,16 +29,10 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
     "@types/papaparse": "^5.3.15",
-<<<<<<< HEAD
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "eslint": "^9.17.0",
-=======
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
->>>>>>> 2bbab6b029734212aebe671d47cfea167612f629
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
@@ -69,17 +47,9 @@
     "jest-fetch-mock": "^3.0.3",
     "jest-transform-css": "^6.0.2",
     "prettier": "3.4.2",
-<<<<<<< HEAD
-    "ts-jest": "^29.2.5",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.18.2"
-  }
-}
-=======
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "eslintIgnore": ["*.test.tsx"]
 }
->>>>>>> 2bbab6b029734212aebe671d47cfea167612f629

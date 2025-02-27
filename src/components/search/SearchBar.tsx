@@ -4,32 +4,30 @@ import ErrorButton from '../error-button/ErrorButton';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-const SearchBar = ({ handleSearch }: { handleSearch: () => void }) => {
+const SearchBar = () => {
   const [searchWord, setSearchWord] = useLocalStorage('Search-Word', '');
   const { status, setFilters } = useCharacterFilters();
-
-  const clickSearch = async () => {
-    setSearchWord(status);
-    handleSearch();
-  };
-
-  const changeInput = (word: string) => setFilters({ page: 1, status: word });
 
   useEffect(() => {
     if (!status && searchWord) setFilters({ status: searchWord, page: 1 });
   }, [setFilters]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    clickSearch();
+    const formData = new FormData(e.currentTarget);
+    const data = formData.get('status') as string;
+    if (data) {
+      setSearchWord(data);
+      setFilters({ status: data, page: 1 });
+    }
   };
+
   return (
     <div className="search__bar">
       <form className="search__form" role="form" onSubmit={handleSubmit}>
         <label htmlFor="search">Search by status</label>
         <input
-          value={status}
-          onChange={(e) => changeInput(e.target.value.trim())}
+          defaultValue={status}
           type="search"
           id="search"
           name="status"
