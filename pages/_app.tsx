@@ -6,12 +6,12 @@ import { useEffect } from 'react';
 import { setupStore } from '@/state/store';
 import { characterApiSlice } from '@/state/features/characters/charactersApiSlice';
 
+const store = setupStore()
+
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    // Invalidate the cache on reload
     store.dispatch(characterApiSlice.util.invalidateTags(['Characters']));
   }, []);
-  const store = setupStore()
   return (
     <Provider store={store}>
       <ThemeProvider>

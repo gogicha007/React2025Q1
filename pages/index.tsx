@@ -2,10 +2,10 @@ import styles from '../src/styles/Home.module.css';
 import SearchBar from '@/components/search/SearchBar';
 import { useCharacterFilters } from '@/hooks/useCharacterFilter';
 import { useEffect } from 'react';
-import ThemeControls from '@/components/theme-controls/ThemeControls';
+import ThemeControls from '@/components/theme-controls/themeControls';
 import Loader from '@/components/loader/loader';
 import Results from '@/components/cards-list/CardList';
-import { Pagination } from '@/components/pagination/Pagination';
+import { Pagination } from '@/components/pagination/pagination';
 import { useGetListQuery } from '@/state/features/characters/charactersApiSlice';
 import type { IQueryError } from '@/types/interface';
 
@@ -23,9 +23,6 @@ export default function Home() {
       refetchOnReconnect:true,
     }
   );
-  // useEffect(() => {
-  //   refetch();
-  // }, [refetch]);
 
   useEffect(() => {
     console.log('Page:', page, 'Status:', status);
