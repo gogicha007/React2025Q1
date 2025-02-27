@@ -1,9 +1,11 @@
 import { useCallback } from 'react';
-import { useSearchParams } from 'react-router';
+// import { useSearchParams } from 'react-router';
+import { useSearchParams } from 'next/navigation';
 import { ICharacterFilters } from '../types/interface';
 
 export function useCharacterFilters() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const searchParams = useSearchParams()
 
   const page = searchParams.get('page') as string;
   const status = searchParams.get('status') as string;

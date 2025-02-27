@@ -1,6 +1,6 @@
 import './search-bar.css';
 import { useEffect } from 'react';
-import ErrorButton from '../error-button/errorButton';
+import ErrorButton from '../error-button/ErrorButton';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
