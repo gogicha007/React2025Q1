@@ -3,7 +3,7 @@ import { setupStore } from '@/state/store';
 import { mockData } from '@/utils/test-utils/mocks/mock_data';
 import { IResponse, IQueryError } from '@/types/interface';
 import { renderWithProviders } from '@/utils/test-utils/test-utils';
-import Home from './index';
+import Home from '../../../pages/index';
 
 const mockUseRouter = jest.fn();
 jest.mock('next/router', () => ({
