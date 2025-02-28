@@ -1,7 +1,6 @@
 import styles from '../styles/Home.module.css';
 import SearchBar from '@/components/search/SearchBar';
 import { useCharacterFilters } from '@/hooks/useCharacterFilter';
-// import { useEffect } from 'react';
 import ThemeControls from '@/components/theme-controls/ThemeControls';
 import Loader from '@/components/loader/loader';
 import Results from '@/components/cards-list/CardList';
@@ -20,17 +19,19 @@ export default function Home() {
     status: status,
   });
 
-  // useEffect(() => {
-  //   console.log('Page:', page, 'Status:', status);
-  //   console.log('Data:', data);
-  //   console.log('Fetching:', isFetching);
-  //   console.log('Error:', error);
-  // }, [data, isFetching, error, page, status]);
-
   const handleListClick = () => {
-    const hasIdParam = /\/\d+$/.test(location.pathname);
-    console.log('has id param', hasIdParam);
-    // if (hasIdParam) navigate(-1);
+    if (id) {
+      const { id: _, ...otherParams } = router.query;
+      console.log(_)
+      router.push(
+        {
+          pathname: '/',
+          query: otherParams,
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
   };
 
   return (
@@ -43,7 +44,7 @@ export default function Home() {
         {error && <h1>{(error as IQueryError).status}</h1>}
         {!error && (
           <div
-            className={`${styles.home_main} ${id ? styles.with_details : ''}`}
+            className={`${styles.home__main} ${id ? styles.with_details : ''}`}
           >
             <div className={styles.home__cardlist_container}>
               {data && (
@@ -58,11 +59,14 @@ export default function Home() {
                 </div>
               )}
             </div>
+            <div>
+
             {id && (
               <div className={styles.details_panel}>
                 <Details />
               </div>
             )}
+            </div>
           </div>
         )}
       </main>

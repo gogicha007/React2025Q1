@@ -32,7 +32,11 @@
   position: relative;
   min-height: calc(100vh - 120px);
 }
-
+.home__cardlist_container {
+  flex: 1;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+}
 .home__cardlist {
   display: flex;
   flex-direction: column;
@@ -47,6 +51,9 @@
 .home__details {
   display: none;
 }
+.with_details .home__cardlist_container {
+  width: 60%;
+}
 @keyframes slideIn {
   from {
     transform: translateX(100%);
@@ -56,7 +63,6 @@
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .with_details .home__cardlist_container {
     width: 100%;
