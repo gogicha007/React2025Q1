@@ -28,7 +28,11 @@
 
 .home__main {
   display: flex;
+  width: 100%;
+  position: relative;
+  min-height: calc(100vh - 120px);
 }
+
 .home__cardlist {
   display: flex;
   flex-direction: column;
@@ -42,4 +46,25 @@
 }
 .home__details {
   display: none;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .with_details .home__cardlist_container {
+    width: 100%;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .details_panel {
+    width: 100%;
+  }
 }
