@@ -11,7 +11,6 @@ export const characterApiSlice = createApi({
     return {
       getList: builder.query<IResponse, { page: number; status?: string }>({
         query: ({ page, status }) =>{
-          console.log("RTK Query Called:", { page, status });
           return `?page=${page}${status ? `&status=${status}` : ''}`
         },
         providesTags: ['Characters'],

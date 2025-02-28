@@ -13,8 +13,6 @@ export function useCharacterFilters() {
     id: searchParams.get('id') as string
   }), [searchParams]);
 
-  console.log('filters', filters)
-  
   const setFilters = useCallback((newFilters: ICharacterFilters) => {
     const currentParams = new URLSearchParams(searchParams.toString())
     Object.entries(newFilters).forEach(([key, value])=> {

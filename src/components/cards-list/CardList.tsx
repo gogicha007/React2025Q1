@@ -1,5 +1,4 @@
 import './card-list.css';
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { Card } from '../card/card';
@@ -9,15 +8,9 @@ import PickCards from '../../state/features/pickCards/PickCards';
 
 const Results = (data: IResponse) => {
   const router = useRouter();
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  console.log(detailsOpen)
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
   );
-
-  useEffect(() => {
-    setDetailsOpen(false);
-  }, [data]);
 
   const handleCardClick = (
     e: React.MouseEvent,
