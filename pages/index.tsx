@@ -50,7 +50,7 @@ export default function Home() {
               {data && (
                 <div
                   className={styles.home__cardlist}
-                  data-testid={styles.home__cardlist}
+                  data-testid='home__cardlist'
                   onClick={() => handleListClick()}
                 >
                   <Results {...data} />
