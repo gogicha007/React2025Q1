@@ -10,6 +10,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     if (!status && searchWord) setFilters({ status: searchWord, page: 1 });
+    if (!status && !searchWord) setFilters({ page: 1 });
   }, [setFilters]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {

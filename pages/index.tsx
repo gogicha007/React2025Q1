@@ -1,11 +1,11 @@
 import styles from '../src/styles/Home.module.css';
 import SearchBar from '@/components/search/SearchBar';
 import { useCharacterFilters } from '@/hooks/useCharacterFilter';
-import { useEffect } from 'react';
-import ThemeControls from '@/components/theme-controls/themeControls';
+// import { useEffect } from 'react';
+import ThemeControls from '@/components/theme-controls/ThemeControls';
 import Loader from '@/components/loader/loader';
 import Results from '@/components/cards-list/CardList';
-import { Pagination } from '@/components/pagination/pagination';
+import { Pagination } from '@/components/pagination/Pagination';
 import { useGetListQuery } from '@/state/features/characters/charactersApiSlice';
 import type { IQueryError } from '@/types/interface';
 
@@ -24,12 +24,12 @@ export default function Home() {
     }
   );
 
-  useEffect(() => {
-    console.log('Page:', page, 'Status:', status);
-    console.log('Data:', data);
-    console.log('Fetching:', isFetching);
-    console.log('Error:', error);
-  }, [data, isFetching, error, page, status]);
+  // useEffect(() => {
+  //   console.log('Page:', page, 'Status:', status);
+  //   console.log('Data:', data);
+  //   console.log('Fetching:', isFetching);
+  //   console.log('Error:', error);
+  // }, [data, isFetching, error, page, status]);
 
   const handleListClick = () => {
     const hasIdParam = /\/\d+$/.test(location.pathname);

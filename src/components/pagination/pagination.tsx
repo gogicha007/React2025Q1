@@ -18,7 +18,8 @@ export const Pagination = (props: Props) => {
     if (isValidHTTPURL(urlString as string)) {
       const url = new URL(urlString as string);
       const searchPage = url.searchParams.get('page') || 1;
-      setFilters({ page: searchPage ? +searchPage : +page });
+      const searchStatus = url.searchParams.get('status') || '';
+      setFilters({ page: searchPage ? +searchPage : +page, status: searchStatus });
     } else console.error('URL string is not valid');
   };
 
