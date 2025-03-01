@@ -64,7 +64,7 @@ describe('Home Page', () => {
       id: null,
     });
     renderWithProviders(<Home />, { store: setupStore() });
-    expect(screen.getByText('404')).toBeInTheDocument();
+    expect(screen.getByText(/404/i)).toBeInTheDocument();
   });
 
   it('renders character list when data is available', () => {

@@ -16,7 +16,12 @@ jest.mock('../../hooks/useLocalStorage', () => ({
 jest.mock('../error-button/ErrorButton', () => {
   return {
     __esModule: true,
-    default: () => <button data-testid="error-button">Error Button</button>,
+    default: () => {
+      const handleClick = () => {
+        throw new Error('Test error');
+      };
+      return <button data-testid="error-button" onClick={handleClick}>Error Button</button>;
+    },
   };
 });
 
@@ -173,4 +178,5 @@ describe('SearchBar Component', () => {
       expect(mockSetFilters).toHaveBeenCalledWith({page: 1});
     });
   });
+  
 });

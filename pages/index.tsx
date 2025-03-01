@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { Pagination } from '@/components/pagination/Pagination';
 import { useGetListQuery } from '@/state/features/characters/charactersApiSlice';
 import type { IQueryError } from '@/types/interface';
+import NotFound from './404';
 
 export default function Home() {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function Home() {
         <ThemeControls />
       </header>
       <main>
-        {error && <h1>{(error as IQueryError).status}</h1>}
+        {error && ((error as IQueryError).status === 404 ? <NotFound/> : <h1>Error loading data</h1>)}
         {!error && (
           <div
             className={`${styles.home__main} ${id ? styles.with_details : ''}`}
