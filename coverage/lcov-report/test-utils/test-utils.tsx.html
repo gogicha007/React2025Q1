@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,70 +95,70 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { JSX, PropsWithChildren } from 'react';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { render } from '@testing-library/react';</span>
-<span class="cstat-no" title="statement not covered" >import type { RenderOptions } from '@testing-library/react';</span>
-<span class="cstat-no" title="statement not covered" >import { ThemeProvider } from '../contexts/ThemeContext';</span>
-<span class="cstat-no" title="statement not covered" >import { Provider } from 'react-redux';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >import type { AppStore, RootState } from '../state/store';</span>
-<span class="cstat-no" title="statement not covered" >import { setupStore } from '../state/store';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface ExtendedRenderOptions extends Omit&lt;RenderOptions, 'queries'&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  preloadedState?: Partial&lt;RootState&gt;;</span>
-<span class="cstat-no" title="statement not covered" >  store?: AppStore;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function renderWithProviders(</span>
-<span class="cstat-no" title="statement not covered" >  ui: React.ReactElement,</span>
-<span class="cstat-no" title="statement not covered" >  extendedRenderOptions: ExtendedRenderOptions = {}</span>
-<span class="cstat-no" title="statement not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >  const {</span>
-<span class="cstat-no" title="statement not covered" >    preloadedState = {},</span>
-<span class="cstat-no" title="statement not covered" >    store = setupStore(preloadedState),</span>
-<span class="cstat-no" title="statement not covered" >    ...renderOptions</span>
-<span class="cstat-no" title="statement not covered" >  } = extendedRenderOptions;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const Wrapper = ({ children }: PropsWithChildren&lt;unknown&gt;): JSX.Element =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;Provider store={store}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;ThemeProvider&gt;{children}&lt;/ThemeProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/Provider&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { JSX, PropsWithChildren } from 'react';
+import { render } from '@testing-library/react';
+import type { RenderOptions } from '@testing-library/react';
+import { ThemeProvider } from '../contexts/ThemeContext';
+import { Provider } from 'react-redux';
+&nbsp;
+import type { AppStore, RootState } from '../state/store';
+import { setupStore } from '../state/store';
+&nbsp;
+interface ExtendedRenderOptions extends Omit&lt;RenderOptions, 'queries'&gt; {
+  preloadedState?: Partial&lt;RootState&gt;;
+  store?: AppStore;
+}
+&nbsp;
+export function renderWithProviders(
+  ui: React.ReactElement,
+  extendedRenderOptions: ExtendedRenderOptions = {}
+) {
+  const {
+    preloadedState = {},
+    store = setupStore(preloadedState),
+    ...renderOptions
+  } = extendedRenderOptions;
+&nbsp;
+  const Wrapper = ({ children }: PropsWithChildren&lt;unknown&gt;): JSX.Element =&gt; (
+    &lt;Provider store={store}&gt;
+      &lt;ThemeProvider&gt;{children}&lt;/ThemeProvider&gt;
+    &lt;/Provider&gt;
+  );
+&nbsp;
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -166,7 +166,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-01T08:34:32.692Z
+                at 2025-03-01T17:55:13.757Z
             </div>
         <script src="../prettify.js"></script>
         <script>

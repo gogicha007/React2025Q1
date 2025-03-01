@@ -11,16 +11,14 @@ const SearchBar = () => {
   useEffect(() => {
     if (!status && searchWord) setFilters({ status: searchWord, page: 1 });
     if (!status && !searchWord) setFilters({ page: 1 });
-  }, [setFilters]);
+  }, [setFilters, status, searchWord]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = formData.get('status') as string;
-    if (data) {
-      setSearchWord(data);
-      setFilters({ status: data, page: 1 });
-    }
+    const data = (formData.get('status') as string).trim();
+    setSearchWord(data);
+    setFilters({ status: data.trim(), page: 1 });
   };
 
   return (

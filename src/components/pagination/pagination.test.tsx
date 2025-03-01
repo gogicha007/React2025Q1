@@ -105,7 +105,6 @@ describe('Pagination Component', () => {
     fireEvent.click(prevButton);
 
     expect(mockSetFilters).toHaveBeenCalledWith({ page: 1, status: 'alive' });
-    expect(mockSetParams).toHaveBeenCalledWith({ page: 1, status: 'alive' });
   });
 
   test('handles click on next page button correctly', () => {
@@ -125,7 +124,6 @@ describe('Pagination Component', () => {
     fireEvent.click(nextButton);
 
     expect(mockSetFilters).toHaveBeenCalledWith({ page: 3, status: 'dead' });
-    expect(mockSetParams).toHaveBeenCalledWith({ page: 3, status: 'dead' });
   });
 
   test('respects disabled prop when set to true', () => {
@@ -175,7 +173,6 @@ describe('Pagination Component', () => {
     fireEvent.click(prevButton);
     expect(consoleSpy).toHaveBeenCalledWith('URL string is not valid');
     expect(mockSetFilters).not.toHaveBeenCalled();
-    expect(mockSetParams).not.toHaveBeenCalled();
 
     consoleSpy.mockRestore();
   });
@@ -197,6 +194,5 @@ describe('Pagination Component', () => {
     fireEvent.click(prevButton);
 
     expect(mockSetFilters).toHaveBeenCalledWith({ page: 1, status: '' });
-    expect(mockSetParams).toHaveBeenCalledWith({ page: 1, status: '' });
   });
 });

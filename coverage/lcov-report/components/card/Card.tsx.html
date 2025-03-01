@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>33/33</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>33/33</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,72 +96,72 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import './card.css';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { ICharacterDetails } from '../../types/interface';</span>
-<span class="cstat-no" title="statement not covered" >import { useDispatch, useSelector } from 'react-redux';</span>
-<span class="cstat-no" title="statement not covered" >import { toggleCardSelection } from '../../state/features/pickCards/selectedCardsSlice';</span>
-<span class="cstat-no" title="statement not covered" >import { RootState } from '../../state/store';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const Card = (data: ICharacterDetails) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const dispatch = useDispatch();</span>
-<span class="cstat-no" title="statement not covered" >  const selectedCards = useSelector(</span>
-<span class="cstat-no" title="statement not covered" >    (state: RootState) =&gt; state.selectedCards.selectedCards</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleCheckboxClick = (event: React.MouseEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    event.stopPropagation();</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(toggleCardSelection(data.id));</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="card" role="article"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;img className="card__image" src={data.image} alt="character image" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p className="card__data"&gt;{data.name}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p className="card__data"&gt;{data.species}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p className="card__data"&gt;{data.status}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;input</span>
-<span class="cstat-no" title="statement not covered" >        className="card__checkbox card__checkbox-enlarged"</span>
-<span class="cstat-no" title="statement not covered" >        type="checkbox"</span>
-<span class="cstat-no" title="statement not covered" >        checked={selectedCards.includes(data.id)}</span>
-<span class="cstat-no" title="statement not covered" >        onClick={handleCheckboxClick}</span>
-<span class="cstat-no" title="statement not covered" >        defaultChecked={false}</span>
-<span class="cstat-no" title="statement not covered" >      /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import './card.css';
+import { ICharacterDetails } from '../../types/interface';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleCardSelection } from '../../state/features/pickCards/selectedCardsSlice';
+import { RootState } from '../../state/store';
+&nbsp;
+export const Card = (data: ICharacterDetails) =&gt; {
+  const dispatch = useDispatch();
+  const selectedCards = useSelector(
+    (state: RootState) =&gt; state.selectedCards.selectedCards
+  );
+&nbsp;
+  const handleCheckboxClick = (event: React.MouseEvent&lt;HTMLInputElement&gt;) =&gt; {
+    event.stopPropagation();
+    dispatch(toggleCardSelection(data.id));
+  };
+&nbsp;
+  return (
+    &lt;div className="card" role="article"&gt;
+      &lt;img className="card__image" src={data.image} alt="character image" /&gt;
+      &lt;p className="card__data"&gt;{data.name}&lt;/p&gt;
+      &lt;p className="card__data"&gt;{data.species}&lt;/p&gt;
+      &lt;p className="card__data"&gt;{data.status}&lt;/p&gt;
+      &lt;input
+        className="card__checkbox card__checkbox-enlarged"
+        type="checkbox"
+        checked={selectedCards.includes(data.id)}
+        onClick={handleCheckboxClick}
+        defaultChecked={false}
+      /&gt;
+    &lt;/div&gt;
+  );
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -169,7 +169,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-01T08:34:32.692Z
+                at 2025-03-01T17:55:13.757Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
