@@ -48,11 +48,20 @@ const setupMocks = ({
     error,
   });
 };
+const initialData = {
+  info: mockData.info,
+  results: mockData.results,
+};
+const initialPage = 1;
+const initialStatus = '';
 
 describe('Home Page', () => {
   it('renders loading state', () => {
     setupMocks({ data: null, isFetching: true, error: null, id: null });
-    renderWithProviders(<Home />, { store: setupStore() });
+    renderWithProviders(
+      <Home initialData={initialData} initialPage={1} initialStatus={''} />,
+      { store: setupStore() }
+    );
     expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 
@@ -63,19 +72,28 @@ describe('Home Page', () => {
       error: { status: 404, data: { error: 'Not found' } },
       id: null,
     });
-    renderWithProviders(<Home />, { store: setupStore() });
+    renderWithProviders(
+      <Home initialData={initialData} initialPage={1} initialStatus={''} />,
+      { store: setupStore() }
+    );
     expect(screen.getByText(/404/i)).toBeInTheDocument();
   });
 
   it('renders character list when data is available', () => {
     setupMocks({ data: mockData, isFetching: false, error: null, id: null });
-    renderWithProviders(<Home />, { store: setupStore() });
+    renderWithProviders(
+      <Home initialData={initialData} initialPage={1} initialStatus={''} />,
+      { store: setupStore() }
+    );
     expect(screen.getByTestId('home__cardlist')).toBeInTheDocument();
   });
 
   it('handles list item click and updates URL', () => {
     setupMocks({ data: mockData, isFetching: false, error: null, id: '1' });
-    renderWithProviders(<Home />, { store: setupStore() });
+    renderWithProviders(
+      <Home initialData={initialData} initialPage={1} initialStatus={''} />,
+      { store: setupStore() }
+    );
     fireEvent.click(screen.getByTestId('home__cardlist'));
     expect(mockPush).toHaveBeenCalled();
   });
