@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const ErrorButton = () => {
   const [shouldThrowError, setShouldThrowError] = useState(false);

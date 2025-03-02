@@ -2,14 +2,9 @@ import '@testing-library/jest-dom';
 import React, { useState } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ErrorButton from './ErrorButton';
+import ErrorBoundary from '../error-handling/ErrorBoundary';
+import ErrorFallback from '../error-handling/ErrorFallbackComponent';
 
-const originalConsoleError = console.error;
-beforeAll(() => {
-  console.error = jest.fn();
-});
-afterAll(() => {
-  console.error = originalConsoleError;
-});
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -21,6 +16,14 @@ interface ErrorBoundaryState {
 }
 
 describe('ErrorButton Component', () => {
+  const originalConsoleError = console.error;
+  beforeAll(() => {
+    console.error = jest.fn();
+  });
+  afterAll(() => {
+    console.error = originalConsoleError;
+  });
+
   test('renders error button correctly', () => {
     render(<ErrorButton />);
 
@@ -66,20 +69,6 @@ describe('ErrorButton Component', () => {
     const errorMessage = screen.getByTestId('error-message');
     expect(errorMessage).toBeInTheDocument();
     expect(errorMessage).toHaveTextContent('Error throwing button was clicked');
-  });
-
-  test('state updates correctly before throwing error', () => {
-    const setStateMock = jest.fn();
-    jest
-      .spyOn(React, 'useState')
-      .mockImplementation(() => [false, setStateMock]);
-
-    render(<ErrorButton />);
-
-    const button = screen.getByRole('button');
-    fireEvent.click(button);
-
-    expect(setStateMock).toHaveBeenCalledWith(true);
   });
 
   test('button has correct type attribute', () => {
@@ -131,5 +120,24 @@ describe('ErrorButton Component', () => {
 
     const errorElement = screen.getByTestId('captured-error');
     expect(errorElement).toHaveTextContent('Error throwing button was clicked');
+  });
+
+  test('renders fallback component when ErrorButton throws error', () => {
+    const { container } = render(
+      <ErrorBoundary fallback={<ErrorFallback />}>
+        <ErrorButton />
+      </ErrorBoundary>
+    );
+    
+    const button = container.querySelector('button');
+    expect(button).toBeInTheDocument();
+    
+    if (button) {
+      fireEvent.click(button);
+    }
+    
+    expect(container.querySelector('[role="alert"]')).toBeInTheDocument();
+    expect(container.textContent).toContain('An error was thrown');
+    expect(container.textContent).toContain('Something went wrong...');
   });
 });

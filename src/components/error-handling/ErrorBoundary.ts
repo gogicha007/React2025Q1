@@ -20,7 +20,6 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    console.log('get derived state');
     return {
       errMessage: error.toString(),
       hasError: true,
@@ -28,14 +27,12 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.log('an error occured');
     console.log(error, info.componentStack);
     console.error(error.message);
   }
 
   render() {
     if (this.state.hasError) {
-      console.log('fallback');
       return this.props.fallback;
     }
 
