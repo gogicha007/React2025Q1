@@ -4,9 +4,8 @@ All tests are in a file - src/results/results.test.tsx
 Instructions to run the application:
 
 - git clone https://github.com/gogicha007/React2025Q1.git
-- git checkout hooks-and-routing
+- git checkout nextjs-ssr-pages-api | nextjs-ssr-app-router-api | react-router-ssr
 - npm install
-- npm run format:fix
 - npm run test
-- npm run coverage // to test coverage
+- npm run coverage
 - npm run dev
