@@ -2,7 +2,11 @@ import './theme-controls.css';
 import { useTheme } from 'app/contexts/ThemeContext';
 
 const ThemeControls = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTheme(event.target.value as 'light' | 'dark');
+  };
 
   return (
     <div className="theme-toggle">
@@ -12,7 +16,7 @@ const ThemeControls = () => {
           name="theme"
           value="light"
           checked={theme === 'light'}
-          onChange={toggleTheme}
+          onChange={handleThemeChange}
         />
         Light
       </label>
@@ -22,7 +26,7 @@ const ThemeControls = () => {
           name="theme"
           value="dark"
           checked={theme === 'dark'}
-          onChange={toggleTheme}
+          onChange={handleThemeChange}
         />
         Dark
       </label>
