@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
