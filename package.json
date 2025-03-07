@@ -1,5 +1,6 @@
 {
   "name": "react2025q1",
+  "homepage": "https://gogicha007.github.io/React2025Q1/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,9 +10,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format:fix": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
