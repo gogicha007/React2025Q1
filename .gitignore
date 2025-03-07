@@ -9,7 +9,7 @@ lerna-debug.log*
 # ...
 .next
 next-env.d.ts
-coverage/*
+coverage
 dist
 node_modules
 dist-ssr
