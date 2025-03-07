@@ -3,14 +3,14 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import SearchBar from '../components/search/SearchBar';
-import { useCharacterFilters } from 'hooks/useCharacterFilter';
+import { useCharacterFilters } from '../hooks/useCharacterFilter';
 import ThemeControls from '../components/theme-controls/ThemeControls';
 import Loader from '../components/loader/loader';
-import Results from 'components/cards-list/CardList';
-import Details from 'components/details/Details';
+import Results from '../components/cards-list/CardList';
+import Details from '../components/details/Details';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Pagination } from '../components/pagination/Pagination';
-import { useGetListQuery } from 'state/features/characters/charactersApiSlice';
+import { useGetListQuery } from '../state/features/characters/charactersApiSlice';
 import type { IQueryError, IResponse } from 'types/interface';
 import NotFound from '../components/not-found/404';
 
