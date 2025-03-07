@@ -12,7 +12,7 @@ const ErrorButton = () => {
     throw new Error('Error throwing button was clicked');
   }
   return (
-    <button type="button" onClick={errorThrown}>
+    <button type="button" onClick={errorThrown} data-testid="error-button">
       Error Thrower
     </button>
   );
