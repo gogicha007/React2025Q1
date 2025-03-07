@@ -1,8 +1,8 @@
 import './card.css';
-import { ICharacterDetails } from '../../types/interface';
+import type { ICharacterDetails } from '../../types/interface';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCardSelection } from '../../state/checkCards/selectedCardsSlice';
-import { RootState } from '../../state/store';
+import { toggleCardSelection } from '../../state/features/pickCards/selectedCardsSlice';
+import type { RootState } from '../../state/store';
 
 export const Card = (data: ICharacterDetails) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const Card = (data: ICharacterDetails) => {
 
   return (
     <div className="card" role="article">
-      <img className="card__image" src={data.image} alt="" />
+      <img className="card__image" src={data.image} alt="character image" />
       <p className="card__data">{data.name}</p>
       <p className="card__data">{data.species}</p>
       <p className="card__data">{data.status}</p>
@@ -26,6 +26,7 @@ export const Card = (data: ICharacterDetails) => {
         type="checkbox"
         checked={selectedCards.includes(data.id)}
         onClick={handleCheckboxClick}
+        defaultChecked={false}
       />
     </div>
   );

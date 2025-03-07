@@ -1,8 +1,9 @@
-import './themeControl.css';
-import { useTheme } from '../../contexts/ThemeContext';
+import './themeControls.css';
+import { useTheme } from '../../context/ThemeContext';
 
 const ThemeControls = () => {
   const { theme, toggleTheme } = useTheme();
+
   return (
     <div className="theme-toggle">
       <label>

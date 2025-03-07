@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
-import { ICharacterFilters } from '../types/interface';
+import type { ICharacterFilters } from '../types/interface';
 
 export function useCharacterFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
