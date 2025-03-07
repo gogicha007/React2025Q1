@@ -1,7 +1,7 @@
 "use client";
 import './search-bar.css';
 import { useEffect } from 'react';
-import ErrorButton from 'app/error-button/ErrorButton';
+import ErrorButton from '../../components/error-button/ErrorButton';
 import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 

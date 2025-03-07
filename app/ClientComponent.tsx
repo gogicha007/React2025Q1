@@ -1,17 +1,17 @@
 "use client";
 
 import styles from '../styles/Home.module.css';
-import SearchBar from 'app/search/SearchBar';
+import SearchBar from '../components/search/SearchBar';
 import { useCharacterFilters } from 'hooks/useCharacterFilter';
-import ThemeControls from './theme-controls/ThemeControls';
-import Loader from 'app/loader/loader';
-import Results from 'app/cards-list/CardList';
-import Details from 'app/details/Details';
+import ThemeControls from '../components/theme-controls/ThemeControls';
+import Loader from '../components/loader/loader';
+import Results from 'components/cards-list/CardList';
+import Details from 'components/details/Details';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Pagination } from './pagination/Pagination';
+import { Pagination } from '../components/pagination/Pagination';
 import { useGetListQuery } from 'state/features/characters/charactersApiSlice';
 import type { IQueryError, IResponse } from 'types/interface';
-import NotFound from './not-found/404';
+import NotFound from '../components/not-found/404';
 
 export default function ClientComponent({ initialData, initialPage, initialStatus }: { initialData: IResponse, initialPage: number, initialStatus: string }) {
   const router = useRouter();

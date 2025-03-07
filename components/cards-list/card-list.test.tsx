@@ -2,7 +2,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import Results from './CardList';
 import { configureStore } from '@reduxjs/toolkit';
-import { mockData } from 'app/test-utils/mocks/mock_data';
+import { mockData } from 'components/test-utils/mocks/mock_data';
 import { ICharacterDetails } from 'types/interface';
 
 jest.mock('next/router', () => ({

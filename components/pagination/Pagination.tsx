@@ -2,7 +2,7 @@ import './pagination.css';
 import { IRespInfo, IParamsType } from 'types/interface';
 import type { Dispatch } from 'react';
 import { useCharacterFilters } from 'hooks/useCharacterFilter';
-import { isValidHTTPURL } from 'app/utils/validator';
+import { isValidHTTPURL } from 'components/utils/validator';
 
 interface Props {
   disabled?: boolean;

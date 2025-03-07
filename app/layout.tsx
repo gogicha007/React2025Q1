@@ -2,9 +2,9 @@ import '../styles/globals.css';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import StoreProvider from './StoreProvider';
-import { ThemeProvider } from 'app/contexts/ThemeContext';
-import ErrorBoundary from 'app/error-handling/ErrorBoundary';
-import ErrorFallback from 'app/error-handling/ErrorFallbackComponent';
+import { ThemeProvider } from 'components/contexts/ThemeContext';
+import ErrorBoundary from '../components/error-handling/ErrorBoundary';
+import ErrorFallback from '../components/error-handling/ErrorFallbackComponent';
 
 const inter = Inter({ subsets: ['latin'] });
 
