@@ -1,14 +1,14 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { useRouter } from 'next/router';
-import { useGetDetailsQuery } from '@/state/features/characters/charactersApiSlice';
+import { useGetDetailsQuery } from '../../state/features/characters/charactersApiSlice';
 import Details from './Details';
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
-jest.mock('@/state/features/characters/charactersApiSlice', () => ({
+jest.mock('../../state/features/characters/charactersApiSlice', () => ({
   useGetDetailsQuery: jest.fn(),
 }));
 

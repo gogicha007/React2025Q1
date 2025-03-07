@@ -2,7 +2,7 @@
 
 import styles from '../../styles/Details.module.css'
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useGetDetailsQuery } from 'state/features/characters/charactersApiSlice';
+import { useGetDetailsQuery } from '../../state/features/characters/charactersApiSlice';
 import Loader from '../loader/loader';
 
 export default function Details() {

@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ThemeProvider } from '../../contexts/ThemeContext';
+import { ThemeProvider } from '../contexts/ThemeContext';
+
 import ThemeControls from './ThemeControls';
 
 describe('ThemeContext', () => {

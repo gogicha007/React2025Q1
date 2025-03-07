@@ -2,8 +2,8 @@ import '@testing-library/jest-dom';
 import React, { useState } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ErrorButton from './ErrorButton';
-import ErrorBoundary from '../../../app/error-handling/ErrorBoundary';
-import ErrorFallback from '../../../app/error-handling/ErrorFallbackComponent';
+import ErrorBoundary from '../error-handling/ErrorBoundary';
+import ErrorFallback from '../error-handling/ErrorFallbackComponent';
 
 
 interface ErrorBoundaryProps {

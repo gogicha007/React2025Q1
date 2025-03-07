@@ -3,9 +3,9 @@ import { screen, fireEvent } from '@testing-library/react';
 import PickCards from './PickCards';
 import { clearSelection } from './selectedCardsSlice';
 import Papa from 'papaparse';
-import { mockData, mockReduxData } from '../../../test-utils/mocks/mock_data';
+import { mockData, mockReduxData } from '../../../components/test-utils/mocks/mock_data';
 import { setupStore } from '../../store';
-import { renderWithProviders } from '../../../test-utils/test-utils';
+import { renderWithProviders } from '../../../components/test-utils/test-utils';
 
 jest.mock('papaparse', () => ({
   unparse: jest.fn(() => 'mocked-csv-data'),

@@ -1,26 +1,20 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import Results from './CardList';
+import { mockData } from '../test-utils/mocks/mock_data';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { configureStore } from '@reduxjs/toolkit';
-import { mockData } from 'components/test-utils/mocks/mock_data';
-import { ICharacterDetails } from 'types/interface';
 
-jest.mock('next/router', () => ({
+jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
-}));
-
-jest.mock('../card/Card', () => ({
-  Card: (props: ICharacterDetails) => (
-    <div data-testid={`card-${props.id}`}>Mocked Card</div>
-  ),
+  useSearchParams: jest.fn(),
 }));
 
 jest.mock('../../state/features/pickCards/PickCards', () => ({
   __esModule: true,
   default: jest.fn(() => <div data-testid="pick-cards" />),
 }));
-
-const mockUseRouter = require('next/router').useRouter;
 
 describe('Results Component', () => {
   const mockPush = jest.fn();
@@ -34,37 +28,36 @@ describe('Results Component', () => {
   const renderWithProviders = (ui: React.ReactNode, store = setupStore()) => {
     return render(<Provider store={store}>{ui}</Provider>);
   };
+
   beforeEach(() => {
     mockPush.mockClear();
-    mockUseRouter.mockReturnValue({
-      query: {},
+    (useRouter as jest.Mock).mockReturnValue({
       push: mockPush,
+      query: {},
+    });
+    (useSearchParams as jest.Mock).mockReturnValue({
+      get: jest.fn(),
     });
   });
 
-  it('renders cards based on data', () => {
+  test('renders cards based on data', () => {
     renderWithProviders(<Results {...mockData} />);
-    expect(screen.getByTestId('results')).toBeInTheDocument();
-    expect(screen.getAllByRole('card')).toHaveLength(6);
+    const cards = screen.getAllByRole('card');
+    expect(cards).toHaveLength(6);
+    expect(screen.getByText('card 1')).toBeInTheDocument();
+    expect(screen.getByText('card 2')).toBeInTheDocument();
   });
 
-  it('clicking on a card updates the URL query', () => {
+  test('clicking a card updates the URL query', () => {
     renderWithProviders(<Results {...mockData} />);
 
     const card = screen.getAllByRole('card')[0];
     fireEvent.click(card);
 
-    expect(mockUseRouter().push).toHaveBeenCalledWith(
-      {
-        pathname: '/',
-        query: { id: 1 },
-      },
-      undefined,
-      { shallow: true }
-    );
+    expect(mockPush).toHaveBeenCalledWith(expect.stringContaining('id=1'))
   });
 
-  it('displays PickCards(flyout) component when there are selected cards', () => {
+  test('displays PickCards component when there are selected cards', () => {
     const store = setupStore([1]);
     renderWithProviders(<Results {...mockData} />, store);
 

@@ -1,5 +1,5 @@
 import './theme-controls.css';
-import { useTheme } from 'components/contexts/ThemeContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ThemeControls = () => {
   const { theme, setTheme } = useTheme();

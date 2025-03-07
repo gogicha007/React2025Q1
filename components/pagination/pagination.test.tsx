@@ -1,13 +1,14 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Pagination } from './Pagination';
-import { useCharacterFilters } from '../../../hooks/useCharacterFilter';
+import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 
 jest.mock('../../hooks/useCharacterFilter', () => ({
   useCharacterFilters: jest.fn(),
 }));
 
-jest.mock('@/utils/validator', () => ({
+
+jest.mock('../utils/validator', () => ({
   isValidHTTPURL: jest.fn((url) => {
     if (url === 'invalid-url') return false;
     return url && typeof url === 'string';
