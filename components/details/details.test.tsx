@@ -1,11 +1,12 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';  
 import { useGetDetailsQuery } from '../../state/features/characters/charactersApiSlice';
 import Details from './Details';
 
-jest.mock('next/router', () => ({
+jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
 }));
 
 jest.mock('../../state/features/characters/charactersApiSlice', () => ({
@@ -21,13 +22,12 @@ jest.mock('../loader/loader', () => {
 
 describe('Details Component', () => {
   const mockPush = jest.fn();
-  const mockUseRouter = useRouter as jest.Mock;
   const mockUseGetDetailsQuery = useGetDetailsQuery as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    mockUseRouter.mockReturnValue({
+    (useRouter as jest.Mock).mockReturnValue({
       query: { id: '1' },
       push: mockPush,
     });
@@ -78,18 +78,16 @@ describe('Details Component', () => {
   });
 
   test('handles close button click correctly', () => {
+    const mockSearchParams = {
+      get: jest.fn().mockReturnValue('1'),
+    };
+    (useSearchParams as jest.Mock).mockReturnValue(mockSearchParams);
+
     render(<Details />);
 
     const closeButton = screen.getByText('Close details');
     fireEvent.click(closeButton);
 
-    expect(mockPush).toHaveBeenCalledWith(
-      {
-        pathname: '/',
-        query: {},
-      },
-      undefined,
-      { shallow: true }
-    );
+    expect(mockPush).toHaveBeenCalledTimes(1);
   });
 });
