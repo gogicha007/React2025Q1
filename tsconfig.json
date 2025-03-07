@@ -25,16 +25,22 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "types.d.ts",
     ".next/types/**/*.ts",
-    "__mocks__/styleMock.ts"
-  ],
+    "__mocks__/styleMock.ts",
+    "next-env.d.ts",
+    "types.d.ts",
+    "./dist/types/**/*.ts"
+, "app/sss.tfff"  ],
   "exclude": [
     "node_modules"
   ]

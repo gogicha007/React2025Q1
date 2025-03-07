@@ -23,10 +23,12 @@ const config: Config = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    '**/src/**',
-    '!**/src/utils/**',
-    '!**/src/types/**',
-    '!**/mocks/**',
+    '**/components/**',
+    '**/state/features/pickCards/**',
+    '!**/components/utils/**',
+    '!**/components/test-utils/**',
+    '!**/dist/**',
+    '!**/__mocks__/**',
     '!**/hooks/**',
     '!**/*.test.tsx',
   ],
@@ -115,6 +117,7 @@ const config: Config = {
     // '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,
 
     // Handle module aliases
+    // 'whatwg-fetch': '<rootDir>/node_modules/whatwg-fetch/dist/fetch.umd.js',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
 
