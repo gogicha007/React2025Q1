@@ -12,6 +12,7 @@ next-env.d.ts
 dist
 node_modules
 dist-ssr
+coverage
 *.local
 
 # Editor directories and files

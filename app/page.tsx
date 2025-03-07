@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
@@ -21,7 +21,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://rickandmortyapi.com/api/character?page=${initialPage}${initialStatus ? `&status=${initialStatus}` : ''}`);
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/character?page=${initialPage}${initialStatus ? `&status=${initialStatus}` : ''}`
+      );
       const data: IResponse = await response.json();
       setInitialData(data);
       setInitialPage(Number(initialPage));
@@ -35,14 +37,20 @@ export default function Home() {
   const searchParams = useSearchParams();
   const id = searchParams ? searchParams.get('id') : null;
   const { page, status } = useCharacterFilters();
-  const { data = initialData, isFetching, error } = useGetListQuery({
+  const {
+    data = initialData,
+    isFetching,
+    error,
+  } = useGetListQuery({
     page: +page || initialPage,
-    status: status || initialStatus as string,
+    status: status || (initialStatus as string),
   });
 
   const handleListClick = () => {
     if (id) {
-      const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
+      const params = new URLSearchParams(
+        searchParams ? searchParams.toString() : ''
+      );
       params.delete('id');
       router.push(`/?${params.toString()}`);
     }

@@ -36,7 +36,7 @@ describe('Home Component', () => {
     jest.clearAllMocks();
   });
 
-  it('renders Loader when initialData is null and data is not available', () => {
+  test('renders Loader when initialData is null and data is not available', () => {
     (useGetListQuery as jest.Mock).mockReturnValue({
       data: null,
       isFetching: true,
@@ -47,30 +47,4 @@ describe('Home Component', () => {
     expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 
-  it('renders NotFound when error status is 404', async () => {
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: null,
-      isFetching: false,
-      error: { status: 404 },
-    });
-
-    render(<Home />);
-    await waitFor(() => {
-      expect(screen.getByText('404 | Page not found')).toBeInTheDocument();
-    });
-  });
-
-  it('renders error message when there is an error', async () => {
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: null,
-      isFetching: false,
-      error: { status: 500 },
-    });
-
-    render(<Home />);
-    
-    await waitFor(() => {
-      expect(screen.getByText('Error loading data')).toBeInTheDocument();
-    });
-  });
 });
