@@ -8,7 +8,7 @@ import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
 import reactCompiler from 'eslint-plugin-react-compiler';
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['.react-router', 'dist'] },
   {
     extends: [
       js.configs.recommended,
@@ -16,7 +16,8 @@ export default tseslint.config(
       eslintPluginPrettier,
     ],
     files: ['**/*.{ts,tsx}'],
-    ignores: ['**/mock*.ts'],
+    ignores: ['**/mock*.ts', '**/*.test.tsx'],
+
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

@@ -1,18 +1,28 @@
 {
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ],
   "compilerOptions": {
-    // "module": "es2022",
-    // "target": "es2017",
-    "moduleResolution": "node",
-    "allowImportingTsExtensions": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["node", "vite/client", "jest", "@testing-library/jest-dom"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "allowJs": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "jsx": "react-jsx",
+    "rootDirs": [".", "./.react-router/types"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    // "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
 }
