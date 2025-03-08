@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "format:fix": "prettier --write .",
     "test": "jest",
-    "coverage": "jest --coverage --watchAll"
+    "coverage": "jest --coverage --watchAll",
+    "prepare": "husky"
   },
   "dependencies": {
     "@react-router/node": "^7.1.5",
