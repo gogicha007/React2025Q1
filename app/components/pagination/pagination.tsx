@@ -1,6 +1,5 @@
 import './pagination.css';
 import type { IRespInfo, IParamsType } from '../../types/interface';
-import { useCharacterFilters } from '../../hooks/useCharacterFilter';
 import { isValidHTTPURL } from '../../utils/validators';
 import type { Dispatch } from 'react';
 
@@ -11,15 +10,12 @@ interface Props {
 }
 
 export const Pagination = (props: Props) => {
-  const { page, setFilters } = useCharacterFilters();
-
   const clickPagination = (direction: 'prev' | 'next') => {
     const urlString = props.resInfo[direction];
     if (isValidHTTPURL(urlString as string)) {
       const url = new URL(urlString as string);
       const searchPage = url.searchParams.get('page') || 1;
       const searchStatus = url.searchParams.get('status') || '';
-      setFilters({ page: searchPage ? +searchPage : +page });
       props.setParams({ page: +searchPage, status: searchStatus });
     } else console.error('URL string is not valid');
   };

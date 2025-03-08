@@ -1,0 +1,13 @@
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.results__select_controls {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}

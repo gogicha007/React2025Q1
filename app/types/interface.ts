@@ -3,6 +3,22 @@ export interface IResponse {
   results: ICharacterDetails[];
 }
 
+export type IQueryError = {
+  status: number;
+  data: {
+    error: string;
+  };
+};
+export function isIResponse(data: IResponse | IQueryError): data is IResponse {
+  return (data as IResponse).info !== undefined;
+}
+
+export function isIQueryError(
+  data: IResponse | IQueryError
+): data is IQueryError {
+  return (data as IQueryError).data !== undefined;
+}
+
 export interface IRespInfo {
   count: number;
   pages: number;
@@ -24,13 +40,17 @@ export interface ICharacterDetails {
     name?: string;
   };
 }
+export function isICharacterDetails(
+  data: ICharacterDetails | IQueryError
+): data is ICharacterDetails {
+  return (data as ICharacterDetails).name !== undefined;
+}
 
-export type IQueryError = {
-  status: number;
-  data: {
-    error: string;
-  };
-};
+export function isICharacterError(
+  data: ICharacterDetails | IQueryError
+): data is IQueryError {
+  return (data as IQueryError).data !== undefined;
+}
 
 export type ICharacterFilters = {
   page?: number;

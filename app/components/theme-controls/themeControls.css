@@ -25,10 +25,11 @@
 }
 
 .theme-toggle input[type='radio']:checked {
-  background-color: #4caf50;
+  background-color: #4caf50; /* Green color */
   border-color: #4caf50;
 }
 
+/* Create the inner circle when checked */
 .theme-toggle input[type='radio']:checked::after {
   content: '';
   position: absolute;
@@ -41,6 +42,7 @@
   border-radius: 50%;
 }
 
+/* Focus state for accessibility */
 .theme-toggle input[type='radio']:focus {
   box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
 }

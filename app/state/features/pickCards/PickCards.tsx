@@ -1,20 +1,15 @@
 import type { RootState } from '~/state/store';
-import type { IResponse } from '~/types/interface';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearSelection } from './selectedCardsSlice';
-import { useRef, useState } from 'react';
 import Papa from 'papaparse';
+import { clearSelection } from './selectedCardsSlice';
+import type { IResponse } from '~/types/interface';
 
 type Props = {
   data: IResponse;
 };
-
 const PickCards = (props: Props) => {
-  const [downloadUrl, setDownloadUrl] = useState('');
-  const downloadRef = useRef<HTMLAnchorElement | null>(null);
-  const [fileName, setFileName] = useState('');
-
   const dispatch = useDispatch();
+
   const selectedCards = useSelector(
     (state: RootState) => state.selectedCards.selectedCards
   );
@@ -44,34 +39,20 @@ const PickCards = (props: Props) => {
         header: true,
       }
     );
+
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    setDownloadUrl(url);
-    setFileName(`${selectedCards.length}_characters.csv`);
-    setTimeout(() => {
-      if (downloadRef.current) {
-        downloadRef.current.click();
-        URL.revokeObjectURL(url);
-        setDownloadUrl('');
-        setFileName('');
-      }
-    });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', `${selectedCards.length}_characters.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
   return (
     <>
       <h2>Items selected: {selectedCards.length}</h2>
       <button onClick={() => dispatch(clearSelection())}>Deselect all</button>
       <button onClick={handleDownloadCSV}>Download CSV</button>
-      <a
-        ref={downloadRef}
-        href={downloadUrl}
-        download={fileName}
-        style={{ display: 'none' }}
-        data-testid="csvDownloadLink"
-        id="csvDownloadLink"
-      >
-        Download File
-      </a>
     </>
   );
 };

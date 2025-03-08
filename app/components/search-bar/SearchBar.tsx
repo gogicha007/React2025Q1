@@ -1,35 +1,27 @@
 import './search-bar.css';
-import { useEffect } from 'react';
 import ErrorButton from '../error-button/ErrorButton';
-import { useCharacterFilters } from '../../hooks/useCharacterFilter';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useCharacterFilters } from '../../hooks/useCharacterFilters';
 
-const SearchBar = ({ handleSearch }: { handleSearch: () => void }) => {
-  const [searchWord, setSearchWord] = useLocalStorage('Search-Word', '');
-  const { status, setFilters } = useCharacterFilters();
+const SearchBar = ({
+  handleSearch,
+}: {
+  handleSearch: (params: { page: number; status: string }) => void;
+}) => {
+  const { status } = useCharacterFilters();
 
-  const clickSearch = async () => {
-    setSearchWord(status);
-    handleSearch();
-  };
-
-  const changeInput = (word: string) => setFilters({ page: 1, status: word });
-
-  useEffect(() => {
-    if (!status && searchWord) setFilters({ status: searchWord, page: 1 });
-  }, [setFilters]);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    clickSearch();
+    const search = new FormData(e.currentTarget);
+    const status = (search.get('status') as string).trim();
+    handleSearch({ page: 1, status });
   };
+
   return (
     <div className="search__bar">
       <form className="search__form" role="form" onSubmit={handleSubmit}>
         <label htmlFor="search">Search by status</label>
         <input
-          value={status}
-          onChange={(e) => changeInput(e.target.value.trim())}
+          defaultValue={status}
           type="search"
           id="search"
           name="status"

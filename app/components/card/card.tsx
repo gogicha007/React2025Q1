@@ -12,6 +12,9 @@ export const Card = (data: ICharacterDetails) => {
 
   const handleCheckboxClick = (event: React.MouseEvent<HTMLInputElement>) => {
     event.stopPropagation();
+  };
+
+  const handleCheckboxChange = () => {
     dispatch(toggleCardSelection(data.id));
   };
 
@@ -26,7 +29,7 @@ export const Card = (data: ICharacterDetails) => {
         type="checkbox"
         checked={selectedCards.includes(data.id)}
         onClick={handleCheckboxClick}
-        defaultChecked={false}
+        onChange={handleCheckboxChange}
       />
     </div>
   );

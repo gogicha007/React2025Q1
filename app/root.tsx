@@ -11,7 +11,6 @@ import { setupStore } from './state/store';
 import { ThemeProvider } from './context/ThemeContext';
 
 import type { Route } from './+types/root';
-
 import './app.css';
 
 const store = setupStore();
