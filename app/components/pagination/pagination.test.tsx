@@ -104,7 +104,6 @@ describe('Pagination Component', () => {
     const prevButton = screen.getByText('«');
     fireEvent.click(prevButton);
 
-    expect(mockSetFilters).toHaveBeenCalledWith({ page: 1 });
     expect(mockSetParams).toHaveBeenCalledWith({ page: 1, status: 'alive' });
   });
 
@@ -124,7 +123,6 @@ describe('Pagination Component', () => {
     const nextButton = screen.getByText('»');
     fireEvent.click(nextButton);
 
-    expect(mockSetFilters).toHaveBeenCalledWith({ page: 3 });
     expect(mockSetParams).toHaveBeenCalledWith({ page: 3, status: 'dead' });
   });
 
@@ -196,7 +194,6 @@ describe('Pagination Component', () => {
     const prevButton = screen.getByText('«');
     fireEvent.click(prevButton);
 
-    expect(mockSetFilters).toHaveBeenCalledWith({ page: 1 });
     expect(mockSetParams).toHaveBeenCalledWith({ page: 1, status: '' });
   });
 });

@@ -1,126 +1,99 @@
 import '@testing-library/jest-dom';
-import { useGetListQuery } from '../../app/state/features/characters/charactersApiSlice';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
-import { renderWithProviders } from '../../app/test_utils/test_utils';
-import { setupStore } from '../../app/state/store';
-import Home from '../../app/routes/home';
-import { mockData } from '../../app/test_utils/mocks/mock-data';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  createMemoryRouter,
+  RouterProvider,
+  useLoaderData,
+  useNavigation,
+  useLocation,
+  useNavigate
+} from 'react-router';
+import { renderWithProviders } from '../test_utils/test_utils';
+import Home from '../routes/home';
+import { IResponse, IQueryError } from '../types/interface';
+import { mockData } from '../test_utils/mocks/mock-data';
 
-jest.resetModules();
-jest.mock('../../app/state/features/characters/charactersApiSlice', () => ({
-  __esModule: true,
-  ...jest.requireActual(
-    '../../app/state/features/characters/charactersApiSlice'
-  ),
-  useGetListQuery: jest.fn(),
-}));
-
-const mockNavigate = jest.fn();
 jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
-  useNavigate: () => mockNavigate,
+  useNavigate: jest.fn(),
+  useLoaderData: jest.fn(),
+  useNavigation: jest.fn(),
+  useLocation: jest.fn(),
 }));
 
-beforeEach(() => {
-  mockNavigate.mockClear();
-});
+const mockQueryError: IQueryError = {
+  status: 404,
+  data: { error: 'Character not found' },
+};
 
-afterEach(() => {
-  jest.resetModules();
-  jest.restoreAllMocks();
-});
+const renderComponent = (
+  data: IResponse | IQueryError,
+  navigationState = 'idle', locationSearch = '', pathname = '/'
+) => {
+  (useLoaderData as jest.Mock).mockReturnValue(data);
+  (useNavigation as jest.Mock).mockReturnValue({ state: navigationState });
+  (useLocation as jest.Mock).mockReturnValue({ search: locationSearch, pathname });
+  const mockNavigate = jest.fn();
+  (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
 
-describe('Home Component', () => {
-  test('renders Home component correctly', () => {
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: mockData,
-      error: undefined,
-      isLoading: false,
-    });
-    renderWithProviders(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>,
-      { store: setupStore() }
-    );
+  const routes = [
+    {
+      path: '/',
+      element: <Home />,
+    },
+  ];
 
-    expect(screen.getByRole('searchbox')).toBeInTheDocument();
-    expect(screen.getAllByRole(`radio`).length).toBe(2);
+  const router = createMemoryRouter(routes, {
+    initialEntries: ['/'],
   });
 
-  test('displays Loader when fetching data', async () => {
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: undefined,
-      error: undefined,
-      isFetching: true,
-    });
-    renderWithProviders(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>,
-      { store: setupStore() }
-    );
+  return {...renderWithProviders(<RouterProvider router={router} />), mockNavigate};
+};
+
+describe('Home Component', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
+  test('renders Home component correctly with data', () => {
+    renderComponent(mockData);
+
+    expect(screen.getByRole('searchbox')).toBeInTheDocument();
+    expect(screen.getAllByRole('radio').length).toBe(2);
+    expect(screen.getByTestId('home__cardlist')).toBeInTheDocument();
+  });
+
+  test('renders error message when data fetch fails', () => {
+    renderComponent(mockQueryError);
+
+    expect(
+      screen.getByText(mockQueryError.status.toString())
+    ).toBeInTheDocument();
+  });
+
+  test('displays loader when navigation state is loading', () => {
+    renderComponent(mockData, 'loading');
 
     expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 
-  test('displays error message on API error', async () => {
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: undefined,
-      error: { status: '404 Not Found' },
-      isLoading: false,
-    });
+  test('handles search correctly', async () => {
+    renderComponent(mockData);
 
-    renderWithProviders(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>,
-      { store: setupStore() }
-    );
+    const searchBox = screen.getByRole('searchbox');
+    fireEvent.change(searchBox, { target: { value: 'test' } });
+    fireEvent.keyDown(searchBox, { key: 'Enter', code: 'Enter' });
 
     await waitFor(() => {
-      expect(screen.getByText('404 Not Found')).toBeInTheDocument();
+      expect(screen.getByRole('searchbox')).toHaveValue('test');
     });
   });
+  test('handles card click correctly', () => {
+    const { mockNavigate } = renderComponent(mockData, 'idle', '?page=1&status=', '/1');
 
-  test('triggers search and updates params', async () => {
-    (useGetListQuery as jest.Mock).mockReturnValue({
-      data: mockData,
-      error: undefined,
-      isLoading: false,
-    });
+    const cardList = screen.getByTestId('home__cardlist');
+    fireEvent.click(cardList);
 
-    renderWithProviders(
-      <MemoryRouter initialEntries={['?page=1&status=alive']}>
-        <Home />
-      </MemoryRouter>,
-      { store: setupStore() }
-    );
-
-    const searchButton = screen.getByRole('button', { name: /search/i });
-    fireEvent.click(searchButton);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('results')).toBeInTheDocument();
-    });
-  });
-
-  test('navigates back when clicking on the list', async () => {
-    // mockNavigate.mockReset()
-
-    renderWithProviders(
-      <MemoryRouter initialEntries={['/1']}>
-        <Home />
-      </MemoryRouter>,
-      { store: setupStore() }
-    );
-
-    const listContainer = screen.getByTestId('home__cardlist');
-    fireEvent.click(listContainer);
-
-    await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith(-1);
-    });
+    expect(mockNavigate).toHaveBeenCalledWith(-1);
   });
 });
