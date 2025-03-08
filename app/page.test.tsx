@@ -3,6 +3,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Home from './page';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useGetListQuery } from '../state/features/characters/charactersApiSlice';
+import { mockData } from '../components/test-utils/mocks/mock_data';
+import { renderWithProviders } from '../components/test-utils/test-utils';
+import { setupStore } from '../state/store';
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
@@ -45,6 +48,19 @@ describe('Home Component', () => {
 
     render(<Home />);
     expect(screen.getByTestId('loader')).toBeInTheDocument();
+  });
+
+  test('renders NotFound when there is a 404 error', async () => {
+    (useGetListQuery as jest.Mock).mockReturnValue({
+      data: null,
+      isFetching: false,
+      error: { status: 404 },
+    });
+
+    render(<Home />);
+    await waitFor(() => {
+      expect(screen.getByText('404 | Page not found')).toBeInTheDocument();
+    });
   });
 
 });
