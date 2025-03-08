@@ -31,7 +31,7 @@ const config = {
       'ts-jest',
       {
         useESM: true,
-      }
+      },
     ],
     '^.+\\.(css)$': '<rootDir>/jest-config/style-mock.cjs',
   },

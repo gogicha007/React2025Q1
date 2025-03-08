@@ -6,7 +6,7 @@ import {
   useLoaderData,
   useNavigation,
   useLocation,
-  useNavigate
+  useNavigate,
 } from 'react-router';
 import { renderWithProviders } from '../test_utils/test_utils';
 import Home from '../routes/home';
@@ -28,11 +28,16 @@ const mockQueryError: IQueryError = {
 
 const renderComponent = (
   data: IResponse | IQueryError,
-  navigationState = 'idle', locationSearch = '', pathname = '/'
+  navigationState = 'idle',
+  locationSearch = '',
+  pathname = '/'
 ) => {
   (useLoaderData as jest.Mock).mockReturnValue(data);
   (useNavigation as jest.Mock).mockReturnValue({ state: navigationState });
-  (useLocation as jest.Mock).mockReturnValue({ search: locationSearch, pathname });
+  (useLocation as jest.Mock).mockReturnValue({
+    search: locationSearch,
+    pathname,
+  });
   const mockNavigate = jest.fn();
   (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
 
@@ -47,7 +52,10 @@ const renderComponent = (
     initialEntries: ['/'],
   });
 
-  return {...renderWithProviders(<RouterProvider router={router} />), mockNavigate};
+  return {
+    ...renderWithProviders(<RouterProvider router={router} />),
+    mockNavigate,
+  };
 };
 
 describe('Home Component', () => {
@@ -89,7 +97,12 @@ describe('Home Component', () => {
     });
   });
   test('handles card click correctly', () => {
-    const { mockNavigate } = renderComponent(mockData, 'idle', '?page=1&status=', '/1');
+    const { mockNavigate } = renderComponent(
+      mockData,
+      'idle',
+      '?page=1&status=',
+      '/1'
+    );
 
     const cardList = screen.getByTestId('home__cardlist');
     fireEvent.click(cardList);

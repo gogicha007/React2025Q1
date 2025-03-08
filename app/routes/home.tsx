@@ -50,7 +50,6 @@ export default function Home() {
   const data = useLoaderData() as IResponse | IQueryError;
   const { setFilters } = useCharacterFilters();
   const [isFetching, setIsFetching] = useState(false);
-  
 
   const navigate = useNavigate();
   const navigation = useNavigation();
