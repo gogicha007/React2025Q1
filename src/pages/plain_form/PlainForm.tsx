@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../state/store';
 import './plain_form.css';
 import { useNavigate } from 'react-router';
 import { validator } from '../../utils/validator';
+import { savePlainFormData } from '../../state/features/plain-form/plainFormSlice';
 
 export default function PlainForm() {
   const [nameError, setNameError] = useState('');
@@ -19,6 +20,7 @@ export default function PlainForm() {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,6 +41,7 @@ export default function PlainForm() {
         .value,
       TC: (form.elements.namedItem('TC') as HTMLInputElement).checked,
       file: upload_picture ? upload_picture[0] : null,
+      country: (form.elements.namedItem('country') as HTMLSelectElement).value,
       gender: (form.elements.namedItem('gender') as HTMLInputElement).value,
     };
     console.log(data);
@@ -51,44 +54,47 @@ export default function PlainForm() {
       setConfirmPasswordError(error.password2);
       setTCError(error.TC);
       setFileError(error.file);
-    } else navigate('/');
+    } else {
+      dispatch(savePlainFormData(data));
+      navigate('/');
+    }
   };
   return (
     <div className="plain__form">
       <h1>The Plain Form</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form__item">
-          <label htmlFor="name">
+          <label htmlFor="name" className="form__label">
             Name
-            <input id="name" type="text" />
+            <input id="name" type="text" className="form__input" />
           </label>
           <p className="form__error">{nameError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="age">
+          <label htmlFor="age" className="form__label">
             Age
-            <input id="age" type="number" />
+            <input id="age" type="number" className="form__input" />
           </label>
           <p className="form__error">{ageError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="email">
+          <label htmlFor="email" className="form__label">
             Email
-            <input id="email" type="email" />
+            <input id="email" type="email" className="form__input" />
           </label>
           <p className="form__error">{emailError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="password">
+          <label htmlFor="password" className="form__label">
             Password
-            <input id="password1" type="password" />
+            <input id="password1" type="password" className="form__input" />
           </label>
           <p className="form__error password">{passwordError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="confirm_password">
+          <label htmlFor="confirm_password" className="form__label">
             Confirm Password
-            <input id="password2" type="password" />
+            <input id="password2" type="password" className="form__input" />
           </label>
           <p className="form__error">{confirmPasswordError}</p>
         </div>
@@ -125,7 +131,7 @@ export default function PlainForm() {
         </div>
         <div className="form__item">
           <label htmlFor="country">Country</label>
-          <select id="country">
+          <select id="country" className="form__input">
             {countries.map((country) => (
               <option key={country.code} value={country.code}>
                 {country.name}
