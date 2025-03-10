@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
 import HookForm from './pages/hook_form/HookForm';
-import UncontrolledForm from './pages/raw_form/RawForm';
+import PlainForm from './pages/plain_form/PlainForm';
 import './App.css';
 import Home from './pages/home/home';
 
@@ -15,7 +15,7 @@ function App() {
       element: <Layout />,
       children: [
         { path: '/', element: <Home /> },
-        { path: '/uncontrolled_form', element: <UncontrolledForm /> },
+        { path: '/uncontrolled_form', element: <PlainForm /> },
         { path: '/hook_form', element: <HookForm /> },
         { path: '*', element: <h1>Not Found</h1> },
       ],
