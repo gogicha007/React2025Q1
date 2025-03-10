@@ -1,0 +1,23 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.menu_item {
+  width: 450px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  border-radius: 15px;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+.menu_item:hover {
+  background-color: #f0f0f0;
+}
