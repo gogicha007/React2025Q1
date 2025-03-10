@@ -41,7 +41,6 @@ export const validator = (data: IData) => {
           return { ...errors, [key]: 'Passwords do not match' };
         break;
       case 'TC':
-        console.log(value);
         if (!value)
           return {
             ...errors,
@@ -49,8 +48,15 @@ export const validator = (data: IData) => {
           };
         break;
       case 'file':
-        if (value === null)
+        if (value === undefined)
           return { ...errors, [key]: 'You must upload a file' };
+        if (value.size < 2000)
+          return {
+            ...errors,
+            [key]: 'File size must be greater than 2000 bytes',
+          };
+        if (!['image/jpeg', 'image/png'].includes(value.type))
+          return { ...errors, [key]: 'File type must be either jpeg or png' };
         break;
       default:
         return null;

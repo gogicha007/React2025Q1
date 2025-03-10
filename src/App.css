@@ -4,6 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+label {
+  text-align: left;
+}
 input[type='text'],
 input[type='email'],
 input[type='password'],

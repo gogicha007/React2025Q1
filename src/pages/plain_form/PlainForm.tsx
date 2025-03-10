@@ -11,7 +11,8 @@ export default function PlainForm() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [TC, setTC] = useState('');
+  const [TCError, setTCError] = useState('');
+  const [fileError, setFileError] = useState('');
 
   const countries = useSelector(
     (state: RootState) => state.countries.countries
@@ -48,7 +49,8 @@ export default function PlainForm() {
       setEmailError(error.email);
       setPasswordError(error.password1);
       setConfirmPasswordError(error.password2);
-      setTC(error.TC);
+      setTCError(error.TC);
+      setFileError(error.file);
     } else navigate('/');
   };
   return (
@@ -56,35 +58,51 @@ export default function PlainForm() {
       <h1>The Plain Form</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form__item">
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" />
+          <label htmlFor="name">
+            Name
+            <input id="name" type="text" />
+          </label>
           <p className="form__error">{nameError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="age">Age</label>
-          <input id="age" type="number" />
+          <label htmlFor="age">
+            Age
+            <input id="age" type="number" />
+          </label>
           <p className="form__error">{ageError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" />
+          <label htmlFor="email">
+            Email
+            <input id="email" type="email" />
+          </label>
           <p className="form__error">{emailError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="password">Password</label>
-          <input id="password1" type="password" />
-          <p className="form__error">{passwordError}</p>
+          <label htmlFor="password">
+            Password
+            <input id="password1" type="password" />
+          </label>
+          <p className="form__error password">{passwordError}</p>
         </div>
         <div className="form__item">
-          <label htmlFor="confirm_password">Confirm Password</label>
-          <input id="password2" type="password" />
+          <label htmlFor="confirm_password">
+            Confirm Password
+            <input id="password2" type="password" />
+          </label>
           <p className="form__error">{confirmPasswordError}</p>
         </div>
         <div className="form__item_radio">
           <label>Gender</label>
           <div className="radio-group">
             <label htmlFor="male">
-              <input type="radio" id="male" name="gender" value="male" />
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                defaultChecked
+              />
               Male
             </label>
             <label htmlFor="female">
@@ -96,11 +114,14 @@ export default function PlainForm() {
         <div className="form__item_checkbox">
           <label htmlFor="TC">Terms and Conditions</label>
           <input id="TC" type="checkbox" />
-          <p className="form__error">{TC}</p>
+          <p className="form__error">{TCError}</p>
         </div>
-        <div className="form__item_upload">
-          <label htmlFor="upload_picture">Upload Picture</label>
-          <input id="upload_picture" type="file" />
+        <div className="form__item">
+          <label htmlFor="upload_picture">
+            Upload Picture
+            <input id="upload_picture" type="file" />
+          </label>
+          <span className="form__error">{fileError}</span>
         </div>
         <div className="form__item">
           <label htmlFor="country">Country</label>

@@ -5,6 +5,11 @@
   align-items: center;
   justify-content: center;
 }
+.plain__form h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
 .form {
   width: 100%;
   display: flex;
@@ -22,9 +27,9 @@
   justify-content: flex-start;
   gap: 5px;
 }
+
 .form__item_checkbox,
-.form__item_radio,
-.form__item_upload {
+.form__item_radio {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,5 +39,14 @@
 .form__error {
   color: red;
   font-size: 12px;
-  margin-top: 5px;
+  margin: 0;
+  height: 1.1em;
+  max-width: 300px;
+}
+.password {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  height: 2.2em;
 }
