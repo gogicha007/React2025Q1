@@ -9,15 +9,15 @@ export interface CountryState {
 const initialState: CountryState = {
   value: 'country',
   countries: [
-    ICountry.USA,
-    ICountry.TURKEY,
-    ICountry.GERMANY,
-    ICountry.FRANCE,
-    ICountry.ITALY,
-    ICountry.SPAIN,
-    ICountry.UK,
-    ICountry.NETHERLANDS,
-    ICountry.BELGIUM,
+    { code: 'USA', name: 'United States' },
+    { code: 'TUR', name: 'Turkey' },
+    { code: 'DEU', name: 'Germany' },
+    { code: 'FRA', name: 'France' },
+    { code: 'ITA', name: 'Italy' },
+    { code: 'ESP', name: 'Spain' },
+    { code: 'GBR', name: 'United Kingdom' },
+    { code: 'NLD', name: 'Netherlands' },
+    { code: 'BEL', name: 'Belgium' },
   ],
 };
 

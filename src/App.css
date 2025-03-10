@@ -4,7 +4,6 @@
   padding: 2rem;
   text-align: center;
 }
-
 input[type='text'],
 input[type='email'],
 input[type='password'],
@@ -14,7 +13,6 @@ input[type='number'] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
 select {
   width: 100%;
   padding: 0.5rem;
