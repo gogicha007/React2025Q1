@@ -31,17 +31,27 @@ const schema = z
       .boolean()
       .refine((val) => val === true, { message: 'You must accept the T&C' }),
     file: z
-      .any()
-      .refine((file) => file !== undefined && file !== null, {
-        message: 'You must upload a file',
-      })
-      .refine((file) => file.size > 2000, {
+      .instanceof(FileList)
+      .transform((fileList) => fileList[0])
+      .refine(
+        (file) => {
+          if (file) {
+            console.log('zod file', file.size);
+            return true;
+          }
+          return false;
+        },
+        {
+          message: 'You must upload a file',
+        }
+      )
+      .refine((file) => file?.size > 2000, {
         message: 'File size must be more than 2KB',
       })
-      .refine((file) => file.size <= 5 * 1024 * 1024, {
+      .refine((file) => file?.size <= 5 * 1024 * 1024, {
         message: 'File size must be less than 5MB',
       })
-      .refine((file) => file.size <= fileSizeLimit, {
+      .refine((file) => file?.size <= fileSizeLimit, {
         message: 'File size must be less than 5mb',
       })
       .refine((file) => ['image/jpeg', 'image/png'].includes(file?.type), {
@@ -71,13 +81,12 @@ export default function HookForm() {
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log(data);
     let base64file: string | null = null;
     try {
       base64file = await convertFileToBase64(data.file);
     } catch (error) {
       console.error(error);
-      setValue('file', null, { shouldValidate: true });
+      setValue('file', new File([], ''), { shouldValidate: true });
       return;
     }
     const validationResult = { ...data, file: base64file };
