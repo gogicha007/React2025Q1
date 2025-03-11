@@ -1,4 +1,5 @@
-.plain__form {
+.plain__form,
+.hook__form {
   width: 100%;
   display: flex;
   flex-direction: column;
