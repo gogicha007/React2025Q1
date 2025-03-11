@@ -12,16 +12,23 @@ interface FormData {
   gender: string;
 }
 
-const initialState: FormData = {
-  name: '',
-  age: 0,
-  email: '',
-  password1: '',
-  password2: '',
-  TC: false,
-  file: null,
-  country: '',
-  gender: '',
+interface PlainFormState {
+  plainFormData: FormData;
+  isDataChanged: boolean;
+}
+const initialState: PlainFormState = {
+  plainFormData: {
+    name: '',
+    age: 0,
+    email: '',
+    password1: '',
+    password2: '',
+    TC: false,
+    file: null,
+    country: '',
+    gender: '',
+  },
+  isDataChanged: false,
 };
 
 const plainFormSlice = createSlice({
@@ -29,18 +36,18 @@ const plainFormSlice = createSlice({
   initialState,
   reducers: {
     savePlainFormData(state, action: PayloadAction<FormData>) {
-      state.name = action.payload.name;
-      state.age = action.payload.age;
-      state.email = action.payload.email;
-      state.password1 = action.payload.password1;
-      state.password2 = action.payload.password2;
-      state.TC = action.payload.TC;
-      state.file = action.payload.file;
-      state.country = action.payload.country;
-      state.gender = action.payload.gender;
+      if (JSON.stringify(state) !== JSON.stringify(action.payload)) {
+        state.plainFormData = action.payload;
+        state.isDataChanged = true;
+      } else {
+        state.isDataChanged = false;
+      }
+    },
+    resetIsDataChanged(state) {
+      state.isDataChanged = false;
     },
   },
 });
 
-export const { savePlainFormData } = plainFormSlice.actions;
+export const { savePlainFormData, resetIsDataChanged } = plainFormSlice.actions;
 export default plainFormSlice.reducer;
