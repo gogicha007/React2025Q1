@@ -1,6 +1,7 @@
 import { IData } from '../types/interface';
+import { convertFileToBase64 } from '../utils/convertFile';
 
-export const validator = (data: IData) => {
+export const validator = async (data: IData) => {
   const errors = {
     name: '',
     age: '',
@@ -10,19 +11,27 @@ export const validator = (data: IData) => {
     TC: '',
     file: '',
   };
+  let base64File: string | null = null;
   for (const [key, value] of Object.entries(data)) {
     switch (key) {
       case 'name':
-        if (value.length === 0) return { ...errors, [key]: 'Name is required' };
+        if (value.length === 0)
+          return { error: { ...errors, [key]: 'Name is required' } };
         if (!/^[A-Z]/.test(value))
-          return { ...errors, [key]: 'First letter of name must be uppercase' };
+          return {
+            error: {
+              ...errors,
+              [key]: 'First letter of name must be uppercase',
+            },
+          };
         break;
       case 'age':
-        if (value < 0) return { ...errors, [key]: 'No negative values' };
+        if (value < 0)
+          return { error: { ...errors, [key]: 'No negative values' } };
         break;
       case 'email':
         if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value))
-          return { ...errors, [key]: 'Invalid email' };
+          return { error: { ...errors, [key]: 'Invalid email' } };
         break;
       case 'password1':
         if (
@@ -31,35 +40,55 @@ export const validator = (data: IData) => {
           )
         )
           return {
-            ...errors,
-            [key]:
-              'Password to contain: 1 number, 1 uppercased letter, 1 lowercased letter, 1 special character',
+            error: {
+              ...errors,
+              [key]:
+                'Password to contain: 1 number, 1 uppercased letter, 1 lowercased letter, 1 special character',
+            },
           };
         break;
       case 'password2':
         if (value !== data.password1)
-          return { ...errors, [key]: 'Passwords do not match' };
+          return { error: { ...errors, [key]: 'Passwords do not match' } };
         break;
       case 'TC':
         if (!value)
           return {
-            ...errors,
-            [key]: 'You must accept the terms and conditions',
+            error: {
+              ...errors,
+              [key]: 'You must accept the terms and conditions',
+            },
           };
         break;
       case 'file':
         if (value === undefined)
-          return { ...errors, [key]: 'You must upload a file' };
+          return { error: { ...errors, [key]: 'You must upload a file' } };
         if (value.size < 2000)
           return {
-            ...errors,
-            [key]: 'File size must be greater than 2000 bytes',
+            error: {
+              ...errors,
+              [key]: 'File size must be greater than 2000 bytes',
+            },
           };
         if (!['image/jpeg', 'image/png'].includes(value.type))
-          return { ...errors, [key]: 'File type must be either jpeg or png' };
+          return {
+            error: { ...errors, [key]: 'File type must be either jpeg or png' },
+          };
+
+        try {
+          base64File = await convertFileToBase64(value);
+        } catch (error) {
+          console.log(error);
+          return {
+            error: { ...errors, [key]: 'Error converting file to base64' },
+          };
+        }
         break;
-      default:
-        return null;
+      default: {
+        const result = { data: { ...data, file: base64File } };
+        console.log(result);
+        return result;
+      }
     }
   }
 };

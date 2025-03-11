@@ -7,7 +7,7 @@ interface FormData {
   password1: string;
   password2: string;
   TC: boolean;
-  file: File | null;
+  file: File | string | null;
   country: string;
   gender: string;
 }

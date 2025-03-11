@@ -5,6 +5,7 @@ import './plain_form.css';
 import { useNavigate } from 'react-router';
 import { validator } from '../../utils/validator';
 import { savePlainFormData } from '../../state/features/plain-form/plainFormSlice';
+import { IValidatedData, IError } from '../../types/interface';
 
 export default function PlainForm() {
   const [nameError, setNameError] = useState('');
@@ -22,15 +23,13 @@ export default function PlainForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const upload_picture = (
       form.elements.namedItem('upload_picture') as HTMLInputElement
     ).files;
-    const country = (form.elements.namedItem('country') as HTMLSelectElement)
-      .value;
-    console.log(country);
+
     const data = {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       age: +(form.elements.namedItem('age') as HTMLInputElement).value,
@@ -45,8 +44,10 @@ export default function PlainForm() {
       gender: (form.elements.namedItem('gender') as HTMLInputElement).value,
     };
     console.log(data);
-    const error = validator(data);
-    if (error) {
+    const validationResult = await validator(data);
+    if ('error' in (validationResult as IValidatedData | IError)) {
+      const { error } = validationResult as IError;
+      console.log(error);
       setNameError(error.name);
       setAgeError(error.age);
       setEmailError(error.email);
@@ -54,9 +55,13 @@ export default function PlainForm() {
       setConfirmPasswordError(error.password2);
       setTCError(error.TC);
       setFileError(error.file);
-    } else {
+    }
+
+    if ('data' in (validationResult as IValidatedData | IError)) {
+      const { data } = validationResult as IValidatedData;
+      console.log(data);
       dispatch(savePlainFormData(data));
-      navigate('/');
+      navigate('/', { state: { from: '/uncontrolled_form' } });
     }
   };
   return (
@@ -68,35 +73,45 @@ export default function PlainForm() {
             Name
             <input id="name" type="text" className="form__input" />
           </label>
-          <p className="form__error">{nameError}</p>
+          <p id="name-error" className="form__error">
+            {nameError}
+          </p>
         </div>
         <div className="form__item">
           <label htmlFor="age" className="form__label">
             Age
             <input id="age" type="number" className="form__input" />
           </label>
-          <p className="form__error">{ageError}</p>
+          <p id="age-error" className="form__error">
+            {ageError}
+          </p>
         </div>
         <div className="form__item">
           <label htmlFor="email" className="form__label">
             Email
             <input id="email" type="email" className="form__input" />
           </label>
-          <p className="form__error">{emailError}</p>
+          <p id="email-error" className="form__error">
+            {emailError}
+          </p>
         </div>
         <div className="form__item">
           <label htmlFor="password" className="form__label">
             Password
             <input id="password1" type="password" className="form__input" />
           </label>
-          <p className="form__error password">{passwordError}</p>
+          <p id="password-error" className="form__error password">
+            {passwordError}
+          </p>
         </div>
         <div className="form__item">
-          <label htmlFor="confirm_password" className="form__label">
+          <label htmlFor="password2" className="form__label">
             Confirm Password
             <input id="password2" type="password" className="form__input" />
           </label>
-          <p className="form__error">{confirmPasswordError}</p>
+          <p id="password2-error" className="form__error">
+            {confirmPasswordError}
+          </p>
         </div>
         <div className="form__item_radio">
           <label>Gender</label>
@@ -120,14 +135,18 @@ export default function PlainForm() {
         <div className="form__item_checkbox">
           <label htmlFor="TC">Terms and Conditions</label>
           <input id="TC" type="checkbox" />
-          <p className="form__error">{TCError}</p>
+          <p id="TC-error" className="form__error">
+            {TCError}
+          </p>
         </div>
         <div className="form__item">
           <label htmlFor="upload_picture">
             Upload Picture
             <input id="upload_picture" type="file" />
           </label>
-          <span className="form__error">{fileError}</span>
+          <span id="upload_picture-error" className="form__error">
+            {fileError}
+          </span>
         </div>
         <div className="form__item">
           <label htmlFor="country">Country</label>

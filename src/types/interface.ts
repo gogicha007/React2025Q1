@@ -9,8 +9,23 @@ export interface IData {
   email: string;
   password1: string;
   password2: string;
-  gender?: string;
+  gender: string;
   TC: boolean;
-  file: File | null;
-  country?: string;
+  file: File | string | null;
+  country: string;
+}
+
+export interface IValidatedData {
+  data: IData;
+}
+export interface IError {
+  error: {
+    name: string;
+    age: string;
+    email: string;
+    password1: string;
+    password2: string;
+    TC: string;
+    file: string;
+  };
 }
