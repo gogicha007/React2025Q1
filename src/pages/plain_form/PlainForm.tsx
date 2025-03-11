@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../state/store';
 import { validator } from '../../utils/validator';
-import { savePlainFormData } from '../../state/features/plain-form/plainFormSlice';
+import { addFormData } from '../../state/features/form/formDataSlice';
 import { IValidatedData, IError } from '../../types/interface';
 
 export default function PlainForm() {
@@ -60,7 +60,7 @@ export default function PlainForm() {
     if ('data' in (validationResult as IValidatedData | IError)) {
       const { data } = validationResult as IValidatedData;
       console.log(data);
-      dispatch(savePlainFormData(data));
+      dispatch(addFormData(data));
       navigate('/', { state: { from: '/uncontrolled_form' } });
     }
   };

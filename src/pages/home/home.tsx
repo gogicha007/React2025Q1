@@ -1,58 +1,59 @@
 import './home.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
-import DisplayData from '../../components/display-data/DisplayData';
+import { useSelector } from 'react-redux';
+import Tile from '../../components/tile/tile';
 import { RootState } from '../../state/store';
-import { resetIsDataChanged } from '../../state/features/plain-form/plainFormSlice';
 
 export default function Home() {
+  const [justAdded, setJustAdded] = useState(false);
   const location = useLocation();
   const previousPath = location.state?.from || 'No previous path';
   const navigate = useNavigate();
   console.log(previousPath);
 
-  const dispatch = useDispatch();
-  const { plainFormData, isPlainDataChanged } = useSelector(
-    (state: RootState) => state.plainForm
-  );
+  const formData = useSelector((state: RootState) => state.formData.formData);
+  console.log('form data', formData);
 
   useEffect(() => {
-    if (isPlainDataChanged) {
+    if (justAdded) {
       const timer = setTimeout(() => {
+        setJustAdded(false);
         console.log('reset is done');
-        dispatch(resetIsDataChanged());
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [isPlainDataChanged, dispatch]);
+  }, [justAdded]);
 
   const handleMenuItemClick = (path: string) => {
     navigate(path);
   };
 
   return (
-    <>
-      <h1>React forms</h1>
+    <div className="home">
+      <h2>React forms</h2>
       <p>Navigated from : {previousPath}</p>
       <ul className="menu">
         <li
-          className={`menu_item ${isPlainDataChanged ? 'data_changed' : ''}`}
+          className={`menu_item ${justAdded ? 'data_changed' : ''}`}
           onClick={() => handleMenuItemClick('/uncontrolled_form')}
-          style={{ borderColor: isPlainDataChanged ? 'red' : '#e0e0e0' }}
         >
           <h2>The Plain Form</h2>
-          <DisplayData data={plainFormData} />
         </li>
         <li
           className="menu_item"
           onClick={() => handleMenuItemClick('/hook_form')}
         >
           <h2>Hook Form</h2>
-          <DisplayData data={plainFormData} />
         </li>
       </ul>
-    </>
+      <div>
+        <h1>Data</h1>
+        {formData.length > 0 &&
+          formData.map((data, index) => <Tile key={index} data={data} />)}
+      </div>
+      {/* <DisplayData data={plainFormData} /> */}
+    </div>
   );
 }
