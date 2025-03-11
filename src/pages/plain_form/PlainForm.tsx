@@ -43,8 +43,8 @@ export default function PlainForm() {
       country: (form.elements.namedItem('country') as HTMLSelectElement).value,
       gender: (form.elements.namedItem('gender') as HTMLInputElement).value,
     };
-    console.log(data);
     const validationResult = await validator(data);
+    console.log(validationResult);
     if ('error' in (validationResult as IValidatedData | IError)) {
       const { error } = validationResult as IError;
       console.log(error);

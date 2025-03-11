@@ -14,7 +14,7 @@ interface FormData {
 
 interface PlainFormState {
   plainFormData: FormData;
-  isDataChanged: boolean;
+  isPlainDataChanged: boolean;
 }
 const initialState: PlainFormState = {
   plainFormData: {
@@ -28,7 +28,7 @@ const initialState: PlainFormState = {
     country: '',
     gender: '',
   },
-  isDataChanged: false,
+  isPlainDataChanged: false,
 };
 
 const plainFormSlice = createSlice({
@@ -38,13 +38,13 @@ const plainFormSlice = createSlice({
     savePlainFormData(state, action: PayloadAction<FormData>) {
       if (JSON.stringify(state) !== JSON.stringify(action.payload)) {
         state.plainFormData = action.payload;
-        state.isDataChanged = true;
+        state.isPlainDataChanged = true;
       } else {
-        state.isDataChanged = false;
+        state.isPlainDataChanged = false;
       }
     },
     resetIsDataChanged(state) {
-      state.isDataChanged = false;
+      state.isPlainDataChanged = false;
     },
   },
 });
