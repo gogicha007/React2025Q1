@@ -35,3 +35,13 @@
 .data_changed {
   border-color: red;
 }
+.home__tiles {
+  width: 100%;
+  padding: 10px;
+}
+.home__tiles_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}

@@ -14,10 +14,12 @@ interface FormData {
 
 interface FormState {
   formData: FormData[];
+  isDataChanged: boolean;
 }
 
 const initialState: FormState = {
   formData: [],
+  isDataChanged: false,
 };
 
 const formDataSlice = createSlice({
@@ -26,9 +28,13 @@ const formDataSlice = createSlice({
   reducers: {
     addFormData(state, action: PayloadAction<FormData>) {
       state.formData.push(action.payload);
+      state.isDataChanged = true;
+    },
+    resetIsDataChanged(state) {
+      state.isDataChanged = false;
     },
   },
 });
 
-export const { addFormData } = formDataSlice.actions;
+export const { addFormData, resetIsDataChanged } = formDataSlice.actions;
 export default formDataSlice.reducer;
