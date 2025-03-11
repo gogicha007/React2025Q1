@@ -1,8 +1,8 @@
+import './plain_form.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../state/store';
-import './plain_form.css';
-import { useNavigate } from 'react-router';
 import { validator } from '../../utils/validator';
 import { savePlainFormData } from '../../state/features/plain-form/plainFormSlice';
 import { IValidatedData, IError } from '../../types/interface';
