@@ -12,13 +12,14 @@
   transition: all 0.3s;
   gap: 5px;
 }
-
 .tile:hover {
   border: 1px solid #007bff;
   box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
 }
-
 .tile p {
   margin: 0;
   padding: 0;
+}
+.tile.highlight {
+  border: 2px solid #ff0000; /* Highlight border color */
 }

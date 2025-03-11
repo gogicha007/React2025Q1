@@ -13,6 +13,7 @@ export interface IData {
   TC: boolean;
   file: File | string | null;
   country: string;
+  justAdded?: boolean;
 }
 
 export interface IValidatedData {

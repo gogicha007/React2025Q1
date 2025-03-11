@@ -1,11 +1,12 @@
 import '../plain_form/plain_form.css';
 import { useNavigate } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../state/store';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { convertFileToBase64 } from '../../utils/convertFile';
+import { addFormData } from '../../state/features/form/formDataSlice';
 
 const fileSizeLimit = 5 * 1024 * 1024;
 const schema = z
@@ -37,7 +38,6 @@ const schema = z
       .refine(
         (file) => {
           if (file) {
-            console.log('zod file', file.size);
             return true;
           }
           return false;
@@ -68,6 +68,7 @@ const schema = z
 type FormFields = z.infer<typeof schema>;
 
 export default function HookForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const countries = useSelector(
     (state: RootState) => state.countries.countries
@@ -92,6 +93,7 @@ export default function HookForm() {
     }
     const validationResult = { ...data, file: base64file };
     console.log(validationResult);
+    dispatch(addFormData(validationResult));
     navigate('/', { state: { from: 'Hook Form' } });
   };
 
