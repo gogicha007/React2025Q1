@@ -6,14 +6,14 @@ import { RootState } from '../../state/store';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { convertFileToBase64 } from '../../utils/convertFile';
-
+const fileSizeLimit = 5 * 1024 * 1024;
 const schema = z
   .object({
     name: z
       .string()
       .min(1, { message: 'Name is required' })
       .regex(/^[A-Z]/, { message: 'First letter of name must be uppercase' }),
-    age: z.number().min(0, { message: 'No negative values' }),
+    age: z.coerce.number().min(0, { message: 'No negative values' }),
     email: z.string().email({ message: 'Invalid email' }),
     password1: z
       .string()
@@ -32,11 +32,17 @@ const schema = z
       .refine((val) => val === true, { message: 'You must accept the T&C' }),
     file: z
       .any()
-      .refine((file) => file !== undefined, {
+      .refine((file) => file !== undefined && file !== null, {
         message: 'You must upload a file',
       })
-      .refine((file) => file?.size >= 2000, {
+      .refine((file) => file.size > 2000, {
         message: 'File size must be more than 2KB',
+      })
+      .refine((file) => file.size <= 5 * 1024 * 1024, {
+        message: 'File size must be less than 5MB',
+      })
+      .refine((file) => file.size <= fileSizeLimit, {
+        message: 'File size must be less than 5mb',
       })
       .refine((file) => ['image/jpeg', 'image/png'].includes(file?.type), {
         message: 'File must be of type jpeg or png',
@@ -130,7 +136,7 @@ export default function HookForm() {
               className="form__input"
             />
           </label>
-          <p className="form__error">{errors?.password1?.message}</p>
+          <p className="form__error password">{errors?.password1?.message}</p>
         </div>
         <div className="form__item">
           <label htmlFor="password2" className="form__label">
