@@ -64,6 +64,7 @@ export default function PlainForm() {
       navigate('/', { state: { from: '/uncontrolled_form' } });
     }
   };
+
   return (
     <div className="plain__form">
       <h1>The Plain Form</h1>
@@ -80,7 +81,12 @@ export default function PlainForm() {
         <div className="form__item">
           <label htmlFor="age" className="form__label">
             Age
-            <input id="age" type="number" className="form__input" />
+            <input
+              id="age"
+              type="number"
+              className="form__input"
+              defaultValue={0}
+            />
           </label>
           <p id="age-error" className="form__error">
             {ageError}
