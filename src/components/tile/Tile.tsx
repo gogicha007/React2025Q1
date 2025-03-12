@@ -17,12 +17,20 @@ export default function Tile({ data }: { data: IData }) {
       return () => clearTimeout(timer);
     }
   }, [data.justAdded, dispatch]);
+  console.log(data);
   return (
     <div className={`tile ${highlight ? 'highlight' : ''}`}>
       <h3>{data.name}</h3>
       <p>Age: {data.age}</p>
       <p>Email: {data.email}</p>
       <p>Country: {data.country}</p>
+      {typeof data.file === 'string' && (
+        <img
+          src={data.file}
+          alt={`${data.name}'s uploaded file`}
+          className="tile-image"
+        />
+      )}
     </div>
   );
 }

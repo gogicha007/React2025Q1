@@ -23,3 +23,7 @@
 .tile.highlight {
   border: 2px solid #ff0000; /* Highlight border color */
 }
+.tile__image {
+  width: 100px;
+  height: auto;
+}
