@@ -21,7 +21,7 @@ export default function Home() {
           className="menu_item"
           onClick={() => handleMenuItemClick('/uncontrolled_form')}
         >
-          <h2>The Plain Form</h2>
+          <h2>Plain Form</h2>
         </li>
         <li
           className="menu_item"

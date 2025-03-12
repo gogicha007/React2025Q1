@@ -1,1 +1,1 @@
-* images to validate are in src/assets folder
+- images to validate are in src/assets folder
