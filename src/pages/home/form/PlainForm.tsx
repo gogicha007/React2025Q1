@@ -44,10 +44,8 @@ export default function PlainForm() {
       gender: (form.elements.namedItem('gender') as HTMLInputElement).value,
     };
     const validationResult = await validator(data);
-    console.log(validationResult);
     if ('error' in (validationResult as IValidatedData | IError)) {
       const { error } = validationResult as IError;
-      console.log(error);
       setNameError(error.name);
       setAgeError(error.age);
       setEmailError(error.email);

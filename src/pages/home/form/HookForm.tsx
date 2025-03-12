@@ -77,9 +77,10 @@ export default function HookForm() {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -92,9 +93,8 @@ export default function HookForm() {
       return;
     }
     const validationResult = { ...data, file: base64file };
-    console.log(validationResult);
     dispatch(addFormData(validationResult));
-    navigate('/', { state: { from: 'Hook Form' } });
+    navigate('/');
   };
 
   return (
@@ -214,7 +214,9 @@ export default function HookForm() {
             ))}
           </select>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!isValid}>
+          Submit
+        </button>
       </form>
     </div>
   );
