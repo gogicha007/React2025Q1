@@ -1,7 +1,7 @@
 import './home.css';
 import { useLocation, useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
-import Tile from '../../components/tile/tile';
+import Tile from '../../components/tile/Tile';
 import { RootState } from '../../state/store';
 
 export default function Home() {
