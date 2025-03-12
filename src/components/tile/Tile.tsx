@@ -25,11 +25,7 @@ export default function Tile({ data }: { data: IData }) {
       <p>Email: {data.email}</p>
       <p>Country: {data.country}</p>
       {typeof data.file === 'string' && (
-        <img
-          src={data.file}
-          alt={`${data.name}'s uploaded file`}
-          className="tile-image"
-        />
+        <img src={data.file} alt={`${data.name}`} className="tile-image" />
       )}
     </div>
   );

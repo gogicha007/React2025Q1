@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
-import HookForm from './pages/hook_form/HookForm';
-import PlainForm from './pages/plain_form/PlainForm';
+import HookForm from './pages/home/form/HookForm';
+import PlainForm from './pages/home/form/PlainForm';
 import './App.css';
 import Home from './pages/home/home';
 

@@ -1,11 +1,11 @@
-import './plain_form.css';
+import './form.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../state/store';
-import { validator } from '../../utils/validator';
-import { addFormData } from '../../state/features/form/formDataSlice';
-import { IValidatedData, IError } from '../../types/interface';
+import { RootState } from '../../../state/store';
+import { validator } from '../../../utils/validator';
+import { addFormData } from '../../../state/features/form/formDataSlice';
+import { IValidatedData, IError } from '../../../types/interface';
 
 export default function PlainForm() {
   const [nameError, setNameError] = useState('');
