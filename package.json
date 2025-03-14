@@ -1,6 +1,6 @@
 {
   "name": "react-forms",
-  "homepage": "https://gogicha007.github.io/React2025Q1/",
+  "homepage": "https://gogicha007.github.io/React2025Q1/forms/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "format:fix": "prettier --write .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -b gh-pages -o origin -e forms"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
