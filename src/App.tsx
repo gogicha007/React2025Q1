@@ -3,6 +3,11 @@ import HookForm from './pages/home/form/HookForm';
 import PlainForm from './pages/home/form/PlainForm';
 import './App.css';
 import Home from './pages/home/home';
+import { getBaseURL } from './utils/utils';
+
+const baseURL = getBaseURL();
+
+console.log('app', baseURL)
 
 function App() {
   const Layout = () => (
@@ -10,16 +15,17 @@ function App() {
       <Outlet />
     </div>
   );
+
   const router = createBrowserRouter([
     {
       element: <Layout />,
       children: [
-        { path: '/React2025Q1/forms/', element: <Home /> },
+        { path: baseURL, element: <Home /> },
         {
-          path: '/React2025Q1/forms/uncontrolled_form',
+          path: `${baseURL}uncontrolled_form`,
           element: <PlainForm />,
         },
-        { path: '/React2025Q1/forms//hook_form', element: <HookForm /> },
+        { path: `${baseURL}hook_form`, element: <HookForm /> },
         { path: '*', element: <h1>Not Found</h1> },
       ],
     },

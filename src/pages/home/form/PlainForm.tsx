@@ -6,6 +6,9 @@ import { RootState } from '../../../state/store';
 import { validator } from '../../../utils/validator';
 import { addFormData } from '../../../state/features/form/formDataSlice';
 import { IValidatedData, IError } from '../../../types/interface';
+import { getBaseURL } from '../../../utils/utils';
+
+const baseURL = getBaseURL()
 
 export default function PlainForm() {
   const [nameError, setNameError] = useState('');
@@ -59,7 +62,7 @@ export default function PlainForm() {
       const { data } = validationResult as IValidatedData;
       console.log(data);
       dispatch(addFormData(data));
-      navigate('/', { state: { from: '/uncontrolled_form' } });
+      navigate(baseURL, { state: { from: `${baseURL}uncontrolled_form'` } });
     }
   };
 

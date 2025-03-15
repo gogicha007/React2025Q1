@@ -7,7 +7,9 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { convertFileToBase64 } from '../../../utils/convertFile';
 import { addFormData } from '../../../state/features/form/formDataSlice';
+import { getBaseURL } from '../../../utils/utils';
 
+const baseURL = getBaseURL();
 const fileSizeLimit = 5 * 1024 * 1024;
 const schema = z
   .object({
@@ -94,7 +96,7 @@ export default function HookForm() {
     }
     const validationResult = { ...data, file: base64file };
     dispatch(addFormData(validationResult));
-    navigate('/');
+    navigate(baseURL, { state: { from: `${baseURL}hook_form` } });
   };
 
   return (

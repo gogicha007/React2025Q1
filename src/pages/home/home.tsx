@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import Tile from '../../components/tile/Tile';
 import { RootState } from '../../state/store';
+import { getBaseURL } from '../../utils/utils';
+
+const baseURL = getBaseURL();
+
+console.log('home', baseURL);
 
 export default function Home() {
   const navigate = useNavigate();
@@ -19,13 +24,13 @@ export default function Home() {
       <ul className="menu">
         <li
           className="menu_item"
-          onClick={() => handleMenuItemClick('/uncontrolled_form')}
+          onClick={() => handleMenuItemClick(`${baseURL}uncontrolled_form`)}
         >
           <h2>Plain Form</h2>
         </li>
         <li
           className="menu_item"
-          onClick={() => handleMenuItemClick('/hook_form')}
+          onClick={() => handleMenuItemClick(`${baseURL}hook_form`)}
         >
           <h2>Hook Form</h2>
         </li>
