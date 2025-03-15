@@ -20,9 +20,16 @@ export default function Tile({ data }: { data: IData }) {
   return (
     <div className={`tile ${highlight ? 'highlight' : ''}`}>
       <h3>{data.name}</h3>
-      <p>Age: {data.age}</p>
-      <p>Email: {data.email}</p>
-      <p>Country: {data.country}</p>
+      <div className="tile__content">
+        <div className="tile__info">
+          <p>Age: {data.age}</p>
+          <p>Email: {data.email}</p>
+          <p>Country: {data.country}</p>
+        </div>
+        {typeof data.file === 'string' && (
+          <img src={data.file} alt={`${data.name}`} className="tile__image" />
+        )}
+      </div>
     </div>
   );
 }

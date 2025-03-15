@@ -1,12 +1,10 @@
 import './home.css';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import Tile from '../../components/tile/Tile';
 import { RootState } from '../../state/store';
 
 export default function Home() {
-  const location = useLocation();
-  const previousPath = location.state?.from || 'No previous path';
   const navigate = useNavigate();
 
   const formData = useSelector((state: RootState) => state.formData.formData);
@@ -18,13 +16,12 @@ export default function Home() {
   return (
     <div className="home">
       <h2>React forms</h2>
-      <p>Navigated from : {previousPath}</p>
       <ul className="menu">
         <li
           className="menu_item"
           onClick={() => handleMenuItemClick('/uncontrolled_form')}
         >
-          <h2>The Plain Form</h2>
+          <h2>Plain Form</h2>
         </li>
         <li
           className="menu_item"
