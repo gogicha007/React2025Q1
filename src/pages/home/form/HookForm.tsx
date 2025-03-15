@@ -96,7 +96,6 @@ export default function HookForm() {
     }
     const validationResult = { ...data, file: base64file };
     dispatch(addFormData(validationResult));
-    console.log('hook_form', baseURL)
     navigate(baseURL, { state: { from: `${baseURL}hook_form` } });
   };
 

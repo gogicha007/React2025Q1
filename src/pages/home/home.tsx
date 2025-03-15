@@ -7,8 +7,6 @@ import { getBaseURL } from '../../utils/utils';
 
 const baseURL = getBaseURL();
 
-console.log('home', baseURL);
-
 export default function Home() {
   const navigate = useNavigate();
 
