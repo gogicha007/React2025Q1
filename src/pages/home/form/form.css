@@ -1,0 +1,96 @@
+.plain__form,
+.hook__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.plain__form h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 50px;
+  gap: 10px;
+}
+.form__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.form__item_checkbox,
+.form__item_radio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.form__error {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+  height: 1.1em;
+  max-width: 300px;
+}
+.password {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  height: 2.2em;
+}
+.form__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.form__item_checkbox,
+.form__item_radio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.form__error {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+  height: 1.1em;
+  max-width: 300px;
+}
+.password {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  height: 2.2em;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form__label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

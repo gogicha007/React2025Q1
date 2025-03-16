@@ -1,0 +1,43 @@
+.tile {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  gap: 5px;
+}
+.tile:hover {
+  border: 1px solid #007bff;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+}
+.tile p {
+  margin: 0;
+  padding: 0;
+}
+.tile__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+.tile__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+.tile.highlight {
+  border: 2px solid #ff0000;
+}
+.tile__image {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+}

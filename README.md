@@ -1,1 +1,4 @@
-# React2025Q1
+- git clone https://github.com/gogicha007/React2025Q1.git;
+- git checkout forms;
+- npm run install;
+- npm run dev;
