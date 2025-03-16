@@ -1,20 +1,11 @@
 import './card-list.css';
-import { useContext } from 'react';
 import Card from '../card/card';
-import Loader from '../loader/loader';
-import { CountriesContext } from '../../context/countriesContext';
+import { ICountry } from '../../types/interface';
 
-const CardList = () => {
-  const context = useContext(CountriesContext);
-
-  if (!context) {
-    return <Loader />;
-  }
-
-  const { countries } = context;
+const CardList = ({ data }: { data: ICountry[] }) => {
   return (
     <div className="card-list">
-      {countries.map((country) => (
+      {data.map((country) => (
         <Card key={country.cca2} country={country} />
       ))}
     </div>

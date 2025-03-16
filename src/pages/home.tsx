@@ -1,5 +1,5 @@
 import './home.css';
-import { useContext } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { CardList } from '../components/card-list/cardList';
 import Filter from '../components/filter/filter';
 import Search from '../components/search/search';
@@ -7,19 +7,29 @@ import Sort from '../components/sort/sort';
 import { debounce } from '../utils';
 import { CountriesContext } from '../context/countriesContext';
 import Loader from '../components/loader/loader';
+import { filterByRegion } from '../utils';
+import { ICountry } from '../types/interface';
 
 const Home = () => {
   const context = useContext(CountriesContext);
+  const [data, setData] = useState<ICountry[]>([]);
+  const [region, setRegion] = useState<string>('');
 
-  if (!context) {
-    return <Loader />;
-  }
+  const countries = useMemo(() => context?.countries || [], [context]);
 
-  console.log(context);
+  useEffect(() => {
+    setData(countries);
+  }, [countries]);
 
-  const handleFilter = (region: string) => {
-    console.log(region);
-  };
+  const handleFilter = (region: string) => setRegion(region);
+
+  const filteredData = useMemo(() => {
+    return region ? filterByRegion(countries, region) : countries;
+  }, [countries, region]);
+
+  useEffect(() => {
+    setData(filteredData);
+  }, [filteredData]);
 
   const handleSearch = debounce((text: string) => {
     console.log(text);
@@ -28,6 +38,11 @@ const Home = () => {
   const handleSort = (sort: string) => {
     console.log(sort);
   };
+
+  if (!context) {
+    console.log('loading');
+    return <Loader />;
+  }
 
   return (
     <div className="home">
@@ -40,7 +55,7 @@ const Home = () => {
         </div>
       </div>
       <main>
-        <CardList />
+        <CardList data={data} />
       </main>
     </div>
   );
