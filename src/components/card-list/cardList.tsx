@@ -1,6 +1,6 @@
 import './card-list.css';
 import { useContext } from 'react';
-import { Card } from '../card/card';
+import Card from '../card/card';
 import Loader from '../loader/loader';
 import { CountriesContext } from '../../context/countriesContext';
 
