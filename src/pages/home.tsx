@@ -1,76 +1,60 @@
 import './home.css';
-import { useContext, useEffect, useState, useMemo, useCallback } from 'react';
+import { useContext, useState, useMemo, useCallback } from 'react';
 import { CardList } from '../components/card-list/cardList';
 import Filter from '../components/filter/filter';
 import Search from '../components/search/search';
 import Sort from '../components/sort/sort';
-import { debounce } from '../utils';
+import { debounce, filterByRegion } from '../utils';
 import { CountriesContext } from '../context/countriesContext';
 import Loader from '../components/loader/loader';
-import { filterByRegion } from '../utils';
-import { ICountry } from '../types/interface';
 
 const Home = () => {
   const context = useContext(CountriesContext);
-  const [data, setData] = useState<ICountry[]>([]);
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [sort, setSort] = useState<string>('neutral');
 
   const countries = useMemo(() => context?.countries || [], [context]);
 
-  useEffect(() => {
-    setData(countries);
-  }, [countries]);
-
   const handleFilter = useCallback((region: string) => setRegion(region), []);
 
-  const filteredData = useMemo(() => {
-    return region ? filterByRegion(countries, region) : countries;
-  }, [countries, region]);
-
-  useEffect(() => {
-    setData(filteredData);
-  }, [filteredData]);
-
-  const handleSearch = useCallback(
-    debounce((text: string) => setSearch(text), 500),
+  const debouncedSetSearch = useMemo(
+    () => debounce((text: string) => setSearch(text), 500),
     []
   );
 
-  const searchedData = useMemo(() => {
-    return search
-      ? countries.filter((country) =>
-          country.name.common.toLowerCase().includes(search.toLowerCase())
-        )
-      : countries;
-  }, [countries, search]);
-
-  useEffect(() => {
-    setData(searchedData);
-  }, [searchedData]);
+  const handleSearch = useCallback(
+    (text: string) => {
+      debouncedSetSearch(text);
+    },
+    [debouncedSetSearch]
+  );
 
   const handleSort = useCallback((sort: string) => {
     console.log(sort);
     setSort(sort);
   }, []);
 
-  const sortedData = useMemo(() => {
-    if (sort === 'ascending') {
-      console.log('asc');
-      return [...data].sort((a, b) => a.population - b.population);
-    } else if (sort === 'descending') {
-      console.log('desc');
-      return [...data].sort((a, b) => b.population - a.population);
-    } else {
-      console.log('neutral');
-      return countries;
-    }
-  }, [sort]);
+  const filteredData = useMemo(() => {
+    let result = countries;
 
-  useEffect(() => {
-    setData(sortedData);
-  }, [sortedData]);
+    if (region) {
+      result = filterByRegion(countries, region);
+    }
+
+    if (search) {
+      result = result.filter((country) =>
+        country.name.common.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    if (sort === 'ascending') {
+      result = [...result].sort((a, b) => a.population - b.population);
+    } else if (sort === 'descending') {
+      result = [...result].sort((a, b) => b.population - a.population);
+    }
+    return result;
+  }, [countries, region, search, sort]);
 
   if (!context) {
     console.log('loading');
@@ -88,7 +72,7 @@ const Home = () => {
         </div>
       </div>
       <main>
-        <CardList data={data} />
+        <CardList data={filteredData} />
       </main>
     </div>
   );
