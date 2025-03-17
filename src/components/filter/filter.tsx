@@ -1,7 +1,6 @@
 import './filter.css';
 import { useContext } from 'react';
 import { CountriesContext } from '../../context/countriesContext';
-import { memo } from 'react';
 import Loader from '../loader/loader';
 
 interface IFilterProps {
@@ -33,4 +32,4 @@ const Filter = ({ onChange }: IFilterProps) => {
   );
 };
 
-export default memo(Filter);
+export default Filter;

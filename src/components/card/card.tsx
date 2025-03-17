@@ -1,5 +1,4 @@
 import './card.css';
-import { memo } from 'react';
 import { ICountry } from '../../types/interface';
 
 const Card = ({ country }: { country: ICountry }) => {
@@ -22,12 +21,12 @@ const Card = ({ country }: { country: ICountry }) => {
   );
 };
 
-const areEqual = (
-  prevProps: { country: ICountry },
-  nextProps: { country: ICountry }
-) => {
-  return prevProps.country.cca2 === nextProps.country.cca2;
-};
+// const areEqual = (
+//   prevProps: { country: ICountry },
+//   nextProps: { country: ICountry }
+// ) => {
+//   return prevProps.country.cca2 === nextProps.country.cca2;
+// };
 
-export default memo(Card, areEqual);
-// export default Card;
+// export default memo(Card, areEqual);
+export default Card;

@@ -1,5 +1,4 @@
 import './card-list.css';
-import { memo } from 'react';
 import Card from '../card/card';
 import { ICountry } from '../../types/interface';
 
@@ -15,4 +14,4 @@ const CardList = ({ data }: { data: ICountry[] }) => {
   );
 };
 
-export default memo(CardList);
+export default CardList;

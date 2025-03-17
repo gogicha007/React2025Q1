@@ -1,5 +1,5 @@
 import './home.css';
-import { useContext, useState, useMemo, useCallback } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CardList from '../components/card-list/cardList';
 import Filter from '../components/filter/filter';
 import Search from '../components/search/search';
@@ -7,34 +7,26 @@ import Sort from '../components/sort/sort';
 import { debounce, filterByRegion } from '../utils';
 import { CountriesContext } from '../context/countriesContext';
 import Loader from '../components/loader/loader';
+import { ICountry } from '../types/interface';
 
 const Home = () => {
   const context = useContext(CountriesContext);
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [sort, setSort] = useState<string>('neutral');
+  const [filteredData, setFilteredData] = useState<ICountry[]>([]);
 
-  const countries = useMemo(() => context?.countries || [], [context]);
+  const countries = context?.countries || [];
 
-  const handleFilter = useCallback((region: string) => setRegion(region), []);
+  const handleFilter = (region: string) => setRegion(region);
 
-  const debouncedSearch = useMemo(
-    () => debounce((text: string) => setSearch(text), 500),
-    []
-  );
+  const debouncedSearch = debounce((text: string) => setSearch(text), 500);
 
-  const handleSearch = useCallback(
-    (text: string) => {
-      debouncedSearch(text);
-    },
-    [debouncedSearch]
-  );
+  const handleSearch = (text: string) => debouncedSearch(text);
 
-  const handleSort = useCallback((sort: string) => {
-    setSort(sort);
-  }, []);
+  const handleSort = (sort: string) => setSort(sort);
 
-  const filteredData = useMemo(() => {
+  useEffect(() => {
     let result = countries;
 
     if (region) {
@@ -52,7 +44,7 @@ const Home = () => {
     } else if (sort === 'descending') {
       result = [...result].sort((a, b) => b.population - a.population);
     }
-    return result;
+    setFilteredData(result);
   }, [countries, region, search, sort]);
 
   if (!context) {

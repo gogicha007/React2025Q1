@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 interface ISearchProps {
   onChange: (text: string) => void;
 }
@@ -14,4 +12,4 @@ const Search = ({ onChange }: ISearchProps) => {
   );
 };
 
-export default memo(Search);
+export default Search;

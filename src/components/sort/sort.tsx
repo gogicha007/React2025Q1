@@ -1,5 +1,5 @@
 import './sort.css';
-import { useState, memo } from 'react';
+import { useState } from 'react';
 
 interface ISortProps {
   onChange: (sort: 'ascending' | 'descending' | 'neutral') => void;
@@ -35,4 +35,4 @@ const Sort = ({ onChange }: ISortProps) => {
   );
 };
 
-export default memo(Sort);
+export default Sort;
