@@ -1,6 +1,6 @@
 import './home.css';
 import { useContext, useState, useMemo, useCallback } from 'react';
-import { CardList } from '../components/card-list/cardList';
+import CardList from '../components/card-list/cardList';
 import Filter from '../components/filter/filter';
 import Search from '../components/search/search';
 import Sort from '../components/sort/sort';
@@ -18,20 +18,19 @@ const Home = () => {
 
   const handleFilter = useCallback((region: string) => setRegion(region), []);
 
-  const debouncedSetSearch = useMemo(
+  const debouncedSearch = useMemo(
     () => debounce((text: string) => setSearch(text), 500),
     []
   );
 
   const handleSearch = useCallback(
     (text: string) => {
-      debouncedSetSearch(text);
+      debouncedSearch(text);
     },
-    [debouncedSetSearch]
+    [debouncedSearch]
   );
 
   const handleSort = useCallback((sort: string) => {
-    console.log(sort);
     setSort(sort);
   }, []);
 
