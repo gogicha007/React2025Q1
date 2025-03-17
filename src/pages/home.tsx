@@ -1,5 +1,5 @@
 import './home.css';
-import { useContext, useEffect, useState, useMemo } from 'react';
+import { useContext, useEffect, useState, useMemo, useCallback } from 'react';
 import { CardList } from '../components/card-list/cardList';
 import Filter from '../components/filter/filter';
 import Search from '../components/search/search';
@@ -23,7 +23,7 @@ const Home = () => {
     setData(countries);
   }, [countries]);
 
-  const handleFilter = (region: string) => setRegion(region);
+  const handleFilter = useCallback((region: string) => setRegion(region), []);
 
   const filteredData = useMemo(() => {
     return region ? filterByRegion(countries, region) : countries;
@@ -33,7 +33,10 @@ const Home = () => {
     setData(filteredData);
   }, [filteredData]);
 
-  const handleSearch = debounce((text: string) => setSearch(text), 500);
+  const handleSearch = useCallback(
+    debounce((text: string) => setSearch(text), 500),
+    []
+  );
 
   const searchedData = useMemo(() => {
     return search
@@ -47,10 +50,10 @@ const Home = () => {
     setData(searchedData);
   }, [searchedData]);
 
-  const handleSort = (sort: string) => {
+  const handleSort = useCallback((sort: string) => {
     console.log(sort);
     setSort(sort);
-  };
+  }, []);
 
   const sortedData = useMemo(() => {
     if (sort === 'ascending') {
