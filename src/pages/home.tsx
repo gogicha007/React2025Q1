@@ -14,6 +14,8 @@ const Home = () => {
   const context = useContext(CountriesContext);
   const [data, setData] = useState<ICountry[]>([]);
   const [region, setRegion] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
+  const [sort, setSort] = useState<string>('neutral');
 
   const countries = useMemo(() => context?.countries || [], [context]);
 
@@ -31,13 +33,41 @@ const Home = () => {
     setData(filteredData);
   }, [filteredData]);
 
-  const handleSearch = debounce((text: string) => {
-    console.log(text);
-  }, 500);
+  const handleSearch = debounce((text: string) => setSearch(text), 500);
+
+  const searchedData = useMemo(() => {
+    return search
+      ? countries.filter((country) =>
+          country.name.common.toLowerCase().includes(search.toLowerCase())
+        )
+      : countries;
+  }, [countries, search]);
+
+  useEffect(() => {
+    setData(searchedData);
+  }, [searchedData]);
 
   const handleSort = (sort: string) => {
     console.log(sort);
+    setSort(sort);
   };
+
+  const sortedData = useMemo(() => {
+    if (sort === 'ascending') {
+      console.log('asc');
+      return [...data].sort((a, b) => a.population - b.population);
+    } else if (sort === 'descending') {
+      console.log('desc');
+      return [...data].sort((a, b) => b.population - a.population);
+    } else {
+      console.log('neutral');
+      return countries;
+    }
+  }, [sort]);
+
+  useEffect(() => {
+    setData(sortedData);
+  }, [sortedData]);
 
   if (!context) {
     console.log('loading');
