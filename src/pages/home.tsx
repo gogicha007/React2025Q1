@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="header">
-        <h1>Countries app</h1>
+        <h2>Countries app</h2>
         <div className="controls">
           <Filter onChange={handleFilter} />
           <Search onChange={handleSearch} />
