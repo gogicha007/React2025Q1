@@ -1,59 +1,43 @@
 import './home.css';
-import { useContext, useState, useMemo, useCallback } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import CardList from '../components/card-list/cardList';
 import Filter from '../components/filter/filter';
 import Search from '../components/search/search';
 import Sort from '../components/sort/sort';
-import { debounce, filterByRegion } from '../utils';
+import { debounce } from '../utils';
 import { CountriesContext } from '../context/countriesContext';
 import Loader from '../components/loader/loader';
+import { filterByRegion } from '../utils';
+import { ICountry } from '../types/interface';
 
 const Home = () => {
   const context = useContext(CountriesContext);
+  const [data, setData] = useState<ICountry[]>([]);
   const [region, setRegion] = useState<string>('');
-  const [search, setSearch] = useState<string>('');
-  const [sort, setSort] = useState<string>('neutral');
 
   const countries = useMemo(() => context?.countries || [], [context]);
 
-  const handleFilter = useCallback((region: string) => setRegion(region), []);
+  useEffect(() => {
+    setData(countries);
+  }, [countries]);
 
-  const debouncedSearch = useMemo(
-    () => debounce((text: string) => setSearch(text), 500),
-    []
-  );
-
-  const handleSearch = useCallback(
-    (text: string) => {
-      debouncedSearch(text);
-    },
-    [debouncedSearch]
-  );
-
-  const handleSort = useCallback((sort: string) => {
-    setSort(sort);
-  }, []);
+  const handleFilter = (region: string) => setRegion(region);
 
   const filteredData = useMemo(() => {
-    let result = countries;
+    return region ? filterByRegion(countries, region) : countries;
+  }, [countries, region]);
 
-    if (region) {
-      result = filterByRegion(countries, region);
-    }
+  useEffect(() => {
+    setData(filteredData);
+  }, [filteredData]);
 
-    if (search) {
-      result = result.filter((country) =>
-        country.name.common.toLowerCase().includes(search.toLowerCase())
-      );
-    }
+  const handleSearch = debounce((text: string) => {
+    console.log(text);
+  }, 500);
 
-    if (sort === 'ascending') {
-      result = [...result].sort((a, b) => a.population - b.population);
-    } else if (sort === 'descending') {
-      result = [...result].sort((a, b) => b.population - a.population);
-    }
-    return result;
-  }, [countries, region, search, sort]);
+  const handleSort = (sort: string) => {
+    console.log(sort);
+  };
 
   if (!context) {
     console.log('loading');
@@ -63,7 +47,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="header">
-        <h2>Countries app</h2>
+        <h1>Countries app</h1>
         <div className="controls">
           <Filter onChange={handleFilter} />
           <Search onChange={handleSearch} />
@@ -71,7 +55,7 @@ const Home = () => {
         </div>
       </div>
       <main>
-        <CardList data={filteredData} />
+        <CardList data={data} />
       </main>
     </div>
   );

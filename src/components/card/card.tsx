@@ -1,10 +1,33 @@
 import './card.css';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { ICountry } from '../../types/interface';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+
+type IVisitedCountries = string[];
 
 const Card = ({ country }: { country: ICountry }) => {
+  const [visitedCountries] = useLocalStorage<IVisitedCountries>('visits', []);
+  const [highlighted, setHighlighted] = useState(
+    visitedCountries.includes(country.cca2)
+  );
+
+  console.log(visitedCountries);
+  const clickHandler = () => {
+    setHighlighted(true);
+    const item = window.localStorage.getItem('visits');
+    if (item) {
+      const visits = JSON.parse(item) as IVisitedCountries;
+      if (visits.includes(country.cca2)) return;
+      visits.push(country.cca2);
+      window.localStorage.setItem('visits', JSON.stringify(visits));
+    }
+    console.log('clicked');
+  };
   return (
-    <div className="card">
+    <div
+      className={`card ${highlighted ? 'card__highlight' : ''}`}
+      onClick={clickHandler}
+    >
       <div className="card__info">
         <h2>{country.name.common}</h2>
         <h3>Region: {country.region}</h3>
@@ -30,4 +53,3 @@ const areEqual = (
 };
 
 export default memo(Card, areEqual);
-// export default Card;
